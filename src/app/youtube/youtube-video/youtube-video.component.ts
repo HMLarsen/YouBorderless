@@ -13,12 +13,13 @@ let apiLoaded = false;
 })
 export class YoutubeVideoComponent implements OnInit {
 
-	videoId = '5qap5aO4i9A';
+	//videoId = 'AZ3UMchnYVE';
+	videoId = 'fgfbbC4cJ4M';
 	videoState!: number;
 	liveOptions!: LiveOptions;
 
-	chunk: any;
-	_chunkSub!: Subscription;
+	text: any;
+	_textSub!: Subscription;
 
 	error: any;
 	_liveError!: Subscription;
@@ -45,8 +46,8 @@ export class YoutubeVideoComponent implements OnInit {
 	}
 
 	unSubscribeAll() {
-		if (this._chunkSub) {
-			this._chunkSub.unsubscribe();
+		if (this._textSub) {
+			this._textSub.unsubscribe();
 		}
 		if (this._liveError) {
 			this._liveError.unsubscribe();
@@ -54,28 +55,30 @@ export class YoutubeVideoComponent implements OnInit {
 	}
 
 	subscribeLive() {
-		this._chunkSub = this.liveService.currentChunk
+		this._textSub = this.liveService.currentText
 			.subscribe(live => {
 				if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-					this.chunk = this.liveService.getChunkLive(this.chunk, this.liveOptions.id, live);
+					this.text = this.liveService.getTextLive(this.text, this.liveOptions.id, live);
 				}
 			});
 	}
 
 	unSubscribeLive() {
-		if (this._chunkSub) {
-			this._chunkSub.unsubscribe();
+		if (this._textSub) {
+			this._textSub.unsubscribe();
 		}
 	}
 
 	initLive() {
 		this.error = null;
+		this.text = null;
 		this.subscribeLive();
 		this.liveService.initLive(this.liveOptions);
 	}
 
 	stopLive() {
 		this.error = null;
+		this.text = null;
 		this.unSubscribeLive();
 		this.liveService.stopLive(this.liveOptions.id);
 	}

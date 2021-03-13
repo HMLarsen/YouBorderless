@@ -8,7 +8,7 @@ import { LiveOptions } from '../model/live-options.model';
 export class LiveService {
 
 	private currentLives: Set<string> = new Set();
-	currentChunk = this.socket.fromEvent<any>('chunk-live');
+	currentText = this.socket.fromEvent<any>('text-live');
 	liveError = this.socket.fromEvent<any>('live-error');
 
 	constructor(private socket: Socket) { }
@@ -23,12 +23,11 @@ export class LiveService {
 		this.socket.emit('stop-live', liveId);
 	}
 
-	getChunkLive(currentChunk: any, liveId: string, live: any) {
+	getTextLive(currentText: any, liveId: string, live: any) {
 		if (liveId !== live.id) {
-			return currentChunk;
+			return currentText;
 		}
-		const enc = new TextDecoder();
-		return enc.decode(live.chunk);
+		return live.text;
 	}
 
 	getLiveError(currentError: string, liveId: string, live: any) {
