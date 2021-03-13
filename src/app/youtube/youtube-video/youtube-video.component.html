@@ -1,0 +1,12 @@
+<youtube-player
+	videoId="{{videoId}}"
+	(ready)="onReady($event)"
+	(stateChange)="onStateChange($event)"
+	(error)="onError"
+	(apiChange)="onApiChange()"
+	(playbackQualityChange)="onPlaybackQualityChange()"
+	(playbackRateChange)="onPlaybackRateChange()">
+</youtube-player>
+<br>
+<textarea [(ngModel)]="chunk" rows="10" style="width: 350px;"></textarea>
+<p>{{ error }}</p>

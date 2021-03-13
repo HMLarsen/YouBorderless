@@ -56,7 +56,8 @@
 						],
 						"scripts": [],
 						"allowedCommonJsDependencies": [
-							"socket.io-client"
+							"socket.io-client",
+							"uuid"
 						]
 					},
 					"configurations": {

@@ -2,7 +2,8 @@
 	"name": "youborderless-front-end",
 	"version": "0.0.0",
 	"scripts": {
-		"serve-dev": "ng serve",
+		"ng serve": "ng serve",
+		"serve-dev": "ng build && firebase serve --only hosting",
 		"serve": "ng build --prod && firebase serve --only hosting",
 		"deploy": "ng build --prod && firebase deploy --only hosting"
 	},
@@ -26,6 +27,8 @@
 		"@angular/platform-browser": "~11.2.5",
 		"@angular/platform-browser-dynamic": "~11.2.5",
 		"@angular/router": "~11.2.5",
+		"@angular/youtube-player": "^11.2.4",
+		"@types/uuid": "^8.3.0",
 		"ngx-socket-io": "^3.2.0",
 		"rxjs": "~6.6.0",
 		"tslib": "^2.0.0",
