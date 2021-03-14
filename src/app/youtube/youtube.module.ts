@@ -1,9 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
-import { HttpClientModule } from '@angular/common/http';
 import { YoutubeVideoComponent } from './youtube-video/youtube-video.component';
 
 @NgModule({
@@ -11,8 +11,8 @@ import { YoutubeVideoComponent } from './youtube-video/youtube-video.component';
 		YoutubeVideoComponent
 	],
 	imports: [
+		CommonModule,
 		FormsModule,
-		HttpClientModule,
 		YouTubePlayerModule
 	],
 	exports: [

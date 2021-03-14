@@ -1,3 +1,35 @@
+<label>ID do vídeo: </label>
+<input [(ngModel)]="videoId"/>
+<br>
+<label>Linguagem da transmissão: </label>
+<select [(ngModel)]="transcribeLanguage">
+	<option *ngFor="let language of transcribeLanguages; trackBy: transcribeLanguagesTrackBy" [ngValue]="language">
+		{{ language.name }}
+	</option>
+</select>
+<br>
+<label>Linguagem da tradução: </label>
+<select [(ngModel)]="translationLanguage">
+	<option *ngFor="let language of translationLanguages; trackBy: translationLanguagesTrackBy" [ngValue]="language">
+		{{ language.name }}
+	</option>
+</select>
+<br>
+<div *ngIf="transcribeLanguage && transcribeLanguage.profanity">
+	<label>Censurar palavras ofensivas: </label>
+	<input type="checkbox" [(ngModel)]="liveProfanityFilter"/>
+	<br>
+</div>
+<div *ngIf="transcribeLanguage && transcribeLanguage.punctuation">
+	<label>Habilitar pontuação: </label>
+	<input type="checkbox" [(ngModel)]="livePunctuation"/>
+	<br>
+</div>
+
+<button (click)="initLive()" [disabled]="isLiving || !transcribeLanguage || !translationLanguage">Iniciar</button>
+<button (click)="stopLive()" [disabled]="!isLiving">Parar</button>
+<button (click)="restartLive()" [disabled]="!isLiving">Restart</button>
+<br>
 <youtube-player
 	videoId="{{videoId}}"
 	(ready)="onReady($event)"
@@ -9,4 +41,5 @@
 </youtube-player>
 <br>
 <textarea [(ngModel)]="text" rows="10" style="width: 350px;"></textarea>
+<textarea [(ngModel)]="translate" rows="10" style="width: 350px;"></textarea>
 <p>{{ error }}</p>

@@ -1,14 +1,18 @@
 import * as uuid from 'uuid';
+import { TranscribeSupportedLanguage } from './transcribe-supported-language';
+import { TranslationSupportedLanguage } from './translation-supported-language';
 
 export class LiveOptions {
 
 	id!: string;
-	liveUrl!: string;
+	liveId!: string;
+	liveLanguage!: TranscribeSupportedLanguage;
+	liveToLanguage!: TranslationSupportedLanguage;
 
-	static newInstance(liveUrl: string) {
+	static newInstance(liveId: string) {
 		const options = new LiveOptions();
 		options.id = uuid.v4();
-		options.liveUrl = liveUrl;
+		options.liveId = liveId;
 		return options;
 	}
 }

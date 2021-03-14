@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LiveService } from 'src/app/live/live.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
+import { TranscribeSupportedLanguage } from 'src/app/model/transcribe-supported-language';
+import { TranslationSupportedLanguage } from 'src/app/model/translation-supported-language';
 import { YoutubeVideoStateChange } from 'src/app/model/youtube-video.constants';
 
 let apiLoaded = false;
@@ -13,13 +15,25 @@ let apiLoaded = false;
 })
 export class YoutubeVideoComponent implements OnInit {
 
-	//videoId = 'AZ3UMchnYVE';
-	videoId = 'fgfbbC4cJ4M';
+	videoId = 'fgfbbC4cJ4M'; // english
+	videoIframe: any;
 	videoState!: number;
+	isLiving = false;
 	liveOptions!: LiveOptions;
+	livePunctuation = false;
+	liveProfanityFilter = false;
+
+	transcribeLanguage!: TranscribeSupportedLanguage;
+	transcribeLanguages: TranscribeSupportedLanguage[] = [];
+
+	translationLanguage!: TranslationSupportedLanguage;
+	translationLanguages: TranslationSupportedLanguage[] = [];
 
 	text: any;
 	_textSub!: Subscription;
+
+	translate: any;
+	_translateSub!: Subscription;
 
 	error: any;
 	_liveError!: Subscription;
@@ -36,6 +50,13 @@ export class YoutubeVideoComponent implements OnInit {
 			apiLoaded = true;
 		}
 		this.liveOptions = LiveOptions.newInstance(this.videoId);
+
+		// languages
+		this.liveService.getTranscribeSupportedLanguages()
+			.subscribe(languages => this.transcribeLanguages = languages);
+		this.liveService.getTranslationSupportedLanguages()
+			.subscribe(languages => this.translationLanguages = languages);
+
 		this._liveError = this.liveService.liveError
 			.subscribe(live => this.error = this.liveService.getLiveError(this.error, this.liveOptions.id, live));
 	}
@@ -61,6 +82,12 @@ export class YoutubeVideoComponent implements OnInit {
 					this.text = this.liveService.getTextLive(this.text, this.liveOptions.id, live);
 				}
 			});
+		this._translateSub = this.liveService.translatedText
+			.subscribe(live => {
+				if (this.videoState === YoutubeVideoStateChange.PLAYING) {
+					this.translate = this.liveService.getTranslateLive(this.translate, this.liveOptions.id, live);
+				}
+			});
 	}
 
 	unSubscribeLive() {
@@ -70,46 +97,62 @@ export class YoutubeVideoComponent implements OnInit {
 	}
 
 	initLive() {
+		this.isLiving = true;
+		if (this.videoIframe.videoState !== YoutubeVideoStateChange.PLAYING) {
+			this.videoIframe.playVideo();
+		}
 		this.error = null;
 		this.text = null;
+		this.translate = null;
 		this.subscribeLive();
+
+		this.liveOptions.liveLanguage = { ...this.transcribeLanguage };
+		this.liveOptions.liveToLanguage = { ...this.translationLanguage };
+		this.liveOptions.liveLanguage.profanity = this.liveProfanityFilter;
+		this.liveOptions.liveLanguage.punctuation = this.livePunctuation;
+
 		this.liveService.initLive(this.liveOptions);
 	}
 
 	stopLive() {
-		this.error = null;
-		this.text = null;
+		if (!this.isLiving) {
+			return;
+		}
+		this.isLiving = false;
+		// verificar se stopar é melhor que dar o seek
+		if (this.videoState === YoutubeVideoStateChange.PLAYING) {
+			this.videoIframe.stopVideo();
+		}
 		this.unSubscribeLive();
 		this.liveService.stopLive(this.liveOptions.id);
 	}
 
+	restartLive() {
+		this.stopLive();
+		this.initLive();
+	}
+
 	onReady(event: any) {
+		this.videoIframe = event.target;
 		const embedCode = event.target.getVideoEmbedCode();
-		//event.target.playVideo();
+		// videoIframe.playVideo();
 		if (document.getElementById('embed-code')) {
 			document.getElementById('embed-code')!.innerHTML = embedCode;
 		}
 		console.log('onReady', event);
 	}
 
-	prepareToSeek = false;
 	onStateChange(event: any) {
 		this.videoState = event.data;
 		switch (this.videoState) {
 			case YoutubeVideoStateChange.PLAYING:
-				if (this.prepareToSeek) {
-					event.target.seekTo(Number.MAX_SAFE_INTEGER, true);
-					this.prepareToSeek = false;
-				}
-				this.initLive();
+				//this.initLive();
 				break;
 
 			case YoutubeVideoStateChange.PAUSED:
 			case YoutubeVideoStateChange.ENDED:
+				this.videoIframe.stopVideo();
 				this.stopLive();
-				//this.prepareToSeek = true;
-				// verificar se stopar é melhor que dar o seek
-				event.target.stopVideo();
 				break;
 
 			default:
@@ -132,6 +175,14 @@ export class YoutubeVideoComponent implements OnInit {
 
 	onPlaybackRateChange() {
 		console.log('onPlaybackRateChange');
+	}
+
+	transcribeLanguagesTrackBy(index: number, language: TranscribeSupportedLanguage) {
+		return language.bcp;
+	}
+
+	translationLanguagesTrackBy(index: number, language: TranslationSupportedLanguage) {
+		return language.code;
 	}
 
 }
