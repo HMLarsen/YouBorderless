@@ -185,4 +185,8 @@ export class YoutubeVideoComponent implements OnInit {
 		return language.code;
 	}
 
+	onChangeVideo() {
+		this.liveOptions.liveId = this.videoId;
+	}
+
 }

@@ -1,6 +1,6 @@
 <div style="float: left; margin-bottom: 40px;">
 	<label>ID do vídeo: </label>
-	<input [(ngModel)]="videoId" />
+	<input [(ngModel)]="videoId" (change)="onChangeVideo()" />
 	<br>
 	<label>Linguagem da transmissão: </label>
 	<select [(ngModel)]="transcribeLanguage">
