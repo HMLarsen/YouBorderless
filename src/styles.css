@@ -1,9 +1,16 @@
-body {
-	color: white;
-	background: black;
+html, body {
+	height: 100%;
 }
 
-textarea {
-	color: white;
-	background-color: black;
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.invisible {
+	visibility: hidden !important;
+}
+
+.custom-snackbar {
+	margin-bottom: 4.375rem !important;
 }

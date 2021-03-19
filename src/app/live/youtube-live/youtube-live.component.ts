@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Subscription } from 'rxjs';
-import { LiveService } from 'src/app/live/live.service';
+import { LiveService } from 'src/app/services/live.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
 import { TranscribeSupportedLanguage } from 'src/app/model/transcribe-supported-language';
 import { TranslationSupportedLanguage } from 'src/app/model/translation-supported-language';
@@ -9,11 +10,11 @@ import { YoutubeVideoStateChange } from 'src/app/model/youtube-video.constants';
 let apiLoaded = false;
 
 @Component({
-	selector: 'app-youtube-video',
-	templateUrl: './youtube-video.component.html',
-	styleUrls: ['./youtube-video.component.css']
+	selector: 'app-youtube-live',
+	templateUrl: './youtube-live.component.html',
+	styleUrls: ['./youtube-live.component.css']
 })
-export class YoutubeVideoComponent implements OnInit {
+export class YoutubeLiveComponent implements OnInit, OnDestroy {
 
 	videoId = 'fgfbbC4cJ4M'; // english
 	videoIframe: any;

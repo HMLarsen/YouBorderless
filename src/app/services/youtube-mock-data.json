@@ -1,0 +1,1032 @@
+{
+	"kind": "youtube#searchListResponse",
+	"etag": "LfItqDTPqvPVG2TRdEEIGDcBKUg",
+	"nextPageToken": "CB4QAA",
+	"regionCode": "BR",
+	"pageInfo": {
+		"totalResults": 136,
+		"resultsPerPage": 30
+	},
+	"items": [
+		{
+			"kind": "youtube#searchResult",
+			"etag": "_2knjA0wtBKgIWt1l4jlgTfekoA",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "Mr4qOmkd4eo"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:55:37Z",
+				"channelId": "UC-5VbJQGW1g-S3Xi_lydOJg",
+				"title": "TESTE",
+				"description": "teste.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/Mr4qOmkd4eo/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/Mr4qOmkd4eo/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/Mr4qOmkd4eo/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Cebola Clipes",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:55:37Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "wDNm2sPXpLFvCL6lpjp7rBYy1W0",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "x9b8UBIl268"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T02:07:12Z",
+				"channelId": "UCfVNSRHfm59wqqomu78R5Ng",
+				"title": "teste",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/x9b8UBIl268/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/x9b8UBIl268/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/x9b8UBIl268/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Henrique Marquioli",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T02:07:12Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "6YwcbbFSBcdf9eqlfMaiKhWJwF8",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "oakIK2mSLKs"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T02:05:21Z",
+				"channelId": "UC2DibBIwQZvSx001uuMor5A",
+				"title": "Teste",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/oakIK2mSLKs/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/oakIK2mSLKs/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/oakIK2mSLKs/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Wallace Erick",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T02:05:21Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "W37LjGJgawG28TJuZqPvbPODLcQ",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "U84qcBinWxw"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:56:16Z",
+				"channelId": "UCntYNNIIqGMXIZXNPvXh_kA",
+				"title": "teste",
+				"description": "Powered by Restream https://restream.io/",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/U84qcBinWxw/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/U84qcBinWxw/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/U84qcBinWxw/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "VERBO DA VIDA SANTO ANDRÉ",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:56:16Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "l6hcbKljted7PL0jYM1tiVO2hxI",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "Ge0nC2L7hKI"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:36:17Z",
+				"channelId": "UCVZpiDL4tlcKttqrDxFaO1w",
+				"title": "teste",
+				"description": "teste.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/Ge0nC2L7hKI/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/Ge0nC2L7hKI/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/Ge0nC2L7hKI/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Emilia Fernandes",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:36:17Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "SDhSVcJVnEGbXSVpOs_gf-DW3bw",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "bE7DOfGr7ik"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T02:06:34Z",
+				"channelId": "UCzV7bk-7ZVfzsD-fxGAssDw",
+				"title": "TESTE",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/bE7DOfGr7ik/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/bE7DOfGr7ik/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/bE7DOfGr7ik/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "DJ ALDO MARQUES",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T02:06:34Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "o2vCSskMt7_cnSoUCdlnwXbCE1U",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "4i8SEjQEj_Y"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:54:21Z",
+				"channelId": "UCK2_312JXnYEWh4m8wKY2KQ",
+				"title": "TESTE",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/4i8SEjQEj_Y/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/4i8SEjQEj_Y/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/4i8SEjQEj_Y/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Batista de Filadélfia ALGODOAIS",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:54:21Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "WO1WDSFIOrW_ojTkmK9T16LSpQA",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "dLaqnEBZmxE"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T22:48:29Z",
+				"channelId": "UCQdiDM0sT7rbhYo-AnYRzGg",
+				"title": "TESTE",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/dLaqnEBZmxE/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/dLaqnEBZmxE/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/dLaqnEBZmxE/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Ninguém Segura a Michelle Raja Gebara",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T22:48:29Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "BGKGTBRs1NepmKChBYKWRHS2a_c",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "3a8AEWOsW8c"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:29:12Z",
+				"channelId": "UC0aUvZDnM5Plxy7F3tBK9QQ",
+				"title": "Teste",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/3a8AEWOsW8c/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/3a8AEWOsW8c/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/3a8AEWOsW8c/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "MAXx9 TV",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:29:12Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "WluVRu4BkDYYur4jDE-MYfhyE64",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "KDxGFHRzhjM"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T23:22:12Z",
+				"channelId": "UCQ7yMhAfcTggFUVvFnUF3Cw",
+				"title": "teste",
+				"description": "edu.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/KDxGFHRzhjM/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/KDxGFHRzhjM/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/KDxGFHRzhjM/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Edu FF",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T23:22:12Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "7oHLS1ZQgBUXo8h4GE44FTQ_BqA",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "D8lPOynb7To"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T02:07:11Z",
+				"channelId": "UCQ6B27TC3aDj652kyhyEKPQ",
+				"title": "TESTE 03",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/D8lPOynb7To/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/D8lPOynb7To/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/D8lPOynb7To/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Paróquia da Santíssima Trindade",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T02:07:11Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "HGi2ZKOfF4S0Z124eYx32nyyBLk",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "IIIsP9T2hCA"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T00:48:48Z",
+				"channelId": "UCenfuy12aO3TcAUlU7C6njg",
+				"title": "live teste",
+				"description": "xu like.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/IIIsP9T2hCA/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/IIIsP9T2hCA/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/IIIsP9T2hCA/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Renk",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T00:48:48Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "S_v1QTlgKx38QpRRd2oGxG-38sg",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "VWL-6YtYLAE"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T20:24:38Z",
+				"channelId": "UC7GWfUi8rJalwCqiXI1cUuQ",
+				"title": "teste",
+				"description": "Powered by Restream https://restream.io/",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/VWL-6YtYLAE/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/VWL-6YtYLAE/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/VWL-6YtYLAE/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Obturador Gamer",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T20:24:38Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "BcX4C9omZudc-P77Ctb0tVTMiAw",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "7AfTQbdhBZY"
+			},
+			"snippet": {
+				"publishedAt": "2020-10-05T21:40:43Z",
+				"channelId": "UCYdwurvyRbjQ8UbBkTFDG_A",
+				"title": "TESTE DE TRANSMISSÃO",
+				"description": "UM PRINCIPE EM NOVA YORK 2.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/7AfTQbdhBZY/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/7AfTQbdhBZY/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/7AfTQbdhBZY/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Leonardo Lima",
+				"liveBroadcastContent": "live",
+				"publishTime": "2020-10-05T21:40:43Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "Np-Nt9jTujbTQB_I8N6aUJkDPuk",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "Acr7v096-LI"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:46:26Z",
+				"channelId": "UC2RevBQIZdw8cTzKBHEcjCQ",
+				"title": "Live teste free fire!",
+				"description": "Veja a minha live de Free Fire na Omlet Arcade! Siga-me para ver mais: https://omlet.gg/d/profile/sagat_ff7 #OmletArcade #FreeFire.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/Acr7v096-LI/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/Acr7v096-LI/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/Acr7v096-LI/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "s4gat ff",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:46:26Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "3VuT0Nx8xjzz2hu16LoCN6wVOfU",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "QpD3BpSXYhk"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:10:16Z",
+				"channelId": "UC_jPC4KE0biGtma50zmfplw",
+				"title": "🔴LIVE TESTE🔴 X1 DOS CRIAS - FREE FIRE",
+				"description": "DEIXA O LIKE E COMPARTILHA!!! INSTA: https://www.instagram.com/takato.mt/ . . CONFG PC: i5 10400f GTX 1650 Super 16 RAM.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/QpD3BpSXYhk/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/QpD3BpSXYhk/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/QpD3BpSXYhk/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "TAKATO",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:10:16Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "dVtW9obKPgYv6BhRYihHaPXS0FA",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "0UF7Onq0X5g"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T21:25:26Z",
+				"channelId": "UC5_pOBbEB85tB7xKKXLkdqA",
+				"title": "teste 3",
+				"description": "jsjsn.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/0UF7Onq0X5g/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/0UF7Onq0X5g/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/0UF7Onq0X5g/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "MALVO KARINE",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T21:25:26Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "Yy7rO1hfRt7G2fxSTSwL_utlzrQ",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "1cbT_WCHqkQ"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T22:24:26Z",
+				"channelId": "UCu8ncTXk5bZAgcFB6ViG6eQ",
+				"title": "live teste",
+				"description": "live teste DJ neguinho.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/1cbT_WCHqkQ/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/1cbT_WCHqkQ/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/1cbT_WCHqkQ/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Dj Neguinho oficial",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T22:24:26Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "Ue8CGW-6cQxHSmrrnlNHTRwqRxU",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "Pou77kos49I"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T22:36:37Z",
+				"channelId": "UCDD-LzHFe2xagYssmof6bCQ",
+				"title": "TESTE PRA ENTRA PRA C4🔴PERSONAGEM NOVO🔥FREE FIRE AO VIVO🔴 VEM PRA MINHA LIVE BB",
+				"description": "DEIXA O LIKE PRA E COMARTILHA A LIVE! INSTAGRAM: Z22_ATHENA #FREEFIREAOVIVO #LOUD.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/Pou77kos49I/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/Pou77kos49I/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/Pou77kos49I/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "ATHENA FF",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T22:36:37Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "Bgn2GJqATDvexFaH103ntw8K7uQ",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "apx9QyHNV3g"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T22:35:08Z",
+				"channelId": "UCOhgbmYLMEmBwmctE6QBBbQ",
+				"title": "Lave de teste",
+				"description": "ACSL pedro.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/apx9QyHNV3g/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/apx9QyHNV3g/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/apx9QyHNV3g/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "PEDRO GREGORIO CHAGAS",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T22:35:08Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "8bepogyxRuPu-x9il0MjVfqaYnc",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "AzrEmyZ09Zc"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T02:02:05Z",
+				"channelId": "UC9hcexZ1O-WkmEXgNALKCkg",
+				"title": "TESTES EQUIPAMENTOS 2",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/AzrEmyZ09Zc/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/AzrEmyZ09Zc/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/AzrEmyZ09Zc/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "LIVE GB TESTE",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T02:02:05Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "CjJ0vWy2Ch_HWmkYMTTHMM2O5ws",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "4Osq5_Dpd4s"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T00:47:08Z",
+				"channelId": "UCKjY7hnUqsXiUmBai304vOg",
+				"title": "PRIMEIRA LIVE(TESTE)🔥FREE FIRE AO VIVO🔥 O PIOR DO MUNDO",
+				"description": "INSTAGRAM @rnbolado - https://www.instagram.com/rnbolado/?hl=pt-br TAGS IGNOREM #X1​​​ #4X4​​​ #SALASPERSONALIZADAS​​​ ...",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/4Osq5_Dpd4s/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/4Osq5_Dpd4s/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/4Osq5_Dpd4s/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "RNZINx",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T00:47:08Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "Ps9m0I936q3rIJt-G0Gf3xIh77M",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "35QgXsn4z-w"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T23:20:30Z",
+				"channelId": "UCOhgbmYLMEmBwmctE6QBBbQ",
+				"title": "Lave de teste",
+				"description": "ACSL pedro.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/35QgXsn4z-w/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/35QgXsn4z-w/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/35QgXsn4z-w/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "PEDRO GREGORIO CHAGAS",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T23:20:30Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "pnc339Y0x8puX-1y_DQT8PyWlm8",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "x9ZDJSkIVUQ"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T23:16:08Z",
+				"channelId": "UCOhgbmYLMEmBwmctE6QBBbQ",
+				"title": "Lave de teste",
+				"description": "ACSL pedro.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/x9ZDJSkIVUQ/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/x9ZDJSkIVUQ/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/x9ZDJSkIVUQ/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "PEDRO GREGORIO CHAGAS",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T23:16:08Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "qD-gSWZwEFF2rc3RMvQVwy0pws4",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "bzYqR2sj_Zk"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T00:58:56Z",
+				"channelId": "UCSA-oAloEyloQre1PQLBx6A",
+				"title": "Robô de Opções Binárias (Em teste)",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/bzYqR2sj_Zk/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/bzYqR2sj_Zk/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/bzYqR2sj_Zk/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Maravilhas do Brasil",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T00:58:56Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "vhE_tXTKAqVK3nBP5bXpIdkH1bI",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "NY2J66N19D8"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:02:23Z",
+				"channelId": "UCKXInQI1kYM2u2Y2eytXQXg",
+				"title": "[LIVE] MAIS TESTES DA V690 - MARVEL FUTURE FIGHT",
+				"description": "seltonparanoia #seltonparanoiastarcreator #marvelfuturefight Patrocinadores: Capitão Assis - Dust Star Arlindo - Caaramba Fabiano - THANATOS Fernando ...",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/NY2J66N19D8/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/NY2J66N19D8/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/NY2J66N19D8/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Selton Paranoia",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:02:23Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "Lb1pYcziIiDQA3wwJbVTq7CPaTM",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "g0lgr-sB5VE"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:05:09Z",
+				"channelId": "UCiDQnLfqNK28aq0nh-ihSMw",
+				"title": "Teste Computador",
+				"description": "GPU: Rx 570 Processador i5 2400.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/g0lgr-sB5VE/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/g0lgr-sB5VE/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/g0lgr-sB5VE/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Henzo",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:05:09Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "6gwp2DBuEjGHZwDWZ0Ro4GJDFDc",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "myYKDnCQ-1M"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-18T01:53:23Z",
+				"channelId": "UCBWT1gRczWZbU-nm2veKTiA",
+				"title": "Fall Guys - Live Teste",
+				"description": "",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/myYKDnCQ-1M/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/myYKDnCQ-1M/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/myYKDnCQ-1M/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "Prof. CodMath",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-18T01:53:23Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "-5MZyZ3jlQo4pqVBnsgguaBPgCU",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "eMRzItV71X8"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T21:29:53Z",
+				"channelId": "UCAsdsIw2GPlA7UrCZm2JzpQ",
+				"title": "TESTE NO LEGENDS",
+				"description": "LIKE.",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/eMRzItV71X8/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/eMRzItV71X8/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/eMRzItV71X8/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "KamikazeZ",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T21:29:53Z"
+			}
+		},
+		{
+			"kind": "youtube#searchResult",
+			"etag": "PDo3iOa1hMC_IcxK0K_ihxyzeA0",
+			"id": {
+				"kind": "youtube#video",
+				"videoId": "-s2dcRsnP2c"
+			},
+			"snippet": {
+				"publishedAt": "2021-03-17T05:20:04Z",
+				"channelId": "UCsGsImd2G6-nwtCfFREiwvg",
+				"title": "QUARTA TESTE DE JOGOS - ROBLOX - RECOIL ZOMBIES",
+				"description": "Vou começar uma serie nova aqui no Canal, toda quarta live com um jogo novo para testarmos e na quinta para quem não conseguiu acompanhar vai sair o ...",
+				"thumbnails": {
+					"default": {
+						"url": "https://i.ytimg.com/vi/-s2dcRsnP2c/default_live.jpg",
+						"width": 120,
+						"height": 90
+					},
+					"medium": {
+						"url": "https://i.ytimg.com/vi/-s2dcRsnP2c/mqdefault_live.jpg",
+						"width": 320,
+						"height": 180
+					},
+					"high": {
+						"url": "https://i.ytimg.com/vi/-s2dcRsnP2c/hqdefault_live.jpg",
+						"width": 480,
+						"height": 360
+					}
+				},
+				"channelTitle": "O Exilado",
+				"liveBroadcastContent": "live",
+				"publishTime": "2021-03-17T05:20:04Z"
+			}
+		}
+	]
+}

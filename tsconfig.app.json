@@ -3,7 +3,13 @@
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
 		"outDir": "./out-tsc/app",
-		"types": []
+		"types": [
+			"gapi",
+			"gapi.auth2"
+		],
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true
 	},
 	"files": [
 		"src/main.ts",

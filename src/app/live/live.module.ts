@@ -4,23 +4,18 @@ import { NgModule } from '@angular/core';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
 import { environment } from 'src/environments/environment';
-import { YoutubeModule } from '../youtube/youtube.module';
+import { YoutubeLiveModule } from './youtube-live/youtube-live.module';
 
 const socketConfig: SocketIoConfig = {
 	url: environment.backEndUrl,
-	options: {
-		withCredentials: false,
-	}
+	options: { withCredentials: false }
 };
 
 @NgModule({
 	imports: [
-		YoutubeModule,
-		HttpClientModule,
 		SocketIoModule.forRoot(socketConfig),
+		HttpClientModule
 	],
-	exports: [
-		YoutubeModule
-	]
+	exports: [YoutubeLiveModule]
 })
 export class LiveModule { }

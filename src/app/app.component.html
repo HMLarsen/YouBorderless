@@ -1,2 +1,23 @@
-<app-youtube-video></app-youtube-video>
-<app-youtube-video></app-youtube-video>
+<section id="main-section" fxLayout="row" fxLayoutAlign="start stretched"
+	[ngStyle.xs]="{'padding': '0 5%'}" [ngStyle.sm]="{'padding': '0 10%'}" [ngStyle.md]="{'padding': '0 15%'}" [ngStyle.lg]="{'padding': '0 20%'}">
+	<section id="secundarySection" fxLayout="column" fxLayoutAlign="start stretch">
+		<router-outlet></router-outlet>
+	</section>
+</section>
+
+<nav class="bottom-nav">
+	<a class="bottom-nav__destination" routerLink="/history" routerLinkActive="bottom-nav__destination--active">
+		<mat-icon>history</mat-icon>
+		<span class="bottom-nav__label">Recents</span>
+	</a>
+
+	<a class="bottom-nav__destination" routerLink="/app" routerLinkActive="bottom-nav__destination--active">
+		<mat-icon>home</mat-icon>
+		<span class="bottom-nav__label">Home</span>
+	</a>
+
+	<a class="bottom-nav__destination" routerLink="/subscriptions" routerLinkActive="bottom-nav__destination--active">
+		<mat-icon>subscriptions</mat-icon>
+		<span class="bottom-nav__label">Inscrições</span>
+	</a>
+</nav>

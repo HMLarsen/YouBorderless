@@ -1,0 +1,9 @@
+<mat-card appMaterialElevation>
+	<div fxLayout="row" fxLayoutAlign="start stretch">
+		<img mat-card-image [src]="video.snippet.thumbnails.high.url" alt="Video thumbnail">
+		<mat-card-content>
+			<mat-card-title>{{ video.snippet.title }}</mat-card-title>
+			<p>{{ video.snippet.description }}</p>
+		</mat-card-content>
+	</div>
+</mat-card>
