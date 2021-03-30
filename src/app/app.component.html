@@ -1,9 +1,4 @@
-<section id="main-section" fxLayout="row" fxLayoutAlign="start stretched"
-	[ngStyle.xs]="{'padding': '0 5%'}" [ngStyle.sm]="{'padding': '0 10%'}" [ngStyle.md]="{'padding': '0 15%'}" [ngStyle.lg]="{'padding': '0 20%'}">
-	<section id="secundarySection" fxLayout="column" fxLayoutAlign="start stretch">
-		<router-outlet></router-outlet>
-	</section>
-</section>
+<router-outlet></router-outlet>
 
 <nav class="bottom-nav">
 	<a class="bottom-nav__destination" routerLink="/history" routerLinkActive="bottom-nav__destination--active">
@@ -11,7 +6,8 @@
 		<span class="bottom-nav__label">Recents</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/app" routerLinkActive="bottom-nav__destination--active">
+	<a class="bottom-nav__destination" [routerLink]="['/app']" [queryParams]="{}"
+		routerLinkActive="bottom-nav__destination--active">
 		<mat-icon>home</mat-icon>
 		<span class="bottom-nav__label">Home</span>
 	</a>

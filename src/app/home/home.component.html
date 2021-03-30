@@ -1,27 +1,12 @@
-<div id="home-content" [ngClass]="{ 'fixed-search': lastSearch }">
-	<h1 class="mat-display-1" id="logo-title" *ngIf="!lastSearch">YouBorderless</h1>
-
-	<form [formGroup]="searchForm" (submit)="submit()" [ngClass]="{ 'fixed-search': lastSearch }">
-		<mat-form-field id="search-field" appearance="outline" color="accent" hideRequiredMarker>
-			<mat-label>Pesquisar</mat-label>
-			<input matInput formControlName="search" required>
-			<button mat-button type="button" *ngIf="searchForm.get('search')?.value" matSuffix mat-icon-button
-				aria-label="Limpar" (click)="searchForm.get('search')?.setValue('')">
-				<mat-icon>close</mat-icon>
-			</button>
-			<button mat-button type="submit" [disabled]="searchForm.invalid" matSuffix mat-icon-button
-				aria-label="Pesquisar">
-				<mat-icon>search</mat-icon>
-			</button>
-		</mat-form-field>
-		<div [class.invisible]="!loading">
-			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<section id="main-section" *ngIf="!videoId" fxLayout="row" fxLayoutAlign="start stretched"
+	[ngStyle.xs]="{'padding': '0 5%'}" [ngStyle.sm]="{'padding': '0 10%'}" [ngStyle.md]="{'padding': '0 15%'}"
+	[ngStyle.lg]="{'padding': '0 20%'}">
+	<section id="secundarySection" fxLayout="column" fxLayoutAlign="start stretch">
+		<div id="home-content" [ngClass]="{ 'fixed-search': getLastSearch() }">
+			<h1 class="mat-display-1" id="logo-title" *ngIf="!getLastSearch()">YouBorderless</h1>
+			<app-youtube-search-list [isSubscriptionsSearch]="false"></app-youtube-search-list>
 		</div>
-	</form>
+	</section>
+</section>
 
-	<div *ngIf="lastSearch && lastSearch.videos && lastSearch.videos.length > 0" [@inOutAnimation]>
-		<div *ngFor="let video of lastSearch.videos; let last = last">
-			<app-youtube-video-card [video]="video"></app-youtube-video-card>
-		</div>
-	</div>
-</div>
+<router-outlet></router-outlet>

@@ -8,8 +8,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { MaterialElevationDirective } from './material-elevation.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
 	exports: [
@@ -21,7 +28,13 @@ import { MaterialElevationDirective } from './material-elevation.directive';
 		MatProgressBarModule,
 		MatSnackBarModule,
 		MatCardModule,
-		MaterialElevationDirective
+		MaterialElevationDirective,
+		MatDialogModule,
+		MatSelectModule,
+		NgxMatSelectSearchModule,
+		MatCheckboxModule,
+		MatProgressSpinnerModule,
+		DragDropModule
 	],
 	declarations: [MaterialElevationDirective]
 })

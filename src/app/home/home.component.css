@@ -1,29 +1,14 @@
+#main-section {
+	padding: 0 20%;
+}
+
+#secundarySection {
+	width: 100%;
+	margin-bottom: 5rem;
+}
+
 #logo-title {
 	text-align: center;
-}
-
-#content-search {
-	width: 100%;
-}
-
-#search-field {
-	width: 100%;
-}
-
-.fixed-search {
-	position: sticky;
-	top: 2vh;
-	z-index: 1;
-}
-
-.fixed-search .mat-form-field {
-	background-color: white;
-}
-
-mat-list {
-	flex-grow: 1;
-	border: 1px solid green;
-	overflow: auto;
 }
 
 #home-content {
@@ -33,12 +18,4 @@ mat-list {
 
 #home-content.fixed-search {
 	margin-top: 2vh;
-}
-
-::ng-deep .mat-form-field-wrapper {
-	padding-bottom: 0 !important;
-}
-
-.mat-progress-bar {
-	margin-bottom: 1vh;
 }

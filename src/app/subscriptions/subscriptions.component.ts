@@ -8,21 +8,15 @@ import { GoogleAuthService } from '../services/google-auth.service';
 })
 export class SubscriptionsComponent implements OnInit {
 
-	constructor(private googleAuthService: GoogleAuthService) { }
+	constructor(
+		private googleAuthService: GoogleAuthService
+	) { }
 
 	ngOnInit(): void {
 	}
 
-	authenticate() {
-		this.googleAuthService.authenticate();
-	}
-
-	logout() {
-		this.googleAuthService.logout();
-	}
-
-	getUser() {
-		return this.googleAuthService.getUser();
+	isLoading() {
+		return !this.googleAuthService.getInstance();
 	}
 
 	isAuthenticated() {

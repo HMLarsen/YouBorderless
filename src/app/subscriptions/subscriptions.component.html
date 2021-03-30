@@ -1,2 +1,11 @@
-<button (click)="authenticate()" *ngIf="!isAuthenticated()">Authenticate</button>
-<button (click)="logout()" *ngIf="isAuthenticated()">Logout</button>
+<div id="mid-screen" *ngIf="isLoading() || !isAuthenticated()">
+	<mat-spinner *ngIf="isLoading()"></mat-spinner>
+	<div *ngIf="!isLoading() && !isAuthenticated()">
+		<h3>Faça login para visualizar as transmissões ao vivo de suas incrições</h3>
+		<app-google-auth></app-google-auth>
+	</div>
+</div>
+<div id="subscription-content" *ngIf="isAuthenticated()">
+	<app-google-auth></app-google-auth>
+	<app-youtube-search-list [isSubscriptionsSearch]="true" *ngIf="isAuthenticated()"></app-youtube-search-list>
+</div>

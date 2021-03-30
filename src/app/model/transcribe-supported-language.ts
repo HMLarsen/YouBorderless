@@ -6,5 +6,5 @@ export interface TranscribeSupportedLanguage {
 	diarization: boolean;
 	boost: boolean;
 	confidence: boolean;
-	profanity: boolean;
+	profanityFilter: boolean;
 }

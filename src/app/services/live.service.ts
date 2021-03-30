@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LiveCaptions } from '../model/live-captions.model';
 import { LiveOptions } from '../model/live-options.model';
 import { TranscribeSupportedLanguage } from '../model/transcribe-supported-language';
 import { TranslationSupportedLanguage } from '../model/translation-supported-language';
@@ -16,6 +17,8 @@ export class LiveService {
 	currentText = this.socket.fromEvent<any>('text-live');
 	translatedText = this.socket.fromEvent<any>('translate-live');
 	liveError = this.socket.fromEvent<any>('live-error');
+
+	private lastLiveOptions!: LiveOptions;
 
 	constructor(
 		private socket: Socket,
@@ -39,18 +42,22 @@ export class LiveService {
 		return live.error;
 	}
 
-	getTextLive(currentText: any, liveId: string, live: any) {
+	getTextLive(currentText: string, liveId: string, live: LiveCaptions) {
 		if (liveId !== live.id) {
 			return currentText;
 		}
-		return live.text;
+		const liveText = live.data.text;
+		if (live.data.isFinal) {
+			return currentText + '\n' + liveText;
+		}
+		return liveText;
 	}
 
-	getTranslateLive(currentText: any, liveId: string, live: any) {
+	getTranslateLive(currentText: string, liveId: string, live: LiveCaptions) {
 		if (liveId !== live.id) {
 			return currentText;
 		}
-		return live.text;
+		return live.data.text;
 	}
 
 	getTranscribeSupportedLanguages(): Observable<TranscribeSupportedLanguage[]> {
@@ -62,4 +69,13 @@ export class LiveService {
 		const url = environment.backEndUrl + '/supported-translation-languages';
 		return this.http.get<TranslationSupportedLanguage[]>(url);
 	}
+
+	getLastLiveOptions(): LiveOptions {
+		return this.lastLiveOptions;
+	}
+
+	setLastLiveOptions(liveOptions: LiveOptions) {
+		this.lastLiveOptions = liveOptions;
+	}
+
 }

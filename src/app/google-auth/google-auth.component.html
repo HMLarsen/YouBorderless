@@ -1,0 +1,6 @@
+<button mat-raised-button (click)="authenticate()" *ngIf="!isAuthenticated()">
+	<mat-icon svgIcon="logo"></mat-icon>
+	LOGIN COM GOOGLE
+</button>
+
+<button mat-raised-button (click)="logout()" *ngIf="isAuthenticated()">SAIR</button>

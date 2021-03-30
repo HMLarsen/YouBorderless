@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { YoutubeVideoCardComponent } from './youtube-video-card/youtube-video-card.component';
+import { GoogleAuthComponent } from './google-auth/google-auth.component';
+import { YoutubeSearchListComponent } from './youtube-search-list/youtube-search-list.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { YoutubeVideoCardComponent } from './youtube-video-card/youtube-video-ca
 		HomeComponent,
 		HistoryComponent,
 		SubscriptionsComponent,
-		YoutubeVideoCardComponent
+		YoutubeVideoCardComponent,
+		GoogleAuthComponent,
+		YoutubeSearchListComponent
 	],
 	imports: [
 		BrowserModule,

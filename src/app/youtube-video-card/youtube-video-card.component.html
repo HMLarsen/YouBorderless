@@ -1,4 +1,4 @@
-<mat-card appMaterialElevation>
+<mat-card appMaterialElevation (click)="cardClick()">
 	<div fxLayout="row" fxLayoutAlign="start stretch">
 		<img mat-card-image [src]="video.snippet.thumbnails.high.url" alt="Video thumbnail">
 		<mat-card-content>

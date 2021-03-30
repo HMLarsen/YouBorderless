@@ -1,0 +1,21 @@
+#search-field {
+	width: 100%;
+}
+
+.fixed-search {
+	position: sticky;
+	top: 2vh;
+	z-index: 1;
+}
+
+.fixed-search .mat-form-field {
+	background-color: white;
+}
+
+.w-p-b ::ng-deep .mat-form-field-wrapper {
+	padding-bottom: 0 !important;
+}
+
+.mat-progress-bar {
+	margin-bottom: 1vh;
+}

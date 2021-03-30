@@ -1,0 +1,19 @@
+mat-spinner {
+	margin: 0 auto;
+}
+
+.loading-error {
+	text-align: center;
+}
+
+.loading-error > mat-icon {
+	display: block;
+	font-size: 4.375rem;
+	display: block;
+    height: 3.75rem;
+    margin-top: 1.25rem;
+}
+
+.loading-error > label {
+	display: block;
+}

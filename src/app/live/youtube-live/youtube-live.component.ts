@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { LiveService } from 'src/app/services/live.service';
-import { LiveOptions } from 'src/app/model/live-options.model';
-import { TranscribeSupportedLanguage } from 'src/app/model/transcribe-supported-language';
-import { TranslationSupportedLanguage } from 'src/app/model/translation-supported-language';
 import { YoutubeVideoStateChange } from 'src/app/model/youtube-video.constants';
+import { ActivatedRoute } from '@angular/router';
+import { YoutubeService } from 'src/app/services/youtube.service';
+import { ModalService } from 'src/app/services/modal.service';
+import { LiveOptions } from 'src/app/model/live-options.model';
 
 let apiLoaded = false;
 
@@ -16,19 +17,11 @@ let apiLoaded = false;
 })
 export class YoutubeLiveComponent implements OnInit, OnDestroy {
 
-	videoId = 'fgfbbC4cJ4M'; // english
+	videoId!: string;
+	videoTitle!: string;
 	videoIframe: any;
 	videoState!: number;
 	isLiving = false;
-	liveOptions!: LiveOptions;
-	livePunctuation = false;
-	liveProfanityFilter = false;
-
-	transcribeLanguage!: TranscribeSupportedLanguage;
-	transcribeLanguages: TranscribeSupportedLanguage[] = [];
-
-	translationLanguage!: TranslationSupportedLanguage;
-	translationLanguages: TranslationSupportedLanguage[] = [];
 
 	text: any;
 	_textSub!: Subscription;
@@ -39,9 +32,43 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	error: any;
 	_liveError!: Subscription;
 
-	constructor(private liveService: LiveService) { }
+	loading = true;
+	loadingError = false;
 
-	ngOnInit(): void {
+	constructor(
+		private route: ActivatedRoute,
+		private liveService: LiveService,
+		private modalService: ModalService,
+		private youtubeService: YoutubeService
+	) { }
+
+	async ngOnInit() {
+		// fullscreen event
+		document.onfullscreenchange = () => {
+			document.getElementById('main-video-section')?.classList.toggle('fullscreen');
+		};
+
+		this.videoId = this.route.snapshot.params['videoId'];
+		await this.youtubeService.getVideoToLive(this.videoId)
+			.then((data: any) => {
+				this.loading = false;
+				this.videoId = data.videoDetails.videoId;
+				this.videoTitle = data.videoDetails.title;
+				const lastLiveOptions = this.liveService.getLastLiveOptions();
+				if (!lastLiveOptions) {
+					this.openLiveOptionsModal();
+				}
+			}, error => {
+				alert(JSON.stringify(error));
+				this.loading = false;
+				this.loadingError = true;
+				return;
+			});
+
+		if (!this.videoId) {
+			return;
+		}
+
 		if (!apiLoaded) {
 			// This code loads the IFrame Player API code asynchronously, according to the instructions at
 			// https://developers.google.com/youtube/iframe_api_reference#Getting_Started
@@ -50,21 +77,19 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			document.body.appendChild(tag);
 			apiLoaded = true;
 		}
-		this.liveOptions = LiveOptions.newInstance(this.videoId);
-
-		// languages
-		this.liveService.getTranscribeSupportedLanguages()
-			.subscribe(languages => this.transcribeLanguages = languages);
-		this.liveService.getTranslationSupportedLanguages()
-			.subscribe(languages => this.translationLanguages = languages);
-
-		this._liveError = this.liveService.liveError
-			.subscribe(live => this.error = this.liveService.getLiveError(this.error, this.liveOptions.id, live));
 	}
 
 	ngOnDestroy(): void {
 		this.unSubscribeAll();
 		this.stopLive();
+	}
+
+	openLiveOptionsModal() {
+		this.modalService.openLiveOptionsModel(this.videoId, this.videoTitle);
+	}
+
+	getLiveOptions(): LiveOptions {
+		return this.liveService.getLastLiveOptions();
 	}
 
 	unSubscribeAll() {
@@ -77,18 +102,26 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	}
 
 	subscribeLive() {
+		const liveOptions = this.liveService.getLastLiveOptions();
 		this._textSub = this.liveService.currentText
-			.subscribe(live => {
+			.subscribe(data => {
 				if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-					this.text = this.liveService.getTextLive(this.text, this.liveOptions.id, live);
+					this.text = this.liveService.getTextLive(this.text, liveOptions.id, data);
+					// fix div scroll
+					const captionsContainer = document.getElementById('captions-container');
+					if (captionsContainer) {
+						captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
+					}
 				}
 			});
 		this._translateSub = this.liveService.translatedText
-			.subscribe(live => {
+			.subscribe(data => {
 				if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-					this.translate = this.liveService.getTranslateLive(this.translate, this.liveOptions.id, live);
+					this.translate = this.liveService.getTranslateLive(this.translate, liveOptions.id, data);
 				}
 			});
+		this._liveError = this.liveService.liveError
+			.subscribe(live => this.error = this.liveService.getLiveError(this.error, liveOptions.id, live));
 	}
 
 	unSubscribeLive() {
@@ -103,16 +136,12 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
+		//this.text = 'teste de transcrição teste de transcrição teste de transcrição teste de transcrição teste de transcrição teste de transcrição teste de transcrição ';
 		this.text = null;
 		this.translate = null;
 		this.subscribeLive();
 
-		this.liveOptions.liveLanguage = { ...this.transcribeLanguage };
-		this.liveOptions.liveToLanguage = { ...this.translationLanguage };
-		this.liveOptions.liveLanguage.profanity = this.liveProfanityFilter;
-		this.liveOptions.liveLanguage.punctuation = this.livePunctuation;
-
-		this.liveService.initLive(this.liveOptions);
+		this.liveService.initLive(this.getLiveOptions());
 	}
 
 	stopLive() {
@@ -125,7 +154,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.videoIframe.stopVideo();
 		}
 		this.unSubscribeLive();
-		this.liveService.stopLive(this.liveOptions.id);
+		this.liveService.stopLive(this.getLiveOptions().id);
 	}
 
 	restartLive() {
@@ -147,13 +176,14 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		this.videoState = event.data;
 		switch (this.videoState) {
 			case YoutubeVideoStateChange.PLAYING:
-				//this.initLive();
+				this.initLive();
 				break;
 
 			case YoutubeVideoStateChange.PAUSED:
 			case YoutubeVideoStateChange.ENDED:
 				this.videoIframe.stopVideo();
 				this.stopLive();
+				this.exitFullScreen();
 				break;
 
 			default:
@@ -178,16 +208,20 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		console.log('onPlaybackRateChange');
 	}
 
-	transcribeLanguagesTrackBy(index: number, language: TranscribeSupportedLanguage) {
-		return language.bcp;
+	enterFullScreen() {
+		if (!document.fullscreenElement) {
+			document.getElementById('player-content')?.requestFullscreen();
+		}
 	}
 
-	translationLanguagesTrackBy(index: number, language: TranslationSupportedLanguage) {
-		return language.code;
+	exitFullScreen() {
+		if (document.fullscreenElement) {
+			document.exitFullscreen();
+		}
 	}
 
-	onChangeVideo() {
-		this.liveOptions.liveId = this.videoId;
+	isPlaying() {
+		return this.videoState === YoutubeVideoStateChange.PLAYING;
 	}
 
 }

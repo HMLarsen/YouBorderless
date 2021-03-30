@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>{{ data.videoTitle }}</h1>
+
+<form [formGroup]="configForm" (submit)="submit()" *ngIf="!loading && !loadingError">
+	<div mat-dialog-content>
+		<mat-spinner *ngIf="loading"></mat-spinner>
+
+		<div class="loading-error" *ngIf="!loading && loadingError">
+			<mat-icon class="loading-error-icon" [inline]="true">error</mat-icon>
+			<label>Não foi possível carregar as configurações</label>
+		</div>
+
+		<mat-form-field class="w-100" color="primary">
+			<mat-label>Linguagem da transmissão</mat-label>
+			<mat-select formControlName="liveLanguage" #singleSelect cdkFocusInitial required>
+				<mat-option>
+					<ngx-mat-select-search formControlName="liveLanguageFilter" placeholderLabel="Idioma..."
+						noEntriesFoundLabel="Nenhum idioma encontrado"></ngx-mat-select-search>
+				</mat-option>
+				<mat-option
+					*ngFor="let language of filteredTranscribeLanguages | async; trackBy: filteredTranscribeLanguagesTrackBy"
+					[value]="language">
+					{{ language.name }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field class="w-100" color="primary">
+			<mat-label>Linguagem para tradução</mat-label>
+			<mat-select formControlName="liveTranslation" #singleSelect required>
+				<mat-option>
+					<ngx-mat-select-search formControlName="liveTranslationFilter" placeholderLabel="Idioma..."
+						noEntriesFoundLabel="Nenhum idioma encontrado"></ngx-mat-select-search>
+				</mat-option>
+				<mat-option
+					*ngFor="let language of filteredTranslationLanguages | async; trackBy: filteredTranslationLanguagesTrackBy"
+					[value]="language">
+					{{ language.name }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-checkbox color="primary" formControlName="profanityFilter">Censurar palavras ofensivas</mat-checkbox>
+		<mat-checkbox color="primary" formControlName="punctuation">Pontuação</mat-checkbox>
+	</div>
+	<div mat-dialog-actions align="end" *ngIf="!loading && !loadingError">
+		<button mat-button type="button" color="primary" (click)="cancel()">Cancelar</button>
+		<button mat-button type="submit" color="primary" [disabled]="configForm.invalid">Iniciar</button>
+	</div>
+</form>

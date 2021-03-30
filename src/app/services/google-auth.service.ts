@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class GoogleAuthService {
 
-	private CLIENT_ID = '103633777851-77hf3l3cf9thf6vea90ljop2hj8hvtba.apps.googleusercontent.com';
-	private gapiSetup = false;
+	private gApiSetup = false;
 	private authInstance: any;
 
 	constructor() {
@@ -14,22 +14,35 @@ export class GoogleAuthService {
 	}
 
 	async initGoogleAuth(): Promise<void> {
-		if (this.gapiSetup) {
+		if (this.gApiSetup) {
 			return;
 		}
-		//  Create a new Promise where the resolve
+		// create a new Promise where the resolve
 		// function is the callback passed to gapi.load
-		const pload = new Promise((resolve) => gapi.load('auth2', resolve));
+		var OAUTH2_SCOPES = [
+			'https://www.googleapis.com/auth/youtube.readonly'
+			// 'https://www.googleapis.com/auth/youtube.force-ssl',
+			// 'https://www.googleapis.com/auth/youtube.readonly'
+		];
+		const pLoad = new Promise(resolve => {
+			gapi.load('client', () => {
+				gapi.client
+					.init({
+						apiKey: environment.youtubeApiKey,
+						clientId: environment.googleAppClientId,
+						scope: 'https://www.googleapis.com/auth/youtube'
+					}).then(() => {
+						gapi.client.load('youtube', 'v3')
+							.then(resolve);
+					});
+			});
+		});
 
-		// When the first promise resolves, it means we have gapi
+		// when the first promise resolves, it means we have gapi
 		// loaded and that we can call gapi.init
-		return pload.then(async () => {
-			await gapi.auth2
-				.init({ client_id: this.CLIENT_ID })
-				.then((auth: any) => {
-					this.gapiSetup = true;
-					this.authInstance = auth;
-				});
+		return pLoad.then(async () => {
+			this.gApiSetup = true;
+			this.authInstance = gapi.auth2.getAuthInstance();
 		});
 	}
 
@@ -53,13 +66,14 @@ export class GoogleAuthService {
 		}
 	}
 
-	async getUser() {
+	getUser() {
 		if (this.authInstance) {
 			return this.authInstance.currentUser;
 		}
 	}
 
-	async getInstance() {
+	getInstance() {
 		return this.authInstance;
 	}
+
 }

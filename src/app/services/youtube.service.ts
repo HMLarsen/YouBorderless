@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Search } from '../model/search.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { of } from 'rxjs';
-import data from '../services/youtube-mock-data.json';
 import { environment } from 'src/environments/environment';
+import { ErrorService } from './error.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class YoutubeService {
 
-	//apiKey = 'AIzaSyDb4uG9fN6fPe6M0kI5A87EL5XNhHWSqTM'; // youborderless
-	apiKey = 'AIzaSyCs7vpVckVbSu9mUcJ_mbunh7WP7v4VyBs'; // huguera
 	lastSearch!: Search;
+	lastSubscriptionSearch!: Search;
 
 	constructor(
 		private http: HttpClient,
-		private _snackBar: MatSnackBar
+		private errorService: ErrorService
 	) { }
 
 	doError(response: any) {
@@ -32,14 +29,7 @@ export class YoutubeService {
 				message = 'Ocorreu um erro ao processar a requisição'
 				break;
 		}
-		this.openSnackBar(message);
-	}
-
-	openSnackBar(message: string) {
-		this._snackBar.open(message, undefined, {
-			panelClass: 'custom-snackbar',
-			duration: 3000
-		});
+		this.errorService.doError(message);
 	}
 
 	saveLastSearch(lastSearch: Search) {
@@ -50,12 +40,20 @@ export class YoutubeService {
 		return this.lastSearch;
 	}
 
+	saveLastSubscriptionSearch(lastSubscriptionSearch: Search) {
+		this.lastSubscriptionSearch = lastSubscriptionSearch;
+	}
+
+	getLastSubscriptionSearch() {
+		return this.lastSubscriptionSearch;
+	}
+
 	getLivesFromTerm(term: string, maxResults: number) {
-		return of(data);
-		let url = 'https://www.googleapis.com/youtube/v3/search';
+		//return of(data);
+		const url = 'https://www.googleapis.com/youtube/v3/search';
 		return this.http.get(url, {
 			params: {
-				key: this.apiKey,
+				key: environment.youtubeApiKey,
 				q: term,
 				part: 'snippet',
 				eventType: 'live',
@@ -65,8 +63,20 @@ export class YoutubeService {
 		});
 	}
 
+	getLivesFromSubscriptions(maxResults: number) {
+		//return of(data);
+		return new Promise((resolve, reject) => {
+			const request = gapi.client.youtube.subscriptions.list({
+				mine: true,
+				part: 'snippet',
+				maxResults: maxResults
+			});
+			request.execute(response => resolve(response));
+		});
+	}
+
 	getVideoToLive(videoId: string) {
-		const url = environment.backEndUrl + '/video-to-live/' + videoId;
+		const url = environment.backEndUrl + '/live-info/' + videoId;
 		return this.http.get(url).toPromise();
 	}
 

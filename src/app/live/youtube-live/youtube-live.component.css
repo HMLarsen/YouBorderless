@@ -1,0 +1,76 @@
+#main-video-section {
+	height: 90vh;
+    padding: 3vh 1vh 0;
+}
+
+#main-video-section.fullscreen {
+	height: 95vh;
+}
+
+#mid-screen {
+	padding: 45vh 10vh 0 10vh;
+	text-align: center;
+}
+
+#video-content {
+	height: 75vh;
+	margin: 0 auto;
+	max-width: 80vw;
+}
+
+mat-spinner {
+	margin: 0 auto;
+}
+
+#mid-screen .mat-icon {
+	display: block;
+	font-size: 5.625rem;
+	height: 3.75rem;
+}
+
+.loading-error>label {
+	display: block;
+}
+
+#video-navbar {
+	margin-bottom: 0.3125rem;
+}
+
+#video-navbar button {
+	float: right;
+}
+
+#video-navbottom {
+	margin-top: 0.3125rem;
+	padding-bottom: 3.75rem;
+	text-align: right;
+}
+
+#captions-container {
+	width: 30vw;
+	height: 10vh;
+	max-height: 10vh;
+	overflow: hidden;
+	cursor: pointer;
+	position: absolute;
+	top: 70vh;
+	left: 75vh;
+	z-index: 99;
+	/* background-color: red; */
+	transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1), background-color 200ms ease-out;
+}
+
+#captions-container:hover {
+	background-color: #808080a8;
+}
+
+#captions-container:active {
+	background-color: gray;
+	box-shadow: 0 0.3125rem 0.3125rem -0.1875rem rgba(0, 0, 0, 0.2), 0 0.5rem 0.625rem 0.0625rem rgba(0, 0, 0, 0.14), 0 0.1875rem 0.875rem 0.125rem rgba(0, 0, 0, 0.12);
+}
+
+#captions {
+	background-color: green;
+	color: white;
+	font-size: 1.25rem;
+}
