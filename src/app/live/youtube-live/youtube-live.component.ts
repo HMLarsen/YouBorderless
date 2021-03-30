@@ -59,7 +59,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 					this.openLiveOptionsModal();
 				}
 			}, error => {
-				alert(JSON.stringify(error));
+				console.error(error);
 				this.loading = false;
 				this.loadingError = true;
 				return;
