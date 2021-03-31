@@ -1,0 +1,7 @@
+#container > label {
+	margin-right: 1.25rem;
+}
+
+#container > button:first-of-type {
+	margin-right: 0.3125rem;
+}

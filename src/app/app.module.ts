@@ -16,6 +16,10 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { YoutubeVideoCardComponent } from './youtube-video-card/youtube-video-card.component';
 import { GoogleAuthComponent } from './google-auth/google-auth.component';
 import { YoutubeSearchListComponent } from './youtube-search-list/youtube-search-list.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PwaInstallComponent } from './pwa-install/pwa-install.component';
+import { PwaService } from './services/pwa.service';
 
 
 @NgModule({
@@ -26,7 +30,8 @@ import { YoutubeSearchListComponent } from './youtube-search-list/youtube-search
 		SubscriptionsComponent,
 		YoutubeVideoCardComponent,
 		GoogleAuthComponent,
-		YoutubeSearchListComponent
+		YoutubeSearchListComponent,
+		PwaInstallComponent
 	],
 	imports: [
 		BrowserModule,
@@ -36,9 +41,15 @@ import { YoutubeSearchListComponent } from './youtube-search-list/youtube-search
 		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		LiveModule
+		LiveModule,
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
 	providers: [],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+	// call the service constructors
+	constructor(pwaService: PwaService) { }
+
+}

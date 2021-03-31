@@ -13,6 +13,7 @@ body {
 
 .main-snackbar {
 	margin-bottom: 4.375rem !important;
+	max-width: none !important;
 }
 
 .w-100 {

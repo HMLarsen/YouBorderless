@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-	title = 'YouBorderless-Front-End';
+	title = 'YouBorderless';
+
+	constructor() { }
+
 }
