@@ -26,7 +26,7 @@ export class PwaInstallComponent {
 	}
 
 	saveUserResponseInStorage() {
-		localStorage.setItem(this.showAppInstallStorageKeyName, 'true');
+		localStorage.setItem(this.showAppInstallStorageKeyName, 'false');
 	}
 
 }
