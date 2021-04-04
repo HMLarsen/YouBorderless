@@ -1,9 +1,23 @@
-.mat-raised-button {
+#login-button {
 	padding: 0.625rem 1.25rem;
 }
 
-mat-icon {
+#google-icon {
 	width: 1.875rem;
 	height: 1.875rem;
 	margin-right: 0.625rem;
+}
+
+#user-content {
+	padding: 0.9375rem 0 0.625rem;
+}
+
+#user-img {
+	border-radius: 50%;
+	height: 3.125rem;
+	margin-right: 0.625rem;
+}
+
+#logout-button {
+	margin-left: auto;
 }

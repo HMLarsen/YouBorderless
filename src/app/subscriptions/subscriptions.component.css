@@ -1,12 +1,8 @@
 #mid-screen {
-	margin-top: 45vh;
+	padding-top: 45vh;
 	text-align: center;
 }
 
-mat-spinner {
+#loading-spinner {
 	margin: 0 auto;
-}
-
-#subscription-content {
-	margin-top: 2vh;
 }

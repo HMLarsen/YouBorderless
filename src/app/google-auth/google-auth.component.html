@@ -1,6 +1,10 @@
-<button mat-raised-button (click)="authenticate()" *ngIf="!isAuthenticated()">
-	<mat-icon svgIcon="logo"></mat-icon>
+<button mat-raised-button (click)="authenticate()" *ngIf="!isAuthenticated()" id="login-button">
+	<mat-icon svgIcon="logo" id="google-icon"></mat-icon>
 	LOGIN COM GOOGLE
 </button>
 
-<button mat-raised-button (click)="logout()" *ngIf="isAuthenticated()">SAIR</button>
+<div id="user-content" *ngIf="isAuthenticated()" fxLayout="row" fxLayoutAlign="start center">
+	<img [src]="getUserImgUrl()" id="user-img">
+	<label>{{ getUserName() }}</label>
+	<button mat-button (click)="logout()" *ngIf="isAuthenticated()" id="logout-button">SAIR</button>
+</div>

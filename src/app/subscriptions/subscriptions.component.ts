@@ -8,9 +8,7 @@ import { GoogleAuthService } from '../services/google-auth.service';
 })
 export class SubscriptionsComponent implements OnInit {
 
-	constructor(
-		private googleAuthService: GoogleAuthService
-	) { }
+	constructor(private googleAuthService: GoogleAuthService) { }
 
 	ngOnInit(): void {
 	}

@@ -1,9 +1,16 @@
-<mat-card appMaterialElevation (click)="cardClick()">
+<mat-card appMaterialElevation (click)="cardClick()" ngClass.xs="card-xs" ngClass.sm="card-sm" ngClass.md="card-md"
+	ngClass.lg="card-lg">
 	<div fxLayout="row" fxLayoutAlign="start stretch">
-		<img mat-card-image [src]="video.snippet.thumbnails.high.url" alt="Video thumbnail">
+		<img mat-card-image [src]="video.thumbnailUrl" alt="Vídeo thumbnail">
 		<mat-card-content>
-			<mat-card-title>{{ video.snippet.title }}</mat-card-title>
-			<p>{{ video.snippet.description }}</p>
+			<mat-card-title id="video-title">{{ video.title }}</mat-card-title>
+			<mat-card-subtitle id="video-views" class="mat-small" *ngIf="video.views">{{ video.views | number }} assistindo</mat-card-subtitle>
+			<div id="channel-info" fxLayout="row" fxLayoutAlign="start center">
+				<img id="channel-avatar" *ngIf="video.channel" [src]="video.channel.avatarUrl" alt="Canal avatar">
+				<label id="channel-name" *ngIf="video.channel">{{ video.channel.name }}</label>
+			</div>
+			<p id="video-description" [fxHide.xs]="true" [fxHide.sm]="true">{{ video.description }}</p>
+			<div id="live-badge">AO VIVO AGORA</div>
 		</mat-card-content>
 	</div>
 </mat-card>

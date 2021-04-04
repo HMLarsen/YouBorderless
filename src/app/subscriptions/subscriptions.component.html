@@ -1,11 +1,10 @@
 <div id="mid-screen" *ngIf="isLoading() || !isAuthenticated()">
-	<mat-spinner *ngIf="isLoading()"></mat-spinner>
+	<mat-spinner *ngIf="isLoading()" id="loading-spinner"></mat-spinner>
 	<div *ngIf="!isLoading() && !isAuthenticated()">
-		<h3>Faça login para visualizar as transmissões ao vivo de suas incrições</h3>
+		<h3>Faça login para buscar as transmissões de seus canais favoritos</h3>
 		<app-google-auth></app-google-auth>
 	</div>
 </div>
-<div id="subscription-content" *ngIf="isAuthenticated()">
-	<app-google-auth></app-google-auth>
+<div id="container" *ngIf="isAuthenticated()" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
 	<app-youtube-search-list [isSubscriptionsSearch]="true" *ngIf="isAuthenticated()"></app-youtube-search-list>
 </div>

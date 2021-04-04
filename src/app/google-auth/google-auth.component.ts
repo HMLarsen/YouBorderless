@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GoogleAuthService } from '../services/google-auth.service';
+import { YoutubeService } from '../services/youtube.service';
 
 const googleLogoURL = 'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';
 
@@ -10,17 +11,15 @@ const googleLogoURL = 'https://raw.githubusercontent.com/fireflysemantics/logo/m
 	templateUrl: './google-auth.component.html',
 	styleUrls: ['./google-auth.component.css']
 })
-export class GoogleAuthComponent implements OnInit {
+export class GoogleAuthComponent {
 
 	constructor(
 		private matIconRegistry: MatIconRegistry,
 		private domSanitizer: DomSanitizer,
-		private googleAuthService: GoogleAuthService
+		private googleAuthService: GoogleAuthService,
+		private youtubeService: YoutubeService
 	) {
 		this.matIconRegistry.addSvgIcon('logo', this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
-	}
-
-	ngOnInit(): void {
 	}
 
 	authenticate() {
@@ -29,10 +28,23 @@ export class GoogleAuthComponent implements OnInit {
 
 	logout() {
 		this.googleAuthService.logout();
+		this.youtubeService.saveLastSubscriptionSearch(undefined);
 	}
 
-	getUser() {
-		return this.googleAuthService.getUser();
+	getUserName() {
+		const user = this.googleAuthService.getUser();
+		if (user) {
+			return user.get().getBasicProfile().getName();
+		}
+		return null;
+	}
+
+	getUserImgUrl() {
+		const user = this.googleAuthService.getUser();
+		if (user) {
+			return user.get().getBasicProfile().getImageUrl();
+		}
+		return null;
 	}
 
 	isAuthenticated() {

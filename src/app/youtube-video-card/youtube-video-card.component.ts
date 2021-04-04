@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { LiveOptionsModalComponent } from '../live/live-options-modal/live-options-modal.component';
-import { Item } from '../model/youtube-video.model';
+import { Component, Input } from '@angular/core';
+import { Video } from '../model/video.model';
 import { ModalService } from '../services/modal.service';
 
 @Component({
@@ -8,18 +7,15 @@ import { ModalService } from '../services/modal.service';
 	templateUrl: './youtube-video-card.component.html',
 	styleUrls: ['./youtube-video-card.component.css']
 })
-export class YoutubeVideoCardComponent implements OnInit {
+export class YoutubeVideoCardComponent {
 
 	@Input()
-	video!: Item;
+	video!: Video;
 
 	constructor(private modalService: ModalService) { }
 
-	ngOnInit(): void {
-	}
-
 	cardClick() {
-		this.modalService.openLiveOptionsModel(this.video.id.videoId, this.video.snippet.title);
+		this.modalService.openLiveOptionsModel(this.video.id, this.video.title);
 	}
 
 }

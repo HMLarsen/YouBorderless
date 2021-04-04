@@ -1,20 +1,24 @@
-<form [formGroup]="searchForm" (submit)="submit()" [ngClass]="{ 'fixed-search': lastSearch }">
-	<mat-form-field id="search-field" class="w-p-b" appearance="outline" color="accent" hideRequiredMarker>
-		<mat-label>{{ getLabelSearch() }}</mat-label>
-		<input matInput formControlName="search" required>
-		<button mat-button type="button" *ngIf="searchForm.get('search')?.value" matSuffix mat-icon-button
-			aria-label="Limpar" (click)="searchForm.get('search')?.setValue('')">
-			<mat-icon>close</mat-icon>
-		</button>
-		<button mat-button type="submit" [disabled]="searchForm.invalid" matSuffix mat-icon-button
-			aria-label="Pesquisar">
-			<mat-icon>search</mat-icon>
-		</button>
-	</mat-form-field>
-	<div [class.invisible]="!loading">
-		<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<div [ngClass]="{ 'fixed-search': lastSearch || lastSubscriptionSearch }">
+	<div id="user-content" *ngIf="isSubscriptionsSearch && isAuthenticated()">
+		<app-google-auth></app-google-auth>
 	</div>
-</form>
+	<form [formGroup]="searchForm" (submit)="submit()">
+		<mat-form-field id="search-field" class="w-p-b" appearance="outline" color="accent" hideRequiredMarker>
+			<input matInput formControlName="search" placeholder="{{ getLabelSearch() }}" required>
+			<button mat-button type="button" *ngIf="searchForm.get('search')?.value" matSuffix mat-icon-button
+				aria-label="Limpar" (click)="searchForm.get('search')?.setValue('')">
+				<mat-icon>close</mat-icon>
+			</button>
+			<button mat-button type="submit" [disabled]="searchForm.invalid" matSuffix mat-icon-button
+				aria-label="Pesquisar">
+				<mat-icon>search</mat-icon>
+			</button>
+		</mat-form-field>
+		<div [class.invisible]="!loading">
+			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+		</div>
+	</form>
+</div>
 
 <div *ngIf="getVideos() && getVideos()!.length > 0" [@inOutAnimation]>
 	<div *ngFor="let video of getVideos()">

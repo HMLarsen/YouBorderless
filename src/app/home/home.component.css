@@ -1,10 +1,6 @@
 #main-section {
-	padding: 0 20%;
-}
-
-#secundarySection {
-	width: 100%;
-	margin-bottom: 5rem;
+	max-width: 62.5rem;
+	margin: 0 auto;
 }
 
 #logo-title {
@@ -12,10 +8,10 @@
 }
 
 #home-content {
-	transition: margin 500ms;
-	margin-top: 35vh;
+	transition: padding 500ms;
+	padding-top: 35vh;
 }
 
 #home-content.fixed-search {
-	margin-top: 2vh;
+	padding-top: 2vh;
 }

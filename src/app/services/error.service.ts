@@ -8,8 +8,11 @@ export class ErrorService {
 
 	constructor(private _snackBar: MatSnackBar) { }
 
-	doError(message: string) {
-		this.openSnackBar(message);
+	doError(message?: string) {
+		if (message) {
+			this.openSnackBar(message);
+		}
+		this.openSnackBar('Ocorreu um erro inesperado');
 	}
 
 	private openSnackBar(message: string) {

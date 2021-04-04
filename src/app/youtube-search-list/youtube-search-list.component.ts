@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Animations } from '../animations';
 import { Search } from '../model/search.model';
+import { Video } from '../model/video.model';
 import { ErrorService } from '../services/error.service';
+import { GoogleAuthService } from '../services/google-auth.service';
 import { ModalService } from '../services/modal.service';
 import { YoutubeService } from '../services/youtube.service';
 
@@ -15,8 +17,8 @@ import { YoutubeService } from '../services/youtube.service';
 export class YoutubeSearchListComponent implements OnInit {
 
 	@Input()
-	isSubscriptionsSearch!: boolean;
-	lastSubscriptionSearch!: Search;
+	isSubscriptionsSearch?: boolean;
+	lastSubscriptionSearch: Search | undefined;
 
 	searchForm!: FormGroup;
 	loading = false;
@@ -25,48 +27,49 @@ export class YoutubeSearchListComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private youtubeService: YoutubeService,
-		private errroService: ErrorService,
-		private modalService: ModalService) { }
+		private errrorService: ErrorService,
+		private modalService: ModalService,
+		private googleAuthService: GoogleAuthService) { }
 
 	ngOnInit(): void {
 		this.searchForm = this.formBuilder.group({
 			search: [{ value: null, disabled: this.loading }, [Validators.required]]
 		});
 
+		// update current view for the latest search
+		this.updateSearchView();
+
 		// if it's subscriptions user list, go on in search without form search
-		if (this.isSubscriptionsSearch) {
+		if (this.isSubscriptionsSearch && !this.lastSubscriptionSearch) {
 			this.searchSubscriptions('');
 		}
 	}
 
 	getLabelSearch() {
-		let result = 'Pesquisar';
-		if (!this.isSubscriptionsSearch) {
-			result += ' (termo ou link da transmissão)';
+		let result = 'Pesquisar (termo ou link da transmissão)';
+		if (this.isSubscriptionsSearch) {
+			result = 'Pesquisar (nome do canal ou link da transmissão)';
 		}
 		return result;
 	}
 
 	searchSubscriptions(searchValue: string) {
+		this.loading = true;
 		this.youtubeService
-			.getLivesFromSubscriptions(10)
-			.then((response: any) => {
+			.getLivesFromSubscriptions(searchValue)
+			.then((videos: Video[]) => {
 				const lastSearch = {
 					search: searchValue,
-					videos: response.items
+					videos
 				};
 				this.youtubeService.saveLastSubscriptionSearch(lastSearch);
 				this.loading = false;
-				this.lastSubscriptionSearch = {
-					search: searchValue,
-					videos: undefined
-				};
 				setTimeout(() => {
 					this.updateSearchView();
 				}, 500);
 			}, error => {
 				this.loading = false;
-				this.youtubeService.doError(error);
+				this.errrorService.doError(error);
 			});
 	}
 
@@ -83,7 +86,7 @@ export class YoutubeSearchListComponent implements OnInit {
 				}, error => {
 					this.loading = false;
 					if (error.status === 404) {
-						this.errroService.doError('Vídeo não disponível para reprodução');
+						this.errrorService.doError('Vídeo não disponível para reprodução');
 					}
 					this.searchForm.get('search')?.setValue('');
 					return;
@@ -94,24 +97,20 @@ export class YoutubeSearchListComponent implements OnInit {
 		}
 
 		this.youtubeService
-			.getLivesFromTerm(searchValue, 10)
-			.subscribe((response: any) => {
+			.getLivesFromTerm(searchValue, 40)
+			.then((videos: Video[]) => {
 				const lastSearch = {
 					search: searchValue,
-					videos: response.items
+					videos
 				};
 				this.youtubeService.saveLastSearch(lastSearch);
 				this.loading = false;
-				this.lastSearch = {
-					search: searchValue,
-					videos: undefined
-				};
 				setTimeout(() => {
 					this.updateSearchView();
 				}, 500);
-			}, error => {
+			}).catch(error => {
 				this.loading = false;
-				this.youtubeService.doError(error);
+				this.errrorService.doError();
 			});
 	}
 
@@ -148,6 +147,10 @@ export class YoutubeSearchListComponent implements OnInit {
 		if (search) {
 			this.searchForm.get('search')?.setValue(search.search);
 		}
+	}
+
+	isAuthenticated() {
+		return this.googleAuthService.isAuthenticated();
 	}
 
 }

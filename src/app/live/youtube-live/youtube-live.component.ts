@@ -136,7 +136,6 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
-		//this.text = 'teste de transcrição teste de transcrição teste de transcrição teste de transcrição teste de transcrição teste de transcrição teste de transcrição ';
 		this.text = null;
 		this.translate = null;
 		this.subscribeLive();

@@ -35,7 +35,7 @@ $YouBorderless-theme: mat-light-theme((
 	@include bottom-nav(
 		$background-color: #f44336,
 		$active-color: #FFF,
-		$inactive-color: #E0E0E0,
+		$inactive-color: #ececec,
 		$hide-inactive-labels: true
 	);
 }

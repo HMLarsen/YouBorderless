@@ -17,20 +17,24 @@ export class PwaService {
 	) {
 		this.swUpdate.available.subscribe(() => window.location.reload());
 		window.addEventListener('beforeinstallprompt', event => {
+			event.preventDefault();
 			this.promptEvent = event;
-			if (this.ableToShowAppInstall()) {
+			if (this.isAbleToShowAppInstall()) {
 				this.openInstallComponent();
 			}
 		});
 	}
 
-	ableToShowAppInstall() {
+	isAbleToShowAppInstall() {
 		return !localStorage.getItem(this.showAppInstallStorageKeyName);
 	}
 
 	openInstallComponent() {
 		this.snackBar.openFromComponent(PwaInstallComponent, {
-			data: this.promptEvent,
+			data: {
+				event: this.promptEvent,
+				showAppInstallStorageKeyName: this.showAppInstallStorageKeyName
+			},
 			panelClass: 'main-snackbar'
 		});
 	}

@@ -3,6 +3,30 @@
 	cursor: pointer;
 }
 
+.card-xs #video-title {
+	-webkit-line-clamp: 2;
+}
+
+.card-xs .mat-card-image {
+	max-width: 70%;
+}
+
+.card-xs mat-card-content {
+	max-width: 30%;
+}
+
+.card-sm #video-title {
+	-webkit-line-clamp: 2;
+}
+
+.card-md #video-description {
+	-webkit-line-clamp: 2;
+}
+
+.card-lg #video-description {
+	-webkit-line-clamp: 4;
+}
+
 .mat-card-image {
 	max-width: 50%;
 	min-height: 100%;
@@ -12,12 +36,65 @@
 	border-radius: 0.25rem 0 0 0.25rem !important;
 }
 
-.mat-card-title {
-	line-height: initial;
-	font-size: 1.25rem;
+#video-title {
+	margin-bottom: 0.9375rem;
+	font-size: 1.0625rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 
-.mat-card-content {
+mat-card-content {
 	flex: 1;
-	margin-top: -0.4375rem;
+	margin: -0.4375rem 0;
+	max-width: 50%;
+}
+
+#video-views {
+	position: absolute;
+	margin-top: -0.9375rem;
+	cursor: pointer;
+	font-size: 0.75rem;
+}
+
+#channel-info {
+	margin: 2.1875rem 0 0.9375rem;
+	font-size: 0.75rem;
+	cursor: pointer;
+}
+
+#channel-avatar {
+	border-radius: 50%;
+	height: 1.5rem;
+	margin-right: 0.3125rem;
+}
+
+#channel-name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+#video-description {
+	font-size: 0.75rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 8;
+	-webkit-box-orient: vertical;
+}
+
+#live-badge {
+	border-radius: 2px;
+	border: 1px solid #ff534a;
+	color: #ff534a;
+	width: fit-content;
+	padding: 3px 4px;
+	font-weight: 500;
+	line-height: 15px;
+	font-size: 13px;
 }

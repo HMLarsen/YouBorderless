@@ -18,7 +18,6 @@ body {
 
 .w-100 {
 	width: 100%;
-	;
 }
 
 .config-live-dialog .mat-dialog-content {
@@ -32,4 +31,26 @@ body {
 youtube-player iframe {
 	width: 100%;
 	height: 100%;
+}
+
+#container {
+	max-width: 62.5rem;
+	margin: 0 auto;
+	padding-bottom: 3rem;
+}
+
+#container.xs {
+	padding: 0px 3% 3rem;
+}
+
+#container.sm {
+	padding: 0px 3% 3rem;
+}
+
+#container.md {
+	padding: 0px 10% 3rem;
+}
+
+#container.lg {
+	padding: 0px 20% 3rem;
 }

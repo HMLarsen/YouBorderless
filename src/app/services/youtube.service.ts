@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Search } from '../model/search.model';
 import { environment } from 'src/environments/environment';
 import { ErrorService } from './error.service';
+import { Observable } from 'rxjs';
+import { Video } from '../model/video.model';
+import { UtilsService } from './utils.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,27 +13,12 @@ import { ErrorService } from './error.service';
 export class YoutubeService {
 
 	lastSearch!: Search;
-	lastSubscriptionSearch!: Search;
+	lastSubscriptionSearch: Search | undefined;
 
 	constructor(
 		private http: HttpClient,
-		private errorService: ErrorService
+		private utilsService: UtilsService
 	) { }
-
-	doError(response: any) {
-		const reason = response.error.error.errors[0].reason;
-		let message;
-		switch (reason) {
-			case 'quotaExceeded':
-				message = 'A cota de requisições foi excedida'
-				break;
-
-			default:
-				message = 'Ocorreu um erro ao processar a requisição'
-				break;
-		}
-		this.errorService.doError(message);
-	}
 
 	saveLastSearch(lastSearch: Search) {
 		this.lastSearch = lastSearch;
@@ -40,7 +28,7 @@ export class YoutubeService {
 		return this.lastSearch;
 	}
 
-	saveLastSubscriptionSearch(lastSubscriptionSearch: Search) {
+	saveLastSubscriptionSearch(lastSubscriptionSearch: Search | undefined) {
 		this.lastSubscriptionSearch = lastSubscriptionSearch;
 	}
 
@@ -48,31 +36,63 @@ export class YoutubeService {
 		return this.lastSubscriptionSearch;
 	}
 
-	getLivesFromTerm(term: string, maxResults: number) {
-		//return of(data);
-		const url = 'https://www.googleapis.com/youtube/v3/search';
-		return this.http.get(url, {
-			params: {
-				key: environment.youtubeApiKey,
-				q: term,
-				part: 'snippet',
-				eventType: 'live',
-				type: 'video',
-				maxResults: maxResults.toString()
+	getLivesFromTerm(term: string, maxResults: number): Promise<Video[]> {
+		const url = environment.backEndUrl + '/search-lives';
+		return this.http.post<Video[]>(url, { term, maxResults }).toPromise();
+	}
+
+	getLivesFromSubscriptions(channelName?: string): Promise<Video[]> {
+		return new Promise((resolve, reject) => {
+			const thiz = this;
+			const maxResults = 50; // api limit
+
+			// recursive function for pagination
+			function getVideos(currentVideos: Video[], pageToken?: string): Promise<Video[]> {
+				return new Promise((resolve, reject) => {
+					try {
+						const request: any = {
+							part: 'snippet',
+							mine: true,
+							maxResults: maxResults,
+							order: 'alphabetical' // if another ordenation the pages does not make sense
+						};
+						if (pageToken) {
+							request.pageToken = pageToken;
+						}
+						gapi.client.youtube.subscriptions.list(request).execute(async apiResponse => {
+							const channelIds: string[] = [];
+							const items = apiResponse.result.items;
+							const nextPageToken = apiResponse.result.nextPageToken;
+							items?.forEach(item => {
+								const channelId = item.snippet?.resourceId?.channelId;
+								const channelTitle = item.snippet?.title;
+								if (channelId && (!channelName || thiz.utilsService.searchInNormalizedStrings(channelTitle!, channelName))) {
+									channelIds.push(channelId);
+								}
+							});
+							if (channelIds.length > 0) {
+								await thiz.getLiveVideoByChannels(channelIds).toPromise()
+									.then(async (serverResponse: Video[]) => {
+										currentVideos.push.apply(currentVideos, serverResponse);
+									}).catch(err => reject(err));
+							}
+							if (nextPageToken) {
+								await getVideos(currentVideos, nextPageToken);
+							}
+							resolve(currentVideos);
+						});
+					} catch (err) {
+						reject(err);
+					}
+				});
 			}
+			getVideos([]).then(videos => resolve(videos)).catch(err => reject(err));
 		});
 	}
 
-	getLivesFromSubscriptions(maxResults: number) {
-		//return of(data);
-		return new Promise((resolve, reject) => {
-			const request = gapi.client.youtube.subscriptions.list({
-				mine: true,
-				part: 'snippet',
-				maxResults: maxResults
-			});
-			request.execute(response => resolve(response));
-		});
+	getLiveVideoByChannels(channelsId: string[]): Observable<Video[]> {
+		const url = environment.backEndUrl + '/live-video-by-channels/';
+		return this.http.post<Video[]>(url, { channelsId });
 	}
 
 	getVideoToLive(videoId: string) {

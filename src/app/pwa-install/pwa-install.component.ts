@@ -1,6 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
+interface DialogData {
+	event: any;
+	showAppInstallStorageKeyName: string;
+}
+
 @Component({
 	selector: 'app-pwa-install',
 	templateUrl: './pwa-install.component.html',
@@ -8,15 +13,13 @@ import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar'
 })
 export class PwaInstallComponent {
 
-	showAppInstallStorageKeyName = 'showAppInstall';
-
 	constructor(
 		private snackBarRef: MatSnackBarRef<PwaInstallComponent>,
-		@Inject(MAT_SNACK_BAR_DATA) private data: any
+		@Inject(MAT_SNACK_BAR_DATA) private data: DialogData
 	) { }
 
 	install() {
-		this.data.prompt();
+		this.data.event.prompt();
 		this.close();
 	}
 
@@ -26,7 +29,7 @@ export class PwaInstallComponent {
 	}
 
 	saveUserResponseInStorage() {
-		localStorage.setItem(this.showAppInstallStorageKeyName, 'false');
+		localStorage.setItem(this.data.showAppInstallStorageKeyName, 'false');
 	}
 
 }

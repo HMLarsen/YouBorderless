@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export class GoogleAuthService {
 
 	private gApiSetup = false;
-	private authInstance: any;
+	private authInstance!: gapi.auth2.GoogleAuth;
 
 	constructor() {
 		this.initGoogleAuth();
@@ -32,15 +32,14 @@ export class GoogleAuthService {
 						clientId: environment.googleAppClientId,
 						scope: 'https://www.googleapis.com/auth/youtube'
 					}).then(() => {
-						gapi.client.load('youtube', 'v3')
-							.then(resolve);
+						gapi.client.load('youtube', 'v3').then(resolve);
 					});
 			});
 		});
 
 		// when the first promise resolves, it means we have gapi
 		// loaded and that we can call gapi.init
-		return pLoad.then(async () => {
+		return pLoad.then(() => {
 			this.gApiSetup = true;
 			this.authInstance = gapi.auth2.getAuthInstance();
 		});
@@ -64,12 +63,14 @@ export class GoogleAuthService {
 		if (this.authInstance) {
 			return this.authInstance.isSignedIn.get();
 		}
+		return false;
 	}
 
 	getUser() {
 		if (this.authInstance) {
 			return this.authInstance.currentUser;
 		}
+		return null;
 	}
 
 	getInstance() {

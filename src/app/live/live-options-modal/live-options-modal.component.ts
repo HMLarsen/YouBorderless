@@ -7,6 +7,7 @@ import { LiveOptions } from 'src/app/model/live-options.model';
 import { TranscribeSupportedLanguage } from 'src/app/model/transcribe-supported-language';
 import { TranslationSupportedLanguage } from 'src/app/model/translation-supported-language';
 import { LiveService } from 'src/app/services/live.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 interface DialogData {
 	videoId: string;
@@ -37,7 +38,8 @@ export class LiveOptionsModalComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private dialogRef: MatDialogRef<LiveOptionsModalComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: DialogData,
-		private liveService: LiveService
+		private liveService: LiveService,
+		private utilsService: UtilsService
 	) { }
 
 	ngOnInit(): void {
@@ -103,18 +105,9 @@ export class LiveOptionsModalComponent implements OnInit {
 		if (!search) {
 			filteredLanguages.next(languages.slice());
 			return;
-		} else {
-			search = search.toLowerCase()
-				.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 		}
 		// filter the languages
-		filteredLanguages.next(
-			languages.filter(language => {
-				const languageName = language.name.toLowerCase()
-					.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-				return languageName.indexOf(search) > -1;
-			})
-		);
+		filteredLanguages.next(languages.filter(language => this.utilsService.searchInNormalizedStrings(language.name, search)));
 	}
 
 	submit() {
