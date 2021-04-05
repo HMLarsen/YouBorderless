@@ -48,7 +48,11 @@ export class GoogleAuthService {
 	async authenticate(): Promise<gapi.auth2.GoogleUser> {
 		await this.initGoogleAuth();
 		return new Promise(async () => {
-			await this.authInstance.signIn();
+			await this.authInstance.signIn()
+				.catch(err => {
+					if (err.error === 'popup_closed_by_user') return;
+					console.error(err);
+				});
 		});
 	}
 

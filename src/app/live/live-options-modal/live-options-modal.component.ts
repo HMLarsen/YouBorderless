@@ -123,10 +123,6 @@ export class LiveOptionsModalComponent implements OnInit {
 		this.liveService.setLastLiveOptions(liveOptions);
 
 		this.router.navigate(['app/video/' + this.data.videoId]);
-		this.cancel();
-	}
-
-	cancel() {
 		this.dialogRef.close();
 	}
 

@@ -40,8 +40,8 @@
 		<mat-checkbox color="primary" formControlName="profanityFilter">Censurar palavras ofensivas</mat-checkbox>
 		<mat-checkbox color="primary" formControlName="punctuation">Pontuação</mat-checkbox>
 		<div mat-dialog-actions align="end" *ngIf="!loading && !loadingError">
-			<button mat-button type="button" color="primary" (click)="cancel()">Cancelar</button>
-			<button mat-button type="submit" color="primary" [disabled]="configForm.invalid">Iniciar</button>
+			<button mat-button type="button" color="primary" mat-dialog-close>CANCELAR</button>
+			<button mat-button type="submit" color="primary" [disabled]="configForm.invalid">INICIAR</button>
 		</div>
 	</form>
 </div>

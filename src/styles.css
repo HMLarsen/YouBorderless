@@ -24,8 +24,16 @@ body {
 	overflow-y: hidden !important;
 }
 
+.config-live-dialog mat-dialog-container {
+	padding-bottom: 1.125rem !important;
+}
+
 .config-live-dialog .mat-checkbox {
 	display: block;
+}
+
+.config-live-dialog .mat-dialog-actions {
+	margin-bottom: -1.0625rem !important;
 }
 
 youtube-player iframe {
