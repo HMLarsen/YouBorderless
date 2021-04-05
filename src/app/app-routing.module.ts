@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HistoryComponent } from './history/history.component';
+import { ConfigComponent } from './config/config.component';
 import { HomeComponent } from './home/home.component';
 import { YoutubeLiveComponent } from './live/youtube-live/youtube-live.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
 			{ path: 'video/:videoId', component: YoutubeLiveComponent }
 		]
 	},
-	{ path: 'history', component: HistoryComponent },
+	{ path: 'config', component: ConfigComponent },
 	{ path: 'subscriptions', component: SubscriptionsComponent }
 ];
 

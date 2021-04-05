@@ -1,18 +1,20 @@
 <router-outlet></router-outlet>
 
 <nav class="bottom-nav">
-	<a class="bottom-nav__destination" routerLink="/history" routerLinkActive="bottom-nav__destination--active">
-		<mat-icon>history</mat-icon>
-		<span class="bottom-nav__label">Recents</span>
+	<a class="bottom-nav__destination" routerLink="/config" title="Configurações"
+		routerLinkActive="bottom-nav__destination--active">
+		<mat-icon>settings</mat-icon>
+		<span class="bottom-nav__label">Configurações</span>
 	</a>
 
-	<a class="bottom-nav__destination" [routerLink]="['/app']" [queryParams]="{}"
+	<a class="bottom-nav__destination" routerLink="/app" title="Inscrições"
 		routerLinkActive="bottom-nav__destination--active">
 		<mat-icon>home</mat-icon>
 		<span class="bottom-nav__label">Home</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/subscriptions" routerLinkActive="bottom-nav__destination--active">
+	<a class="bottom-nav__destination" routerLink="/subscriptions" title="Inscrições"
+		routerLinkActive="bottom-nav__destination--active">
 		<mat-icon>subscriptions</mat-icon>
 		<span class="bottom-nav__label">Inscrições</span>
 	</a>

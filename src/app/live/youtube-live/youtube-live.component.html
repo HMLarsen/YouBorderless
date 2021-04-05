@@ -1,6 +1,7 @@
-<section id="main-video-section" [ngStyle.xs]="{'height': '80vh'}">
-	<div id="mid-screen" [ngStyle.xs]="{'padding': '40vh 0 0'}" *ngIf="loading || loadingError">
-		<mat-spinner *ngIf="loading"></mat-spinner>
+<section id="main-video-section" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
+	<div id="mid-screen" *ngIf="loading || loadingError">
+		<h1 *ngIf="loading" class="mat-title">Carregando a transmissão</h1>
+		<mat-spinner *ngIf="loading" [diameter]="60"></mat-spinner>
 
 		<div class="loading-error" *ngIf="!loading && loadingError">
 			<mat-icon [inline]="true">error</mat-icon>
@@ -9,32 +10,29 @@
 		</div>
 	</div>
 
-	<div id="mid-screen" [ngStyle.xs]="{'padding': '40vh 0 0'}" *ngIf="!loading && !loadingError && !getLiveOptions()">
+	<div id="mid-screen" *ngIf="!loading && !loadingError && !getLiveOptions()">
 		<mat-icon [inline]="true">settings</mat-icon>
 		<h1 class="mat-title">Informe as configurações da transmissão</h1>
 		<button mat-raised-button color="primary" (click)="openLiveOptionsModal()">Configurar</button>
 	</div>
 
-	<div *ngIf="!loading && !loadingError && getLiveOptions()" id="video-content"
-		[ngStyle.xs]="{'height': '70vw', 'max-width': '90vw'}" [ngStyle.sm]="{'height': '60vw', 'max-width': '90vw'}"
-		[ngStyle.md]="{'height': '50vw', 'max-width': '90vw'}" [ngStyle.lg]="{'height': '75vh'}">
+	<div id="video-content" *ngIf="!loading && !loadingError && getLiveOptions()">
 		<div id="video-navbar" fxLayout="row" fxLayoutAlign="space-between center">
-			<label><span class="mat-body-strong">{{ getLiveOptions().liveLanguage.name }}</span> para <span
-					class="mat-body-strong">{{ getLiveOptions().liveToLanguage.name }}</span></label>
+			<label>
+				<span class="mat-body-strong">{{ getLiveOptions().liveLanguage.name }}</span>
+				para
+				<span class="mat-body-strong">{{ getLiveOptions().liveToLanguage.name }}</span>
+			</label>
 			<button mat-stroked-button (click)="openLiveOptionsModal()">Configurar</button>
 		</div>
 
-		<div id="player-content" style="width: 100%; height: 100%;">
-			<youtube-player videoId="{{videoId}}" (ready)="onReady($event)" (stateChange)="onStateChange($event)"
+		<div id="player-content">
+			<youtube-player videoId="{{ videoId }}" (ready)="onReady($event)" (stateChange)="onStateChange($event)"
 				(error)="onError" (apiChange)="onApiChange()" (playbackQualityChange)="onPlaybackQualityChange()"
-				(playbackRateChange)="onPlaybackRateChange()" [playerVars]="{fs: 0}">
+				(playbackRateChange)="onPlaybackRateChange()" [playerVars]="{ fs: 0 }">
 			</youtube-player>
 
-			<div id="captions-container" cdkDrag cdkDragBoundary="#main-video-section" title="Legendas"
-				[ngStyle.xs]="{'width': '64vw', 'height': '4vh', 'top': '75vw', 'left': '11vh'}"
-				[ngStyle.sm]="{'width': '68vw', 'height': '4vh', 'top': '63vw', 'left': '14vh'}"
-				[ngStyle.md]="{'width': '40vw', 'height': '47vh', 'top': '47vw', 'left': '25vh'}"
-				[ngStyle.lg]="{'width': '40vw', 'height': '5.3125rem', 'top': '70vh', 'left': '25vw'}">
+			<div id="captions-container" cdkDrag cdkDragBoundary="#main-video-section" title="Legendas">
 				<span id="captions">{{ text }}</span>
 			</div>
 		</div>

@@ -10,8 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LiveModule } from './live/live.module';
 
 import { AppComponent } from './app.component';
+import { ConfigComponent } from './config/config.component';
 import { HomeComponent } from './home/home.component';
-import { HistoryComponent } from './history/history.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { YoutubeVideoCardComponent } from './youtube-video-card/youtube-video-card.component';
 import { GoogleAuthComponent } from './google-auth/google-auth.component';
@@ -20,13 +20,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PwaInstallComponent } from './pwa-install/pwa-install.component';
 import { PwaService } from './services/pwa.service';
+import { GoogleAuthService } from './services/google-auth.service';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		ConfigComponent,
 		HomeComponent,
-		HistoryComponent,
 		SubscriptionsComponent,
 		YoutubeVideoCardComponent,
 		GoogleAuthComponent,
@@ -50,6 +51,9 @@ import { PwaService } from './services/pwa.service';
 export class AppModule {
 
 	// call the service constructors
-	constructor(pwaService: PwaService) { }
+	constructor(
+		pwaService: PwaService,
+		googleAuthService: GoogleAuthService
+	) { }
 
 }
