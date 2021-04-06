@@ -64,10 +64,7 @@ export class YoutubeSearchListComponent implements OnInit {
 			const videoId = this.youtubeService.getVideoIdFromUrl(searchValue);
 			if (videoId) {
 				await this.youtubeService.getVideoToLive(videoId).toPromise()
-					.then((data: any) => {
-						const videoId = data.videoDetails.videoId;
-						this.modalService.openLiveOptionsModel(videoId);
-					}, error => this.doError(error))
+					.then(() => this.modalService.openLiveOptionsModel(videoId), error => this.doError(error))
 					.finally(() => this.loading = false);
 				return;
 			}

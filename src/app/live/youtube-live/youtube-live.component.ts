@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { YoutubeService } from 'src/app/services/youtube.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
+import { Video } from 'src/app/model/video.model';
 
 let apiLoaded = false;
 
@@ -49,21 +50,22 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		};
 
 		this.videoId = this.route.snapshot.params['videoId'];
+		let error;
+
 		await this.youtubeService.getVideoToLive(this.videoId).toPromise()
-			.then((data: any) => {
-				this.videoId = data.videoDetails.videoId;
-				this.videoTitle = data.videoDetails.title;
+			.then(() => {
 				const lastLiveOptions = this.liveService.getLastLiveOptions();
 				if (!lastLiveOptions) {
 					this.openLiveOptionsModal();
 				}
-			}, error => {
-				console.error(error);
+			}, err => {
+				error = err;
+				console.error(err);
 				this.loadingError = true;
 			})
 			.finally(() => this.loading = false);
 
-		if (!this.videoId) {
+		if (error) {
 			return;
 		}
 		if (!apiLoaded) {
