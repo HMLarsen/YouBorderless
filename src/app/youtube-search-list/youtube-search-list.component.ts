@@ -63,21 +63,13 @@ export class YoutubeSearchListComponent implements OnInit {
 		if (searchValue) {
 			const videoId = this.youtubeService.getVideoIdFromUrl(searchValue);
 			if (videoId) {
-				let error;
 				await this.youtubeService.getVideoToLive(videoId).toPromise()
 					.then((data: any) => {
 						const videoId = data.videoDetails.videoId;
 						this.modalService.openLiveOptionsModel(videoId);
-					}, err => {
-						this.searchForm.get('search')?.setValue('');
-						const message = this.youtubeService.translateError(err);
-						this.errorService.doError(message);
-						error = err;
-					})
+					}, error => this.doError(error))
 					.finally(() => this.loading = false);
-				if (error) {
-					return;
-				}
+				return;
 			}
 		}
 		if (this.isSubscriptionsSearch) {
@@ -88,43 +80,44 @@ export class YoutubeSearchListComponent implements OnInit {
 	}
 
 	searchSubscriptions(searchValue?: string) {
+		this.loading = true;
 		this.youtubeService.getLivesFromSubscriptions(searchValue)
 			.then((videos: Video[]) => {
 				this.youtubeService.saveLastSubscriptionsSearch({ search: searchValue, videos });
 				this.updateSearchView();
-			}, error => {
-				this.lastSearch = undefined;
-				const message = this.youtubeService.translateError(error);
-				// snack error if does not have last search yet
-				if (!this.youtubeService.getLastSearch()) {
-					this.errorService.doError(message);
-					return;
-				}
-				this.loadingError = message;
-			})
+			}, error => this.doError(error))
 			.finally(() => this.loading = false);
 	}
 
 	searchFromTerm(searchValue: string) {
+		this.loading = true;
 		this.youtubeService.getLivesFromTerm(searchValue, this.MAX_SEARCH_RESULTS)
 			.then((videos: Video[]) => {
 				this.youtubeService.saveLastSearch({ search: searchValue, videos });
 				this.updateSearchView();
-			}, error => {
-				this.lastSearch = undefined;
-				const message = this.youtubeService.translateError(error);
-				// snack error if does not have last search yet
-				if (!this.youtubeService.getLastSearch()) {
-					this.errorService.doError(message);
-					return;
-				}
-				this.loadingError = message;
-			})
+			}, error => this.doError(error))
 			.finally(() => this.loading = false);
 	}
 
 	getVideos() {
 		return this.lastSearch?.videos;
+	}
+
+	doError(error: any) {
+		this.lastSearch = undefined;
+		const message = this.youtubeService.translateError(error);
+
+		// if subscriptions always error in page
+		if (this.isSubscriptionsSearch) {
+			this.loadingError = message;
+		} else {
+			// snack error if does not have last search yet
+			if (!this.youtubeService.getLastSearch()) {
+				this.errorService.doError(message);
+				return;
+			}
+			this.loadingError = message;
+		}
 	}
 
 	updateSearchView(updateSearchField?: boolean) {

@@ -12,7 +12,7 @@ import { UtilsService } from './utils.service';
 export class YoutubeService {
 
 	YOUTUBE_API_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
-	lastSearch!: Search;
+	lastSearch: Search | undefined;
 	lastSubscriptionsSearch: Search | undefined;
 
 	constructor(

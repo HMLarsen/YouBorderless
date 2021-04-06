@@ -46,7 +46,12 @@ export class GoogleAuthService {
 	async authenticate() {
 		await this.initGoogleAuth();
 		this.authInstance.signIn()
-			.catch(err => {
+			.then(response => {
+				// if success reload the page because render scopes problems in html
+				if (response.isSignedIn()) {
+					window.location.reload();
+				}
+			}, err => {
 				if (err.error === 'popup_closed_by_user') return;
 				console.error(err);
 			});
