@@ -17,7 +17,7 @@ export class PwaService {
 	) {
 		this.swUpdate.available.subscribe(() => window.location.reload());
 		window.addEventListener('beforeinstallprompt', event => {
-			event.preventDefault();
+			event.preventDefault(); // to chrome not show the default navbar for installation
 			this.promptEvent = event;
 			if (this.isAbleToShowAppInstall()) {
 				this.openInstallComponent();
