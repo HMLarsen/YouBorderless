@@ -28,7 +28,7 @@ export class GoogleAuthComponent {
 
 	logout() {
 		this.googleAuthService.logout();
-		this.youtubeService.saveLastSubscriptionSearch(undefined);
+		this.youtubeService.saveLastSubscriptionsSearch(undefined);
 	}
 
 	getUserName() {

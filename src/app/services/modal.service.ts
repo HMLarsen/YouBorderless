@@ -9,11 +9,11 @@ export class ModalService {
 
 	constructor(private dialog: MatDialog) { }
 
-	openLiveOptionsModel(videoId: string, videoTitle: string) {
+	openLiveOptionsModel(videoId: string) {
 		return this.dialog.open(LiveOptionsModalComponent, {
 			panelClass: 'config-live-dialog',
 			width: '21.875rem',
-			data: { videoId, videoTitle }
+			data: { videoId }
 		});
 	}
 

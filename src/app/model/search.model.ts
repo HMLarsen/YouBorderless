@@ -1,6 +1,6 @@
 import { Video } from './video.model';
 
 export interface Search {
-	search: string;
+	search: string | undefined;
 	videos: Array<Video>;
 }

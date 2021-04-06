@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Search } from '../model/search.model';
 import { environment } from 'src/environments/environment';
 import { ErrorService } from './error.service';
-import { Observable } from 'rxjs';
 import { Video } from '../model/video.model';
 import { UtilsService } from './utils.service';
 
@@ -12,12 +11,14 @@ import { UtilsService } from './utils.service';
 })
 export class YoutubeService {
 
+	YOUTUBE_API_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 	lastSearch!: Search;
-	lastSubscriptionSearch: Search | undefined;
+	lastSubscriptionsSearch: Search | undefined;
 
 	constructor(
 		private http: HttpClient,
-		private utilsService: UtilsService
+		private utilsService: UtilsService,
+		private errorService: ErrorService
 	) { }
 
 	saveLastSearch(lastSearch: Search) {
@@ -28,17 +29,52 @@ export class YoutubeService {
 		return this.lastSearch;
 	}
 
-	saveLastSubscriptionSearch(lastSubscriptionSearch: Search | undefined) {
-		this.lastSubscriptionSearch = lastSubscriptionSearch;
+	saveLastSubscriptionsSearch(lastSubscriptionsSearch: Search | undefined) {
+		this.lastSubscriptionsSearch = lastSubscriptionsSearch;
 	}
 
-	getLastSubscriptionSearch() {
-		return this.lastSubscriptionSearch;
+	getLastSubscriptionsSearch() {
+		return this.lastSubscriptionsSearch;
 	}
 
 	getLivesFromTerm(term: string, maxResults: number): Promise<Video[]> {
-		const url = environment.backEndUrl + '/search-lives';
-		return this.http.post<Video[]>(url, { term, maxResults }).toPromise();
+		return new Promise((res, rej) => {
+			const url = environment.backEndUrl + '/search-lives';
+			this.http.post<Video[]>(url, { term, maxResults })
+				.subscribe((videos: Video[]) => {
+					// refresh the last search even the compononent that calls this method is dead
+					this.saveLastSearch({ search: term, videos })
+					res(videos);
+				}, err => {
+					// error from too many requests
+					// then let's use the youtube api authenticated from api key
+					if (err.status === 429) {
+						this.http.get(this.YOUTUBE_API_SEARCH_URL, {
+							params: {
+								key: environment.youtubeApiKey,
+								q: term,
+								part: 'snippet',
+								eventType: 'live',
+								type: 'video',
+								maxResults: maxResults.toString()
+							}
+						}).subscribe((response: any) => {
+							const videos: Video[] = [];
+							response.items.forEach((item: any) => {
+								videos.push({
+									id: item.id.videoId,
+									title: item.snippet.title,
+									description: item.snippet.description,
+									thumbnailUrl: item.snippet.thumbnails.high.url
+								});
+							});
+							res(videos);
+						}, err => rej(err));
+					} else {
+						rej(err);
+					}
+				});
+		});
 	}
 
 	getLivesFromSubscriptions(channelName?: string): Promise<Video[]> {
@@ -59,11 +95,15 @@ export class YoutubeService {
 						if (pageToken) {
 							request.pageToken = pageToken;
 						}
-						gapi.client.youtube.subscriptions.list(request).execute(async apiResponse => {
+						gapi.client.youtube.subscriptions.list(request).execute(async (apiResponse: any) => {
+							if (apiResponse.error) {
+								reject(apiResponse.error);
+								return;
+							}
 							const channelIds: string[] = [];
 							const items = apiResponse.result.items;
 							const nextPageToken = apiResponse.result.nextPageToken;
-							items?.forEach(item => {
+							items?.forEach((item: any) => {
 								const channelId = item.snippet?.resourceId?.channelId;
 								const channelTitle = item.snippet?.title;
 								if (channelId && (!channelName || thiz.utilsService.searchInNormalizedStrings(channelTitle!, channelName))) {
@@ -74,7 +114,7 @@ export class YoutubeService {
 								await thiz.getLiveVideoByChannels(channelIds).toPromise()
 									.then(async (serverResponse: Video[]) => {
 										currentVideos.push.apply(currentVideos, serverResponse);
-									}).catch(err => reject(err));
+									}, err => reject(err));
 							}
 							if (nextPageToken) {
 								await getVideos(currentVideos, nextPageToken);
@@ -86,18 +126,22 @@ export class YoutubeService {
 					}
 				});
 			}
-			getVideos([]).then(videos => resolve(videos)).catch(err => reject(err));
+			getVideos([]).then(videos => {
+				// refresh the last search even the compononent that calls this method is dead
+				this.saveLastSubscriptionsSearch({ search: channelName, videos });
+				resolve(videos);
+			}, err => reject(err));
 		});
 	}
 
-	getLiveVideoByChannels(channelsId: string[]): Observable<Video[]> {
+	getLiveVideoByChannels(channelsId: string[]) {
 		const url = environment.backEndUrl + '/live-video-by-channels/';
 		return this.http.post<Video[]>(url, { channelsId });
 	}
 
 	getVideoToLive(videoId: string) {
 		const url = environment.backEndUrl + '/live-info/' + videoId;
-		return this.http.get(url).toPromise();
+		return this.http.get(url);
 	}
 
 	getVideoIdFromUrl(url: string) {
@@ -105,4 +149,15 @@ export class YoutubeService {
 		var match = url.match(regExp);
 		return (match && match[7].length == 11) ? match[7] : false;
 	}
+
+	translateError(error: any) {
+		if (error.status === 404) {
+			return this.errorService.liveNotAvailable;
+		}
+		if (error.code === 403 && error.message?.indexOf('insufficient authentication')) {
+			return this.errorService.permissionsError;
+		}
+		return this.errorService.defaultError;
+	}
+
 }

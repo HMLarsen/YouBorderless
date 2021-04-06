@@ -20,6 +20,21 @@
 	background-color: white;
 }
 
+.info-centered {
+	text-align: center;
+	padding-top: 30vh;
+}
+
+.info-centered>label {
+	display: block;
+}
+
+.info-centered .mat-icon {
+	display: block;
+	font-size: 5.625rem;
+	height: 3.75rem;
+}
+
 .w-p-b ::ng-deep .mat-form-field-wrapper {
 	padding-bottom: 0 !important;
 }

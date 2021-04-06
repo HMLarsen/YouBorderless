@@ -48,17 +48,17 @@ youtube-player iframe {
 }
 
 #container.xs {
-	padding: 0px 3% 3rem;
+	padding: 0 3% 3rem;
 }
 
 #container.sm {
-	padding: 0px 3% 3rem;
+	padding: 0 3% 3rem;
 }
 
 #container.md {
-	padding: 0px 10% 3rem;
+	padding: 0 10% 3rem;
 }
 
 #container.lg {
-	padding: 0px 20% 3rem;
+	padding: 0 20% 3rem;
 }

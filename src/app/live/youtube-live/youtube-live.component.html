@@ -3,20 +3,20 @@
 		<h1 *ngIf="loading" class="mat-title">Carregando a transmissão</h1>
 		<mat-spinner *ngIf="loading" [diameter]="60"></mat-spinner>
 
-		<div class="loading-error" *ngIf="!loading && loadingError">
+		<div class="loading-error" *ngIf="loadingError">
 			<mat-icon [inline]="true">error</mat-icon>
 			<label class="mat-title">Transmissão não disponível</label>
 			<p class="mat-subheading-2">A transmissão não foi encontrada ou não está mais ao vivo.</p>
 		</div>
 	</div>
 
-	<div id="mid-screen" *ngIf="!loading && !loadingError && !getLiveOptions()">
+	<div id="mid-screen" *ngIf="!loadingError && !getLiveOptions()">
 		<mat-icon [inline]="true">settings</mat-icon>
 		<h1 class="mat-title">Informe as configurações da transmissão</h1>
 		<button mat-raised-button color="primary" (click)="openLiveOptionsModal()">Configurar</button>
 	</div>
 
-	<div id="video-content" *ngIf="!loading && !loadingError && getLiveOptions()">
+	<div id="video-content" *ngIf="!loadingError && getLiveOptions()">
 		<div id="video-navbar" fxLayout="row" fxLayoutAlign="space-between center">
 			<label>
 				<span class="mat-body-strong">{{ getLiveOptions().liveLanguage.name }}</span>

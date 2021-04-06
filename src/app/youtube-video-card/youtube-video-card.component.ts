@@ -15,7 +15,7 @@ export class YoutubeVideoCardComponent {
 	constructor(private modalService: ModalService) { }
 
 	cardClick() {
-		this.modalService.openLiveOptionsModel(this.video.id, this.video.title);
+		this.modalService.openLiveOptionsModel(this.video.id);
 	}
 
 }

@@ -49,9 +49,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		};
 
 		this.videoId = this.route.snapshot.params['videoId'];
-		await this.youtubeService.getVideoToLive(this.videoId)
+		await this.youtubeService.getVideoToLive(this.videoId).toPromise()
 			.then((data: any) => {
-				this.loading = false;
 				this.videoId = data.videoDetails.videoId;
 				this.videoTitle = data.videoDetails.title;
 				const lastLiveOptions = this.liveService.getLastLiveOptions();
@@ -60,15 +59,13 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 				}
 			}, error => {
 				console.error(error);
-				this.loading = false;
 				this.loadingError = true;
-				return;
-			});
+			})
+			.finally(() => this.loading = false);
 
 		if (!this.videoId) {
 			return;
 		}
-
 		if (!apiLoaded) {
 			// This code loads the IFrame Player API code asynchronously, according to the instructions at
 			// https://developers.google.com/youtube/iframe_api_reference#Getting_Started
@@ -85,7 +82,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	}
 
 	openLiveOptionsModal() {
-		this.modalService.openLiveOptionsModel(this.videoId, this.videoTitle);
+		this.modalService.openLiveOptionsModel(this.videoId);
 	}
 
 	getLiveOptions(): LiveOptions {

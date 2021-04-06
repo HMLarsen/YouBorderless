@@ -11,7 +11,6 @@ import { UtilsService } from 'src/app/services/utils.service';
 
 interface DialogData {
 	videoId: string;
-	videoTitle: string;
 }
 
 @Component({

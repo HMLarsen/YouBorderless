@@ -19,21 +19,15 @@ export class GoogleAuthService {
 		}
 		// create a new Promise where the resolve
 		// function is the callback passed to gapi.load
-		var OAUTH2_SCOPES = [
-			'https://www.googleapis.com/auth/youtube.readonly'
-			// 'https://www.googleapis.com/auth/youtube.force-ssl',
-			// 'https://www.googleapis.com/auth/youtube.readonly'
-		];
 		const pLoad = new Promise(resolve => {
 			gapi.load('client', () => {
-				gapi.client
-					.init({
-						apiKey: environment.youtubeApiKey,
-						clientId: environment.googleAppClientId,
-						scope: 'https://www.googleapis.com/auth/youtube'
-					}).then(() => {
-						gapi.client.load('youtube', 'v3').then(resolve);
-					});
+				gapi.client.init({
+					apiKey: environment.youtubeApiKey,
+					clientId: environment.googleAppClientId,
+					scope: 'https://www.googleapis.com/auth/youtube.readonly'
+				}).then(() => {
+					gapi.client.load('youtube', 'v3').then(resolve);
+				});
 			});
 		});
 
@@ -45,22 +39,22 @@ export class GoogleAuthService {
 		});
 	}
 
-	async authenticate(): Promise<gapi.auth2.GoogleUser> {
-		await this.initGoogleAuth();
-		return new Promise(async () => {
-			await this.authInstance.signIn()
-				.catch(err => {
-					if (err.error === 'popup_closed_by_user') return;
-					console.error(err);
-				});
-		});
+	getInstance() {
+		return this.authInstance;
 	}
 
-	async logout(): Promise<gapi.auth2.GoogleUser> {
+	async authenticate() {
 		await this.initGoogleAuth();
-		return new Promise(async () => {
-			await this.authInstance.signOut();
-		});
+		this.authInstance.signIn()
+			.catch(err => {
+				if (err.error === 'popup_closed_by_user') return;
+				console.error(err);
+			});
+	}
+
+	async logout() {
+		await this.initGoogleAuth();
+		this.authInstance.signOut();
 	}
 
 	isAuthenticated() {
@@ -75,10 +69,6 @@ export class GoogleAuthService {
 			return this.authInstance.currentUser;
 		}
 		return null;
-	}
-
-	getInstance() {
-		return this.authInstance;
 	}
 
 }

@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'fixed-search': lastSearch || lastSubscriptionSearch }">
+<div [ngClass]="{ 'fixed-search': lastSearch }">
 	<div id="user-content" *ngIf="isSubscriptionsSearch && isAuthenticated()">
 		<app-google-auth></app-google-auth>
 	</div>
@@ -6,7 +6,7 @@
 		<mat-form-field id="search-field" class="w-p-b" appearance="outline" color="accent" hideRequiredMarker>
 			<input matInput formControlName="search" placeholder="{{ getLabelSearch() }}" required>
 			<button mat-button type="button" *ngIf="searchForm.get('search')?.value" matSuffix mat-icon-button
-				aria-label="Limpar" (click)="searchForm.get('search')?.setValue('')">
+				aria-label="Limpar" (click)="clearSearch()">
 				<mat-icon>close</mat-icon>
 			</button>
 			<button mat-button type="submit" [disabled]="searchForm.invalid" matSuffix mat-icon-button
@@ -20,8 +20,19 @@
 	</form>
 </div>
 
-<div *ngIf="getVideos() && getVideos()!.length > 0" [@inOutAnimation]>
-	<div *ngFor="let video of getVideos()">
+<div class="info-centered" *ngIf="loadingError">
+	<mat-icon [inline]="true">close</mat-icon>
+	<label class="mat-subheading-2">{{ loadingError }}</label>
+</div>
+
+<div class="info-centered" *ngIf="getVideos() && getVideos()!.length <= 0">
+	<mat-icon [inline]="true">search_off</mat-icon>
+	<label class="mat-title">Nenhum resultado encontrado</label>
+	<label class="mat-subheading-2">Use palavras-chave diferentes</label>
+</div>
+
+<div *ngIf="getVideos() && getVideos()!.length > 0">
+	<div *ngFor="let video of getVideos(); trackBy: videosTrackBy">
 		<app-youtube-video-card [video]="video"></app-youtube-video-card>
 	</div>
 </div>
