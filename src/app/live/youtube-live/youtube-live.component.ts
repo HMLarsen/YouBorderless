@@ -60,7 +60,6 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 				}
 			}, err => {
 				error = err;
-				console.error(err);
 				this.loadingError = true;
 			})
 			.finally(() => this.loading = false);
