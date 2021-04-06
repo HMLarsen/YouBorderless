@@ -1,8 +1,8 @@
 #mid-screen {
-	padding-top: 45vh;
+	padding: 35vh 10% 0;
 	text-align: center;
 }
 
 #loading-spinner {
-	margin: 0 auto;
+	margin: 2.5rem auto;
 }

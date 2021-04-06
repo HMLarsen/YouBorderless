@@ -1,5 +1,5 @@
 <div id="mid-screen" *ngIf="isLoading() || !isAuthenticated()">
-	<mat-spinner *ngIf="isLoading()" id="loading-spinner"></mat-spinner>
+	<mat-spinner id="loading-spinner" *ngIf="isLoading()" [diameter]="70"></mat-spinner>
 	<div *ngIf="!isLoading() && !isAuthenticated()">
 		<h3>Faça login para buscar as transmissões de seus canais favoritos</h3>
 		<app-google-auth></app-google-auth>

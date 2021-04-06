@@ -1,7 +1,7 @@
 <h1 mat-dialog-title *ngIf="!loading && !loadingError">Configurações da transmissão</h1>
 
 <div mat-dialog-content>
-	<mat-spinner *ngIf="loading"></mat-spinner>
+	<mat-spinner *ngIf="loading" [diameter]="60"></mat-spinner>
 
 	<div class="loading-error" *ngIf="!loading && loadingError">
 		<mat-icon class="loading-error-icon" [inline]="true">error</mat-icon>
