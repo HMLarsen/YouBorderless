@@ -1,0 +1,29 @@
+.mat-display-1 {
+	margin: 0 0 1.25rem;
+}
+
+#container {
+	padding-top: 30vh;
+}
+
+#container.xs {
+	padding-top: 22vh;
+}
+
+section {
+	width: 40%;
+	margin-top: 2.5rem;
+}
+
+.xs section {
+	width: 70%;
+}
+
+.option label {
+	cursor: pointer;
+}
+
+.option .element {
+	width: fit-content;
+	float: right;
+}

@@ -1,1 +1,27 @@
-<p>config works!</p>
+<div id="container" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg" fxLayout="column"
+	fxLayoutAlign="start center">
+	<h1 class="mat-display-1">{{ 'settings' | translate }}</h1>
+	<section>
+		<h1>{{ 'config.general' | translate }}</h1>
+		<div class="option">
+			<mat-form-field class="w-100">
+				<mat-label>{{ 'config.language' | translate }}</mat-label>
+				<mat-select (selectionChange)="onChangeLanguage($event)" [(ngModel)]="language">
+					<mat-option *ngFor="let language of languages; trackBy: languagesTrackBy" [value]="language">
+						{{ language.desc }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	</section>
+	<section>
+		<h1>{{ 'config.theme' | translate }}</h1>
+		<div class="option">
+			<label>
+				{{ 'config.darkTheme' | translate }}
+				<mat-slide-toggle class="element" [(ngModel)]="isDarkTheme" (change)="onChangeDarkTheme($event)">
+				</mat-slide-toggle>
+			</label>
+		</div>
+	</section>
+</div>

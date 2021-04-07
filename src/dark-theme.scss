@@ -1,0 +1,11 @@
+$primary-color: #424242;
+$contrast-color: white;
+
+.dark-theme {
+	background: $primary-color;
+	color: $contrast-color;
+
+	.fixed-search .mat-form-field {
+		background-color: $primary-color !important;
+	}
+}

@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { YoutubeService } from 'src/app/services/youtube.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
-import { Video } from 'src/app/model/video.model';
 
 let apiLoaded = false;
 

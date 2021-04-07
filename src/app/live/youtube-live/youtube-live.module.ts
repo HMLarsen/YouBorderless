@@ -5,11 +5,13 @@ import { YoutubeLiveComponent } from './youtube-live.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ShareTranslateModule } from 'src/app/share-translate.module';
 
 @NgModule({
 	declarations: [YoutubeLiveComponent],
 	imports: [
 		CommonModule,
+		ShareTranslateModule,
 		FormsModule,
 		FlexLayoutModule,
 		YouTubePlayerModule,

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -22,7 +23,8 @@ export class LiveService {
 
 	constructor(
 		private socket: Socket,
-		private http: HttpClient
+		private http: HttpClient,
+		private translateService: TranslateService
 	) { }
 
 	initLive(liveOptions: LiveOptions) {
@@ -61,12 +63,12 @@ export class LiveService {
 	}
 
 	getTranscribeSupportedLanguages(): Observable<TranscribeSupportedLanguage[]> {
-		const url = environment.backEndUrl + '/supported-transcribe-languages';
+		const url = environment.backEndUrl + '/supported-transcribe-languages/' + this.translateService.currentLang;
 		return this.http.get<TranscribeSupportedLanguage[]>(url);
 	}
 
 	getTranslationSupportedLanguages(): Observable<TranslationSupportedLanguage[]> {
-		const url = environment.backEndUrl + '/supported-translation-languages';
+		const url = environment.backEndUrl + '/supported-translation-languages/' + this.translateService.currentLang;
 		return this.http.get<TranslationSupportedLanguage[]>(url);
 	}
 

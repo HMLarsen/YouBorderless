@@ -1,0 +1,50 @@
+{
+	"home": "Home",
+	"settings": "Settings",
+	"subscriptions": "Subscriptions",
+	"cancel": "CANCEL",
+	"start": "START",
+	"for": "for",
+	"yes": "Yes",
+	"no": "No",
+	"config": {
+		"general": "General",
+		"language": "Language",
+		"theme": "Theme",
+		"darkTheme": "Dark theme"
+	},
+	"search": {
+		"termPlaceholder": "Search (term or broadcast URL)",
+		"subscriptionsPlaceholder": "Search (channel or broadcast URL)",
+		"notFoundTitle": "No results found",
+		"notFoundDesc": "Use different keywords",
+		"notFoundChannels": "No channels found"
+	},
+	"broadcastOptions": {
+		"title": "Broadcast settings",
+		"failedToLoad": "Couldn't load settings",
+		"broadcastLanguage": "Broadcast language",
+		"languageToTrans": "Language for translation",
+		"profanityFilter": "Censoring offensive words",
+		"punctuation": "Punctuation"
+	},
+	"broadcast": {
+		"loading": "Loading broadcast",
+		"notAvailable": "Broadcast not available",
+		"notAvailableDetails": "The broadcast was not found or is no longer live",
+		"setConfig": "Enter the broadcast settings",
+		"config": "Settings"
+	},
+	"google": {
+		"loginDescription": "Sign in to search for your favorite channels' broadcasts",
+		"login": "LOGIN WITH GOOGLE",
+		"logout": "LOGOUT"
+	},
+	"video": {
+		"watching": "watching",
+		"liveNow": "LIVE NOW"
+	},
+	"pwa": {
+		"install": "Do you want to install YourBorderless to the home screen?"
+	}
+}

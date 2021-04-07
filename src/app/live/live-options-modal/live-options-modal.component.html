@@ -1,16 +1,16 @@
-<h1 mat-dialog-title *ngIf="!loading && !loadingError">Configurações da transmissão</h1>
+<h1 mat-dialog-title *ngIf="!loading && !loadingError">{{ 'broadcastOptions.title' | translate }}</h1>
 
 <div mat-dialog-content>
 	<mat-spinner *ngIf="loading" [diameter]="60"></mat-spinner>
 
 	<div class="loading-error" *ngIf="!loading && loadingError">
 		<mat-icon class="loading-error-icon" [inline]="true">error</mat-icon>
-		<label>Não foi possível carregar as configurações</label>
+		<label>{{ 'broadcastOptions.failedToLoad' | translate }}</label>
 	</div>
 
 	<form [formGroup]="configForm" (submit)="submit()" *ngIf="!loading && !loadingError">
 		<mat-form-field class="w-100" color="primary">
-			<mat-label>Linguagem da transmissão</mat-label>
+			<mat-label>{{ 'broadcastOptions.broadcastLanguage' | translate }}</mat-label>
 			<mat-select formControlName="liveLanguage" #singleSelect cdkFocusInitial required>
 				<mat-option>
 					<ngx-mat-select-search formControlName="liveLanguageFilter" placeholderLabel="Idioma..."
@@ -24,7 +24,7 @@
 			</mat-select>
 		</mat-form-field>
 		<mat-form-field class="w-100" color="primary">
-			<mat-label>Linguagem para tradução</mat-label>
+			<mat-label>{{ 'broadcastOptions.languageToTrans' | translate }}</mat-label>
 			<mat-select formControlName="liveTranslation" #singleSelect required>
 				<mat-option>
 					<ngx-mat-select-search formControlName="liveTranslationFilter" placeholderLabel="Idioma..."
@@ -37,11 +37,11 @@
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
-		<mat-checkbox color="primary" formControlName="profanityFilter">Censurar palavras ofensivas</mat-checkbox>
-		<mat-checkbox color="primary" formControlName="punctuation">Pontuação</mat-checkbox>
+		<mat-checkbox color="primary" formControlName="profanityFilter">{{ 'broadcastOptions.profanityFilter' | translate }}</mat-checkbox>
+		<mat-checkbox color="primary" formControlName="punctuation">{{ 'broadcastOptions.punctuation' | translate }}</mat-checkbox>
 		<div mat-dialog-actions align="end" *ngIf="!loading && !loadingError">
-			<button mat-button type="button" color="primary" mat-dialog-close>CANCELAR</button>
-			<button mat-button type="submit" color="primary" [disabled]="configForm.invalid">INICIAR</button>
+			<button mat-button type="button" color="primary" mat-dialog-close>{{ 'cancel' | translate }}</button>
+			<button mat-button type="submit" color="primary" [disabled]="configForm.invalid">{{ 'start' | translate }}</button>
 		</div>
 	</form>
 </div>

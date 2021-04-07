@@ -4,7 +4,8 @@
 	</div>
 	<form [formGroup]="searchForm" (submit)="submit()">
 		<mat-form-field id="search-field" class="w-p-b" appearance="outline" color="accent" hideRequiredMarker>
-			<input matInput formControlName="search" placeholder="{{ getLabelSearch() }}" required>
+			<input matInput formControlName="search" placeholder="{{ searchPlaceholder | async }}" required
+				maxlength="{{ SEARCH_FIELD_MAX_LENGTH }}">
 			<button mat-button type="button" *ngIf="searchForm.get('search')?.value" matSuffix mat-icon-button
 				aria-label="Limpar" (click)="clearSearch()">
 				<mat-icon>close</mat-icon>
@@ -25,10 +26,15 @@
 	<label class="mat-subheading-2">{{ loadingError }}</label>
 </div>
 
-<div class="info-centered" *ngIf="getVideos() && getVideos()!.length <= 0">
+<div class="info-centered" *ngIf="!isSubscriptionsSearch && getVideos() && getVideos()!.length <= 0">
 	<mat-icon [inline]="true">search_off</mat-icon>
-	<label class="mat-title">Nenhum resultado encontrado</label>
-	<label class="mat-subheading-2">Use palavras-chave diferentes</label>
+	<label class="mat-title">{{ 'search.notFoundTitle' | translate }}</label>
+	<label class="mat-subheading-2">{{ 'search.notFoundDesc' | translate }}</label>
+</div>
+
+<div class="info-centered" *ngIf="isSubscriptionsSearch && getVideos() && getVideos()!.length <= 0">
+	<mat-icon [inline]="true">no_accounts</mat-icon>
+	<label class="mat-title">{{ 'search.notFoundChannels' | translate }}</label>
 </div>
 
 <div *ngIf="getVideos() && getVideos()!.length > 0">

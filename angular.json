@@ -54,6 +54,7 @@
 						],
 						"styles": [
 							"src/custom-theme.scss",
+							"src/dark-theme.scss",
 							"src/styles.css"
 						],
 						"scripts": [],

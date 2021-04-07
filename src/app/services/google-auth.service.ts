@@ -60,6 +60,8 @@ export class GoogleAuthService {
 	async logout() {
 		await this.initGoogleAuth();
 		this.authInstance.signOut();
+		// if success reload the page because render scopes problems in html
+		window.location.reload();
 	}
 
 	isAuthenticated() {

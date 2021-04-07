@@ -31,6 +31,8 @@
 		"@angular/router": "~11.2.5",
 		"@angular/service-worker": "~11.2.5",
 		"@angular/youtube-player": "^11.2.4",
+		"@ngx-translate/core": "^13.0.0",
+		"@ngx-translate/http-loader": "^6.0.0",
 		"material-bottom-nav": "^1.2.0",
 		"ngx-mat-select-search": "^3.2.0",
 		"ngx-socket-io": "^3.2.0",

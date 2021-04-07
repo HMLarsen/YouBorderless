@@ -16,8 +16,7 @@ export class GoogleAuthComponent {
 	constructor(
 		private matIconRegistry: MatIconRegistry,
 		private domSanitizer: DomSanitizer,
-		private googleAuthService: GoogleAuthService,
-		private youtubeService: YoutubeService
+		private googleAuthService: GoogleAuthService
 	) {
 		this.matIconRegistry.addSvgIcon('logo', this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
 	}
@@ -28,7 +27,6 @@ export class GoogleAuthComponent {
 
 	logout() {
 		this.googleAuthService.logout();
-		this.youtubeService.saveLastSubscriptionsSearch(undefined);
 	}
 
 	getUserName() {

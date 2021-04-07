@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -13,28 +12,47 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $YouBorderless-primary: mat-palette($mat-red);
-$YouBorderless-accent: mat-palette($mat-indigo);
+$YouBorderless-accent: mat-palette($mat-orange);
 $YouBorderless-warn: mat-palette($mat-indigo);
-$YouBorderless-theme: mat-light-theme((
-  	color: (
-    	primary: $YouBorderless-primary,
-    	accent: $YouBorderless-accent,
-		warn: $YouBorderless-warn,
+$YouBorderless-theme: mat-light-theme(
+	(
+		color: (
+			primary: $YouBorderless-primary,
+			accent: $YouBorderless-accent,
+			warn: $YouBorderless-warn,
+		),
 	)
-));
+);
 
 // Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+// Alternatively, you can import and @include the theme mixins for each component that you are using.
 @include angular-material-theme($YouBorderless-theme);
 
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-red);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme(
+	(
+		color: (
+			primary: $dark-primary,
+			accent: $dark-accent,
+			warn: $dark-warn,
+		),
+	)
+);
+
+.dark-theme {
+	@include angular-material-color($dark-theme);
+}
+
 // bottom navigation
-@import '~material-bottom-nav';
+@import "~material-bottom-nav";
 
 .bottom-nav {
 	@include bottom-nav(
 		$background-color: #f44336,
-		$active-color: #FFF,
+		$active-color: #fff,
 		$inactive-color: #ececec,
 		$hide-inactive-labels: true
 	);

@@ -6,6 +6,7 @@ import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
 import { environment } from 'src/environments/environment';
 import { MaterialModule } from '../material/material.module';
+import { ShareTranslateModule } from '../share-translate.module';
 import { LiveOptionsModalComponent } from './live-options-modal/live-options-modal.component';
 import { YoutubeLiveModule } from './youtube-live/youtube-live.module';
 
@@ -19,6 +20,7 @@ const socketConfig: SocketIoConfig = {
 		LiveOptionsModalComponent
 	],
 	imports: [
+		ShareTranslateModule,
 		ReactiveFormsModule,
 		SocketIoModule.forRoot(socketConfig),
 		HttpClientModule,

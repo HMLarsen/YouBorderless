@@ -1,11 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 import { Animations } from '../animations';
 import { Search } from '../model/search.model';
 import { Video } from '../model/video.model';
 import { ErrorService } from '../services/error.service';
 import { GoogleAuthService } from '../services/google-auth.service';
 import { ModalService } from '../services/modal.service';
+import { UtilsService } from '../services/utils.service';
 import { YoutubeService } from '../services/youtube.service';
 
 @Component({
@@ -23,19 +26,30 @@ export class YoutubeSearchListComponent implements OnInit {
 	loading = false;
 	loadingError?: string;
 	lastSearch: Search | undefined;
+	searchPlaceholder!: Observable<string>;
+
 	MAX_SEARCH_RESULTS = 30;
+	SEARCH_FIELD_MAX_LENGTH = 100;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private youtubeService: YoutubeService,
 		private errorService: ErrorService,
 		private modalService: ModalService,
-		private googleAuthService: GoogleAuthService
+		private googleAuthService: GoogleAuthService,
+		private utilsService: UtilsService,
+		private translateService: TranslateService
 	) { }
 
 	ngOnInit(): void {
+		this.getLabelSearch();
+
 		this.searchForm = this.formBuilder.group({
-			search: [{ value: null, disabled: this.loading }, [Validators.required]]
+			search: [{ value: null, disabled: this.loading }, [
+				Validators.required,
+				Validators.maxLength(this.SEARCH_FIELD_MAX_LENGTH),
+				this.utilsService.noWhitespaceFormValidator
+			]]
 		});
 
 		// update current view for the latest search and force change the value of search field
@@ -47,11 +61,19 @@ export class YoutubeSearchListComponent implements OnInit {
 		}
 	}
 
+	getLabelSearch() {
+		if (this.isSubscriptionsSearch) {
+			this.searchPlaceholder = this.translateService.get('search.subscriptionsPlaceholder');
+			return;
+		}
+		this.searchPlaceholder = this.translateService.get('search.termPlaceholder');
+	}
+
 	submit() {
 		if (this.searchForm.invalid) {
 			return;
 		}
-		const value = this.searchForm.get('search')?.value;
+		const value = this.searchForm.get('search')?.value?.trim();
 		this.search(value);
 	}
 
@@ -125,6 +147,7 @@ export class YoutubeSearchListComponent implements OnInit {
 			search = this.youtubeService.getLastSearch();
 		}
 		this.lastSearch = search;
+		this.utilsService.scrollTop();
 		if (updateSearchField && search) {
 			this.searchForm.get('search')?.setValue(search.search);
 		}
@@ -143,14 +166,6 @@ export class YoutubeSearchListComponent implements OnInit {
 
 	videosTrackBy(index: number, video: Video) {
 		return video.id;
-	}
-
-	getLabelSearch() {
-		let result = 'Pesquisar (termo ou URL da transmissão)';
-		if (this.isSubscriptionsSearch) {
-			result = 'Pesquisar (nome do canal ou URL da transmissão)';
-		}
-		return result;
 	}
 
 }
