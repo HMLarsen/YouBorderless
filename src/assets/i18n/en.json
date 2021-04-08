@@ -52,5 +52,10 @@
 		"userAvatar": "Google profile image",
 		"videoThumbnail": "Video thumbnail",
 		"channelAvatar": "Channel avatar"
+	},
+	"error": {
+		"default": "An error occurred, please try again later",
+		"permission": "Insufficient permissions on the Google account to process the request",
+		"broadcastNotAvailable": "Broadcast not available for playback"
 	}
 }

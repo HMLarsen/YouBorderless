@@ -52,5 +52,10 @@
 		"userAvatar": "Imagem de perfil do Google",
 		"videoThumbnail": "Miniatura de vídeo",
 		"channelAvatar": "Avatar do canal"
+	},
+	"error": {
+		"default": "Ocorreu um erro, tente novamente mais tarde",
+		"permission": "Permissões insuficientes na conta Google para processar a requisição",
+		"broadcastNotAvailable": "Transmissão não disponível para reprodução"
 	}
 }

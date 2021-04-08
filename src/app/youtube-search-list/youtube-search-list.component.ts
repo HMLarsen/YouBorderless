@@ -127,9 +127,9 @@ export class YoutubeSearchListComponent implements OnInit {
 		return this.lastSearch?.videos;
 	}
 
-	doError(error: any) {
+	async doError(error: any) {
 		this.lastSearch = undefined;
-		const message = this.youtubeService.translateError(error);
+		const message = await this.youtubeService.translateError(error);
 
 		// if subscriptions always error in page
 		if (this.isSubscriptionsSearch) {

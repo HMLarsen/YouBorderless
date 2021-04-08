@@ -152,12 +152,12 @@ export class YoutubeService {
 
 	translateError(error: any) {
 		if (error.status === 404) {
-			return this.errorService.liveNotAvailable;
+			return this.errorService.getBroadcastNotAvailableError();
 		}
 		if (error.code === 403 && error.message?.indexOf('insufficient authentication')) {
-			return this.errorService.permissionsError;
+			return this.errorService.getPermissionError();
 		}
-		return this.errorService.defaultError;
+		return this.errorService.getDefaultError();
 	}
 
 }
