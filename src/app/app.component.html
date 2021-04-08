@@ -3,20 +3,20 @@
 </main>
 
 <nav class="bottom-nav">
-	<a class="bottom-nav__destination" routerLink="/config" matTooltip="{{ 'settings' | translate }}" [matTooltipShowDelay]="500"
-		routerLinkActive="bottom-nav__destination--active">
+	<a class="bottom-nav__destination" routerLink="/config" routerLinkActive="bottom-nav__destination--active" matRipple
+		[matRippleUnbounded]="true" [matRippleCentered]="true" [matRippleRadius]="50">
 		<mat-icon>settings</mat-icon>
 		<span class="bottom-nav__label">{{ 'settings' | translate }}</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/app" matTooltip="{{ 'home' | translate }}" [matTooltipShowDelay]="500"
-		routerLinkActive="bottom-nav__destination--active">
+	<a class="bottom-nav__destination" routerLink="/app" routerLinkActive="bottom-nav__destination--active" matRipple
+		[matRippleUnbounded]="true" [matRippleCentered]="true" [matRippleRadius]="50">
 		<mat-icon>home</mat-icon>
 		<span class="bottom-nav__label">{{ 'home' | translate }}</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/subscriptions" matTooltip="{{ 'subscriptions' | translate }}" [matTooltipShowDelay]="500"
-		routerLinkActive="bottom-nav__destination--active">
+	<a class="bottom-nav__destination" routerLink="/subscriptions" routerLinkActive="bottom-nav__destination--active"
+		matRipple [matRippleUnbounded]="true" [matRippleCentered]="true" [matRippleRadius]="50">
 		<mat-icon>subscriptions</mat-icon>
 		<span class="bottom-nav__label">{{ 'subscriptions' | translate }}</span>
 	</a>

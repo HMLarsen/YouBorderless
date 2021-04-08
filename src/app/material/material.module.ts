@@ -19,6 +19,7 @@ import { MaterialElevationDirective } from './material-elevation.directive';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
 	exports: [
@@ -38,7 +39,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 		MatProgressSpinnerModule,
 		DragDropModule,
 		MatSlideToggleModule,
-		MatTooltipModule
+		MatTooltipModule,
+		MatRippleModule
 	],
 	declarations: [MaterialElevationDirective]
 })

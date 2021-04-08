@@ -53,7 +53,6 @@ $dark-theme: mat-dark-theme(
 	@include bottom-nav(
 		$background-color: #f44336,
 		$active-color: #fff,
-		$inactive-color: #ececec,
-		$hide-inactive-labels: true
+		$inactive-color: #181b2b
 	);
 }
