@@ -37,7 +37,7 @@
 	<label class="mat-title">{{ 'search.notFoundChannels' | translate }}</label>
 </div>
 
-<div *ngIf="getVideos() && getVideos()!.length > 0">
+<div *ngIf="getVideos() && getVideos()!.length > 0" @fadeAnimation>
 	<div *ngFor="let video of getVideos(); trackBy: videosTrackBy">
 		<app-youtube-video-card [video]="video"></app-youtube-video-card>
 	</div>

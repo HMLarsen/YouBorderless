@@ -1,0 +1,50 @@
+{
+	"home": "Hogar",
+	"settings": "Ajustes",
+	"subscriptions": "Inscripciones",
+	"cancel": "CANCELAR",
+	"start": "COMIENZO",
+	"for": "por",
+	"yes": "Sí",
+	"no": "No",
+	"config": {
+		"general": "General",
+		"language": "Idioma",
+		"theme": "Tema",
+		"darkTheme": "Tema oscuro"
+	},
+	"search": {
+		"termPlaceholder": "Buscar (término o URL de transmisión)",
+		"subscriptionsPlaceholder": "Buscar (canal o URL de transmisión)",
+		"notFoundTitle": "Ningún resultado encontrado",
+		"notFoundDesc": "Utilice diferentes palabras clave",
+		"notFoundChannels": "No se encontraron canales"
+	},
+	"broadcastOptions": {
+		"title": "Configuración de transmisión",
+		"failedToLoad": "No se pudo cargar la configuración",
+		"broadcastLanguage": "Idioma de transmisión",
+		"languageToTrans": "Idioma de traducción",
+		"profanityFilter": "Censurar palabras ofensivas",
+		"punctuation": "Puntuación"
+	},
+	"broadcast": {
+		"loading": "Cargando la transmisión",
+		"notAvailable": "Transmisión no disponible",
+		"notAvailableDetails": "La transmisión no se encontró o ya no está en vivo",
+		"setConfig": "Ingrese la configuración de transmisión",
+		"config": "Ajustes"
+	},
+	"google": {
+		"loginDescription": "Inicie sesión para buscar las transmisiones de sus canales favoritos",
+		"login": "INICIAR SESIÓN CON GOOGLE",
+		"logout": "CERRAR SESIÓN"
+	},
+	"video": {
+		"watching": "asistiendo",
+		"liveNow": "VIVE AHORA"
+	},
+	"pwa": {
+		"install": "¿Quieres instalar YourBorderless en la pantalla de inicio?"
+	}
+}

@@ -4,7 +4,7 @@
 	"subscriptions": "Inscrições",
 	"cancel": "CANCELAR",
 	"start": "INICIAR",
-	"for": "para",
+	"to": "para",
 	"yes": "Sim",
 	"no": "Não",
 	"config": {
@@ -23,8 +23,8 @@
 	"broadcastOptions": {
 		"title": "Configurações da transmissão",
 		"failedToLoad": "Não foi possível carregar as configurações",
-		"broadcastLanguage": "Linguagem da transmissão",
-		"languageToTrans": "Linguagem para tradução",
+		"broadcastLanguage": "Idioma da transmissão",
+		"languageToTrans": "Idioma para tradução",
 		"profanityFilter": "Censurar palavras ofensivas",
 		"punctuation": "Pontuação"
 	},

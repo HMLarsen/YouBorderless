@@ -22,7 +22,8 @@ import { PwaInstallComponent } from './pwa-install/pwa-install.component';
 import { PwaService } from './services/pwa.service';
 import { GoogleAuthService } from './services/google-auth.service';
 import { ShareTranslateModule } from './share-translate.module';
-import { UtilsService } from './services/utils.service';
+import { LanguageService } from './services/language.service';
+import { ThemeService } from './services/theme.service';
 
 @NgModule({
 	declarations: [
@@ -56,7 +57,8 @@ export class AppModule {
 	constructor(
 		pwaService: PwaService,
 		googleAuthService: GoogleAuthService,
-		utilsService: UtilsService
+		languageService: LanguageService,
+		themeService: ThemeService
 	) { }
 
 }

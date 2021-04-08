@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { Animations } from '../animations';
+import { fadeAnimation } from '../animations';
 import { Search } from '../model/search.model';
 import { Video } from '../model/video.model';
 import { ErrorService } from '../services/error.service';
@@ -15,7 +15,7 @@ import { YoutubeService } from '../services/youtube.service';
 	selector: 'app-youtube-search-list',
 	templateUrl: './youtube-search-list.component.html',
 	styleUrls: ['./youtube-search-list.component.css'],
-	animations: [Animations.inOutAnimation]
+	animations: [fadeAnimation]
 })
 export class YoutubeSearchListComponent implements OnInit {
 
@@ -42,7 +42,7 @@ export class YoutubeSearchListComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.getLabelSearch();
+		this.updateLabelSearch();
 
 		this.searchForm = this.formBuilder.group({
 			search: [{ value: null, disabled: this.loading }, [
@@ -61,7 +61,7 @@ export class YoutubeSearchListComponent implements OnInit {
 		}
 	}
 
-	getLabelSearch() {
+	updateLabelSearch() {
 		if (this.isSubscriptionsSearch) {
 			this.searchPlaceholder = this.translateService.get('search.subscriptionsPlaceholder');
 			return;

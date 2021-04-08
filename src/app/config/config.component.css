@@ -19,6 +19,10 @@ section {
 	width: 70%;
 }
 
+.option {
+	-webkit-tap-highlight-color: transparent;
+}
+
 .option label {
 	cursor: pointer;
 }

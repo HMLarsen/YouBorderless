@@ -1,5 +1,8 @@
 .mat-card {
 	margin-bottom: 1.25rem;
+}
+
+.mat-card, .mat-card label, .mat-card {
 	cursor: pointer;
 }
 
@@ -56,14 +59,17 @@ mat-card-content {
 #video-views {
 	position: absolute;
 	margin-top: -0.9375rem;
-	cursor: pointer;
 	font-size: 0.75rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 
 #channel-info {
 	margin: 2.1875rem 0 0.9375rem;
 	font-size: 0.75rem;
-	cursor: pointer;
 }
 
 #channel-avatar {

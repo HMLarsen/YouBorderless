@@ -8,37 +8,7 @@ import { Language } from '../config/config.component';
 })
 export class UtilsService {
 
-	language: Language | undefined;
-	storageLanguageName = 'language';
-
-	isDarkTheme = false;
-	storageDarkThemeName = 'isDarkTheme';
-
-	constructor(private translateService: TranslateService) {
-		const storageLanguage = localStorage.getItem(this.storageLanguageName);
-		if (storageLanguage) {
-			this.language = JSON.parse(storageLanguage);
-			if (this.language) this.setLanguage(this.language);
-		}
-		this.isDarkTheme = localStorage.getItem(this.storageDarkThemeName) === 'true';
-		this.setDarkTheme(this.isDarkTheme);
-	}
-
-	setDarkTheme(darkTheme: boolean) {
-		this.isDarkTheme = darkTheme;
-		localStorage.setItem(this.storageDarkThemeName, this.isDarkTheme ? 'true' : 'false');
-		if (this.isDarkTheme) {
-			document.body.classList.add('dark-theme');
-		} else {
-			document.body.classList.remove('dark-theme');
-		}
-	}
-
-	setLanguage(language: Language) {
-		this.language = language;
-		this.translateService.use(language.code);
-		localStorage.setItem(this.storageLanguageName, JSON.stringify(language));
-	}
+	constructor() { }
 
 	searchInNormalizedStrings(s1: string, s2: string) {
 		function normalize(s: string) {

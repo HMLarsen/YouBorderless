@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { UtilsService } from '../services/utils.service';
+import { LanguageService } from '../services/language.service';
+import { ThemeService } from '../services/theme.service';
 
 export interface Language {
 	code: string;
@@ -15,31 +16,27 @@ export interface Language {
 })
 export class ConfigComponent implements OnInit {
 
+	languages: Language[] | undefined;
 	language: Language | undefined;
-	languages: Language[] = [
-		{ code: 'pt', desc: 'Português (Brasil)' },
-		{ code: 'en', desc: 'English' },
-		{ code: 'fr', desc: 'Français' }
-	];
 	isDarkTheme = false;
 
-	constructor(private utilsService: UtilsService) { }
+	constructor(
+		private languageService: LanguageService,
+		private themeService: ThemeService
+	) { }
 
 	ngOnInit(): void {
-		const storageLanguage = this.utilsService.language;
-		if (storageLanguage) {
-			this.language = this.languages.find(language => language.code === storageLanguage.code);
-		}
-		this.isDarkTheme = this.utilsService.isDarkTheme;
+		this.languages = this.languageService.languages;
+		this.language = this.languages.find(language => language.code === this.languageService.language.code);
+		this.isDarkTheme = this.themeService.isDarkTheme;
 	}
 
 	onChangeLanguage(event: MatSelectChange) {
-		this.language = event.value;
-		this.utilsService.setLanguage(event.value);
+		this.languageService.setLanguage(event.value);
 	}
 
 	onChangeDarkTheme(event: MatSlideToggleChange) {
-		this.utilsService.setDarkTheme(event.checked);
+		this.themeService.setDarkTheme(event.checked);
 	}
 
 	languagesTrackBy(index: number, language: Language) {
