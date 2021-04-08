@@ -32,7 +32,7 @@
 				(playbackRateChange)="onPlaybackRateChange()" [playerVars]="{ fs: 0 }">
 			</youtube-player>
 
-			<div id="captions-container" cdkDrag cdkDragBoundary="#main-video-section" title="Legendas">
+			<div id="captions-container" cdkDrag cdkDragBoundary="#main-video-section" matTooltip="{{ 'captions' | translate }}" [matTooltipPosition]="'above'">
 				<span id="captions">{{ text }}</span>
 			</div>
 		</div>

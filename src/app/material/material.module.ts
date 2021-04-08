@@ -18,6 +18,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MaterialElevationDirective } from './material-elevation.directive';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
 	exports: [
@@ -36,7 +37,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 		MatCheckboxModule,
 		MatProgressSpinnerModule,
 		DragDropModule,
-		MatSlideToggleModule
+		MatSlideToggleModule,
+		MatTooltipModule
 	],
 	declarations: [MaterialElevationDirective]
 })
