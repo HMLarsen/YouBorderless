@@ -27,4 +27,8 @@ export class UtilsService {
 		return isValid ? null : { 'whitespace': true };
 	}
 
+	isTouchDevice() {
+		return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+	}
+
 }

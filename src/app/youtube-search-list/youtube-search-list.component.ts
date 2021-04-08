@@ -75,6 +75,11 @@ export class YoutubeSearchListComponent implements OnInit {
 		}
 		const value = this.searchForm.get('search')?.value?.trim();
 		this.search(value);
+
+		// blur in search field for mobile users
+		if (this.utilsService.isTouchDevice() && document.activeElement instanceof HTMLElement) {
+			document.activeElement.blur();
+		}
 	}
 
 	async search(searchValue?: string) {
