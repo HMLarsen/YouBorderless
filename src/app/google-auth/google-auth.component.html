@@ -5,7 +5,7 @@
 
 <div id="user-content" *ngIf="isAuthenticated()" fxLayout="row" fxLayoutAlign="start center" ngClass.xs="xs"
 	ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
-	<img [src]="getUserImgUrl()" id="user-img">
+	<img [src]="getUserImgUrl()" id="user-img" alt="{{ 'alt.userAvatar' | translate }}">
 	<label id="user-name">{{ getUserName() }}</label>
 	<button mat-button (click)="logout()" *ngIf="isAuthenticated()" id="logout-button">{{ 'google.logout' | translate
 		}}</button>

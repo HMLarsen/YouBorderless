@@ -3,19 +3,19 @@
 </main>
 
 <nav class="bottom-nav">
-	<a class="bottom-nav__destination" routerLink="/config" matTooltip="{{ 'settings' | translate }}"
+	<a class="bottom-nav__destination" routerLink="/config" matTooltip="{{ 'settings' | translate }}" [matTooltipShowDelay]="500"
 		routerLinkActive="bottom-nav__destination--active">
 		<mat-icon>settings</mat-icon>
 		<span class="bottom-nav__label">{{ 'settings' | translate }}</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/app" matTooltip="{{ 'home' | translate }}"
+	<a class="bottom-nav__destination" routerLink="/app" matTooltip="{{ 'home' | translate }}" [matTooltipShowDelay]="500"
 		routerLinkActive="bottom-nav__destination--active">
 		<mat-icon>home</mat-icon>
 		<span class="bottom-nav__label">{{ 'home' | translate }}</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/subscriptions" matTooltip="{{ 'subscriptions' | translate }}"
+	<a class="bottom-nav__destination" routerLink="/subscriptions" matTooltip="{{ 'subscriptions' | translate }}" [matTooltipShowDelay]="500"
 		routerLinkActive="bottom-nav__destination--active">
 		<mat-icon>subscriptions</mat-icon>
 		<span class="bottom-nav__label">{{ 'subscriptions' | translate }}</span>

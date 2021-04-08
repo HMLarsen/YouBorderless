@@ -1,12 +1,12 @@
 <mat-card appMaterialElevation (click)="cardClick()" ngClass.xs="card-xs" ngClass.sm="card-sm" ngClass.md="card-md"
 	ngClass.lg="card-lg">
 	<div fxLayout="row" fxLayoutAlign="start stretch">
-		<img mat-card-image [src]="video.thumbnailUrl" alt="Vídeo thumbnail">
+		<img mat-card-image [src]="video.thumbnailUrl" alt="{{ 'alt.videoThumbnail' | translate }}">
 		<mat-card-content>
 			<mat-card-title id="video-title">{{ video.title }}</mat-card-title>
 			<mat-card-subtitle id="video-views" class="mat-small" *ngIf="video.views">{{ video.views | number }} {{ 'video.watching' | translate }}</mat-card-subtitle>
 			<div id="channel-info" fxLayout="row" fxLayoutAlign="start center">
-				<img id="channel-avatar" *ngIf="video.channel" [src]="video.channel.avatarUrl" alt="Canal avatar">
+				<img id="channel-avatar" *ngIf="video.channel" [src]="video.channel.avatarUrl" alt="{{ 'alt.channelAvatar' | translate }}">
 				<label id="channel-name" *ngIf="video.channel">{{ video.channel.name }}</label>
 			</div>
 			<p id="video-description" [fxHide.xs]="true" [fxHide.sm]="true">{{ video.description }}</p>

@@ -47,5 +47,10 @@
 	},
 	"pwa": {
 		"install": "Deseja instalar YourBorderless para a área de trabalho?"
+	},
+	"alt": {
+		"userAvatar": "Imagem de perfil do Google",
+		"videoThumbnail": "Miniatura de vídeo",
+		"channelAvatar": "Avatar do canal"
 	}
 }

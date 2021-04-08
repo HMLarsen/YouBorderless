@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SwUpdate } from '@angular/service-worker';
 import { PwaInstallComponent } from '../pwa-install/pwa-install.component';
 
 @Injectable({
@@ -11,11 +10,9 @@ export class PwaService {
 	promptEvent: any;
 	showAppInstallStorageKeyName = 'showAppInstall';
 
-	constructor(
-		private swUpdate: SwUpdate,
-		private snackBar: MatSnackBar
-	) {
-		this.swUpdate.available.subscribe(() => window.location.reload());
+	constructor(private snackBar: MatSnackBar) {
+		// update available event
+		// this.swUpdate.available.subscribe(() => window.location.reload());
 		window.addEventListener('beforeinstallprompt', event => {
 			event.preventDefault(); // to chrome not show the default navbar for installation
 			this.promptEvent = event;

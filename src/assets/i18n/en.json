@@ -47,5 +47,10 @@
 	},
 	"pwa": {
 		"install": "Do you want to install YourBorderless to the home screen?"
+	},
+	"alt": {
+		"userAvatar": "Google profile image",
+		"videoThumbnail": "Video thumbnail",
+		"channelAvatar": "Channel avatar"
 	}
 }

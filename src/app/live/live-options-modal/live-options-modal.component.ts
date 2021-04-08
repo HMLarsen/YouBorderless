@@ -6,6 +6,7 @@ import { ReplaySubject } from 'rxjs';
 import { LiveOptions } from 'src/app/model/live-options.model';
 import { TranscribeSupportedLanguage } from 'src/app/model/transcribe-supported-language';
 import { TranslationSupportedLanguage } from 'src/app/model/translation-supported-language';
+import { LanguageService } from 'src/app/services/language.service';
 import { LiveService } from 'src/app/services/live.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -33,12 +34,13 @@ export class LiveOptionsModalComponent implements OnInit {
 	filteredTranslationLanguages: ReplaySubject<TranslationSupportedLanguage[]> = new ReplaySubject(1);
 
 	constructor(
+		@Inject(MAT_DIALOG_DATA) public data: DialogData,
 		private router: Router,
 		private formBuilder: FormBuilder,
 		private dialogRef: MatDialogRef<LiveOptionsModalComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: DialogData,
 		private liveService: LiveService,
-		private utilsService: UtilsService
+		private utilsService: UtilsService,
+		private languageService: LanguageService
 	) { }
 
 	ngOnInit(): void {
@@ -87,6 +89,11 @@ export class LiveOptionsModalComponent implements OnInit {
 				const lastLiveOptions = this.liveService.getLastLiveOptions();
 				if (lastLiveOptions && lastLiveOptions.liveToLanguage) {
 					const language = this.translationLanguages.find(language => language.code === lastLiveOptions.liveToLanguage.code);
+					this.configForm.get('liveTranslation')?.setValue(language);
+				} else {
+					// set default site language
+					const siteLanguage = this.languageService.language;
+					const language = this.translationLanguages.find(language => language.code === siteLanguage.code);
 					this.configForm.get('liveTranslation')?.setValue(language);
 				}
 			});
