@@ -58,6 +58,7 @@
 	"error": {
 		"default": "An error occurred, please try again later",
 		"permission": "Insufficient permissions on the Google account to process the request",
-		"broadcastNotAvailable": "Broadcast not available for playback"
+		"broadcastNotAvailable": "Broadcast not available for playback",
+		"cookiesDisabled": "Cookies are disabled for this page, check your browser options"
 	}
 }

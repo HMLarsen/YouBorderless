@@ -1,8 +1,19 @@
-#mid-screen {
+.mid-screen {
 	padding: 35vh 10% 0;
+	text-align: center;
+}
+
+.mid-screen-error {
+	padding: 40vh 10% 0;
 	text-align: center;
 }
 
 #loading-spinner {
 	margin: 2.5rem auto;
+}
+
+.mid-screen-error .mat-icon {
+	display: block;
+	font-size: 5.625rem;
+	height: 3.75rem;
 }

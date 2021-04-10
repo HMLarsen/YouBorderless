@@ -58,6 +58,7 @@
 	"error": {
 		"default": "Ocorreu um erro, tente novamente mais tarde",
 		"permission": "Permissões insuficientes na conta Google para processar a requisição",
-		"broadcastNotAvailable": "Transmissão não disponível para reprodução"
+		"broadcastNotAvailable": "Transmissão não disponível para reprodução",
+		"cookiesDisabled": "Os cookies estão desabilitados para essa página, verifique as opções do navegador"
 	}
 }

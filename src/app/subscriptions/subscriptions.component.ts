@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GoogleAuthService } from '../services/google-auth.service';
 
 @Component({
@@ -6,12 +6,17 @@ import { GoogleAuthService } from '../services/google-auth.service';
 	templateUrl: './subscriptions.component.html',
 	styleUrls: ['./subscriptions.component.css']
 })
-export class SubscriptionsComponent {
+export class SubscriptionsComponent implements OnInit {
+
+	loading = true;
+	error = false;
 
 	constructor(private googleAuthService: GoogleAuthService) { }
 
-	isLoading() {
-		return !this.googleAuthService.getInstance();
+	ngOnInit(): void {
+		this.googleAuthService.getInstance()
+			.catch(error => this.error = error)
+			.finally(() => this.loading = false);
 	}
 
 	isAuthenticated() {

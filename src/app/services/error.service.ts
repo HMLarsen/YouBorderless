@@ -38,4 +38,8 @@ export class ErrorService {
 		return this.translateService.get('error.broadcastNotAvailable').toPromise();
 	}
 
+	getCookiesDisabledError() {
+		return this.translateService.get('error.cookiesDisabled').toPromise();
+	}
+
 }

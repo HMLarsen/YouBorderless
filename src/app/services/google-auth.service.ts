@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ErrorService } from './error.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,8 +9,9 @@ export class GoogleAuthService {
 
 	private gApiSetup = false;
 	private authInstance!: gapi.auth2.GoogleAuth;
+	private error!: string;
 
-	constructor() {
+	constructor(private errorService: ErrorService) {
 		this.initGoogleAuth();
 	}
 
@@ -19,7 +21,7 @@ export class GoogleAuthService {
 		}
 		// create a new Promise where the resolve
 		// function is the callback passed to gapi.load
-		const pLoad = new Promise(resolve => {
+		const pLoad = new Promise((resolve, reject) => {
 			gapi.load('client', () => {
 				gapi.client.init({
 					apiKey: environment.youtubeApiKey,
@@ -27,7 +29,7 @@ export class GoogleAuthService {
 					scope: 'https://www.googleapis.com/auth/youtube.readonly'
 				}).then(() => {
 					gapi.client.load('youtube', 'v3').then(resolve);
-				});
+				}, err => reject(err));
 			});
 		});
 
@@ -36,11 +38,24 @@ export class GoogleAuthService {
 		return pLoad.then(() => {
 			this.gApiSetup = true;
 			this.authInstance = gapi.auth2.getAuthInstance();
+		}, async err => {
+			console.error(err);
+			this.error = await this.translateError(err);
 		});
 	}
 
-	getInstance() {
-		return this.authInstance;
+	getInstance(): Promise<gapi.auth2.GoogleAuth> {
+		return new Promise(async (resolve, reject) => {
+			await this.initGoogleAuth();
+			this.error ? reject(this.error) : resolve(this.authInstance);
+		});
+	}
+
+	translateError(err: any) {
+		if (err.details.indexOf('Cookies are not enabled in current environment') >= 0) {
+			return this.errorService.getCookiesDisabledError();
+		}
+		return this.errorService.getDefaultError();
 	}
 
 	async authenticate() {

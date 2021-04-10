@@ -1,10 +1,17 @@
-<div id="mid-screen" *ngIf="isLoading() || !isAuthenticated()">
-	<mat-spinner id="loading-spinner" *ngIf="isLoading()" [diameter]="70"></mat-spinner>
-	<div *ngIf="!isLoading() && !isAuthenticated()">
-		<h3>{{ 'google.loginDescription' | translate }}</h3>
-		<app-google-auth></app-google-auth>
-	</div>
+<div class="mid-screen" *ngIf="loading">
+	<mat-spinner id="loading-spinner" [diameter]="70"></mat-spinner>
 </div>
-<div id="container" *ngIf="isAuthenticated()" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
+
+<div class="mid-screen" *ngIf="!loading && !error && !isAuthenticated()">
+	<h3>{{ 'google.loginDescription' | translate }}</h3>
+	<app-google-auth></app-google-auth>
+</div>
+
+<div class="mid-screen-error" *ngIf="!loading && error">
+	<mat-icon [inline]="true">close</mat-icon>
+	<label class="mat-subheading-2">{{ error }}</label>
+</div>
+
+<div id="container" *ngIf="!loading && !error && isAuthenticated()" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
 	<app-youtube-search-list [isSubscriptionsSearch]="true" *ngIf="isAuthenticated()"></app-youtube-search-list>
 </div>
