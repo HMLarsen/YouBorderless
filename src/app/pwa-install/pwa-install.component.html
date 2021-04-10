@@ -1,5 +1,8 @@
 <div id="snack-container" fxLayout="row" fxLayoutAlign="start center">
 	<label>{{ 'pwa.install' | translate }}</label>
-	<button mat-button (click)="close()">{{ 'no' | translate }}</button>
 	<button mat-button (click)="install()">{{ 'yes' | translate }}</button>
+	<button mat-button (click)="reject()">{{ 'no' | translate }}</button>
+	<button mat-button (click)="close()" mat-icon-button>
+		<mat-icon>close</mat-icon>
+	</button>
 </div>

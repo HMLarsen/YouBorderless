@@ -20,16 +20,20 @@ export class PwaInstallComponent {
 
 	install() {
 		this.data.event.prompt();
-		this.close();
+		this.saveUserResponseInStorage();
 	}
 
-	close() {
-		this.snackBarRef.dismiss();
+	reject() {
 		this.saveUserResponseInStorage();
 	}
 
 	saveUserResponseInStorage() {
 		localStorage.setItem(this.data.showAppInstallStorageKeyName, 'false');
+		this.close();
+	}
+
+	close() {
+		this.snackBarRef.dismiss();
 	}
 
 }
