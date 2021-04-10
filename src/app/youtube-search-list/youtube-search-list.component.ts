@@ -169,6 +169,10 @@ export class YoutubeSearchListComponent implements OnInit {
 		}
 	}
 
+	refreshSubscriptions() {
+		this.clearSearch();
+	}
+
 	videosTrackBy(index: number, video: Video) {
 		return video.id;
 	}

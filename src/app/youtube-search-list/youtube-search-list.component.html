@@ -8,11 +8,14 @@
 			<input matInput formControlName="search" placeholder="{{ searchPlaceholder | async }}" required
 				maxlength="{{ SEARCH_FIELD_MAX_LENGTH }}">
 			<button mat-button type="button" *ngIf="searchForm.get('search')?.value" matSuffix mat-icon-button
-				aria-label="Limpar" (click)="clearSearch()">
+				(click)="clearSearch()">
 				<mat-icon>close</mat-icon>
 			</button>
-			<button mat-button type="submit" [disabled]="searchForm.invalid" matSuffix mat-icon-button
-				aria-label="Pesquisar">
+			<button mat-button type="button" matSuffix mat-icon-button *ngIf="isSubscriptionsSearch"
+				[disabled]="loading" (click)="refreshSubscriptions()">
+				<mat-icon>refresh</mat-icon>
+			</button>
+			<button mat-button type="submit" [disabled]="searchForm.invalid || loading" matSuffix mat-icon-button>
 				<mat-icon>search</mat-icon>
 			</button>
 		</mat-form-field>
