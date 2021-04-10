@@ -6,9 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ShareTranslateModule } from 'src/app/share-translate.module';
+import { CaptionsComponent } from 'src/app/captions/captions.component';
 
 @NgModule({
-	declarations: [YoutubeLiveComponent],
+	declarations: [
+		YoutubeLiveComponent,
+		CaptionsComponent
+	],
 	imports: [
 		CommonModule,
 		ShareTranslateModule,

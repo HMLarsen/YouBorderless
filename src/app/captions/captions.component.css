@@ -1,0 +1,62 @@
+#captions-container {
+	width: 40vw;
+	height: 10vh;
+	overflow: hidden;
+	cursor: grab;
+	position: absolute;
+	top: 70vh;
+	left: 75vh;
+	z-index: 99;
+	border-radius: 5px;
+	transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1), background-color 200ms ease-out;
+}
+
+#captions-container:hover {
+	background-color: #808080a8;
+}
+
+#captions-container:active {
+	cursor: grabbing;
+	background-color: gray;
+	border: 2px solid black;
+	box-shadow: 0 0.3125rem 0.3125rem -0.1875rem rgba(0, 0, 0, 0.2), 0 0.5rem 0.625rem 0.0625rem rgba(0, 0, 0, 0.14), 0 0.1875rem 0.875rem 0.125rem rgba(0, 0, 0, 0.12);
+}
+
+#captions-container.xs {
+	height: 13vw;
+    width: 80vw;
+	left: 10vw;
+    top: 50vh;
+}
+
+#captions-container.sm {
+	height: 11vw;
+	width: 68vw;
+	left: 14vh;
+	top: 63vw;
+}
+
+#captions-container.md {
+	height: 47vh;
+	width: 40vw;
+	left: 25vh;
+	top: 47vw;
+}
+
+#captions-container.lg {
+	height: 5.3125rem;
+	width: 40vw;
+	left: 25vw;
+	top: 70vh;
+}
+
+.caption-visual-line {
+	display: block;
+}
+
+.captions {
+	background: rgba(8, 8, 8, 0.75);
+	color: white;
+	font-size: 1.25rem;
+	padding-right: .25em;
+}

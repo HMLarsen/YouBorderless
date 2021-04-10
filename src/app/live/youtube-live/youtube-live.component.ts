@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { LiveService } from 'src/app/services/live.service';
 import { YoutubeVideoStateChange } from 'src/app/model/youtube-video.constants';
 import { ActivatedRoute } from '@angular/router';
@@ -23,11 +23,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	videoState!: number;
 	isLiving = false;
 
-	text: any;
-	_textSub!: Subscription;
-
-	translate: any;
-	_translateSub!: Subscription;
+	initLiveSubject: Subject<void> = new Subject<void>();
+	stopLiveSubject: Subject<void> = new Subject<void>();
 
 	error: any;
 	_liveError!: Subscription;
@@ -77,7 +74,6 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.unSubscribeAll();
 		this.stopLive();
 	}
 
@@ -89,54 +85,13 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		return this.liveService.getLastLiveOptions();
 	}
 
-	unSubscribeAll() {
-		if (this._textSub) {
-			this._textSub.unsubscribe();
-		}
-		if (this._liveError) {
-			this._liveError.unsubscribe();
-		}
-	}
-
-	subscribeLive() {
-		const liveOptions = this.liveService.getLastLiveOptions();
-		this._textSub = this.liveService.currentText
-			.subscribe(data => {
-				if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-					this.text = this.liveService.getTextLive(this.text, liveOptions.id, data);
-					// fix div scroll
-					const captionsContainer = document.getElementById('captions-container');
-					if (captionsContainer) {
-						captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
-					}
-				}
-			});
-		this._translateSub = this.liveService.translatedText
-			.subscribe(data => {
-				if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-					this.translate = this.liveService.getTranslateLive(this.translate, liveOptions.id, data);
-				}
-			});
-		this._liveError = this.liveService.liveError
-			.subscribe(live => this.error = this.liveService.getLiveError(this.error, liveOptions.id, live));
-	}
-
-	unSubscribeLive() {
-		if (this._textSub) {
-			this._textSub.unsubscribe();
-		}
-	}
-
 	initLive() {
 		this.isLiving = true;
 		if (this.videoIframe.videoState !== YoutubeVideoStateChange.PLAYING) {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
-		this.text = null;
-		this.translate = null;
-		this.subscribeLive();
-
+		this.initLiveSubject.next();
 		this.liveService.initLive(this.getLiveOptions());
 	}
 
@@ -149,7 +104,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		if (this.videoState === YoutubeVideoStateChange.PLAYING) {
 			this.videoIframe.stopVideo();
 		}
-		this.unSubscribeLive();
+		this.stopLiveSubject.next();
 		this.liveService.stopLive(this.getLiveOptions().id);
 	}
 

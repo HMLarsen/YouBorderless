@@ -14,9 +14,7 @@ import { LanguageService } from './language.service';
 })
 export class LiveService {
 
-	private currentLives: Set<string> = new Set();
-	currentText = this.socket.fromEvent<any>('text-live');
-	translatedText = this.socket.fromEvent<any>('translate-live');
+	_liveCaptions = this.socket.fromEvent<LiveCaptions>('live-captions');
 	liveError = this.socket.fromEvent<any>('live-error');
 
 	private lastLiveOptions!: LiveOptions;
@@ -28,12 +26,10 @@ export class LiveService {
 	) { }
 
 	initLive(liveOptions: LiveOptions) {
-		this.currentLives.add(liveOptions.id);
 		this.socket.emit('init-live', liveOptions);
 	}
 
 	stopLive(liveId: string) {
-		this.currentLives.delete(liveId);
 		this.socket.emit('stop-live', liveId);
 	}
 
@@ -44,22 +40,9 @@ export class LiveService {
 		return live.error;
 	}
 
-	getTextLive(currentText: string, liveId: string, live: LiveCaptions) {
-		if (liveId !== live.id) {
-			return currentText;
-		}
-		const liveText = live.data.text;
-		if (live.data.isFinal) {
-			return currentText + '\n' + liveText;
-		}
-		return liveText;
-	}
-
-	getTranslateLive(currentText: string, liveId: string, live: LiveCaptions) {
-		if (liveId !== live.id) {
-			return currentText;
-		}
-		return live.data.text;
+	getLiveCaptions(liveId: string, liveCaptions: LiveCaptions) {
+		if (liveId !== liveCaptions.id)	return;
+		return liveCaptions;
 	}
 
 	getTranscribeSupportedLanguages(): Observable<TranscribeSupportedLanguage[]> {
