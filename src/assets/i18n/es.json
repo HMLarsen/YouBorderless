@@ -27,7 +27,9 @@
 		"broadcastLanguage": "Idioma de transmisión",
 		"languageToTrans": "Idioma de traducción",
 		"profanityFilter": "Censurar palabras ofensivas",
-		"punctuation": "Puntuación"
+		"punctuation": "Puntuación",
+		"languagePlaceholder": "Idioma...",
+		"languageNotFound": "No se encontraron idiomas"
 	},
 	"broadcast": {
 		"loading": "Cargando la transmisión",

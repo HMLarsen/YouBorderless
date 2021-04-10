@@ -13,8 +13,8 @@
 			<mat-label>{{ 'broadcastOptions.broadcastLanguage' | translate }}</mat-label>
 			<mat-select formControlName="liveLanguage" #singleSelect cdkFocusInitial required>
 				<mat-option>
-					<ngx-mat-select-search formControlName="liveLanguageFilter" placeholderLabel="Idioma..."
-						noEntriesFoundLabel="Nenhum idioma encontrado"></ngx-mat-select-search>
+					<ngx-mat-select-search formControlName="liveLanguageFilter" placeholderLabel="{{ 'broadcastOptions.languagePlaceholder' | translate }}"
+						noEntriesFoundLabel="{{ 'broadcastOptions.languageNotFound' | translate }}"></ngx-mat-select-search>
 				</mat-option>
 				<mat-option
 					*ngFor="let language of filteredTranscribeLanguages | async; trackBy: filteredTranscribeLanguagesTrackBy"
@@ -27,8 +27,8 @@
 			<mat-label>{{ 'broadcastOptions.languageToTrans' | translate }}</mat-label>
 			<mat-select formControlName="liveTranslation" #singleSelect required>
 				<mat-option>
-					<ngx-mat-select-search formControlName="liveTranslationFilter" placeholderLabel="Idioma..."
-						noEntriesFoundLabel="Nenhum idioma encontrado"></ngx-mat-select-search>
+					<ngx-mat-select-search formControlName="liveTranslationFilter" placeholderLabel="{{ 'broadcastOptions.languagePlaceholder' | translate }}"
+						noEntriesFoundLabel="{{ 'broadcastOptions.languageNotFound' | translate }}"></ngx-mat-select-search>
 				</mat-option>
 				<mat-option
 					*ngFor="let language of filteredTranslationLanguages | async; trackBy: filteredTranslationLanguagesTrackBy"

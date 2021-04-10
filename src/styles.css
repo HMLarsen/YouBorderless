@@ -68,3 +68,7 @@ youtube-player iframe {
 #container.lg {
 	padding: 0 20% 3rem;
 }
+
+.mat-card, .mat-form-field, label {
+	-webkit-tap-highlight-color: transparent;
+}
