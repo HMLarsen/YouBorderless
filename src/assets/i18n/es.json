@@ -17,8 +17,8 @@
 	"search": {
 		"termPlaceholder": "Buscar (término o URL de transmisión)",
 		"subscriptionsPlaceholder": "Buscar (canal o URL de transmisión)",
-		"notFoundTitle": "Ningún resultado encontrado",
-		"notFoundDesc": "Utilice diferentes palabras clave",
+		"notFoundTitle": "No se han encontrado resultados",
+		"notFoundDesc": "Prueba con otras palabras clave o quita los filtros de búsqueda",
 		"notFoundChannels": "No se encontraron canales"
 	},
 	"broadcastOptions": {
@@ -44,8 +44,8 @@
 		"logout": "CERRAR SESIÓN"
 	},
 	"video": {
-		"watching": "asistiendo",
-		"liveNow": "VIVE AHORA"
+		"watching": "espectadores",
+		"liveNow": "EN DIRECTO AHORA"
 	},
 	"pwa": {
 		"install": "¿Quieres instalar YourBorderless en la pantalla de inicio?"

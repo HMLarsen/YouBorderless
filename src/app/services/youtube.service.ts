@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ErrorService } from './error.service';
 import { Video } from '../model/video.model';
 import { UtilsService } from './utils.service';
+import { LanguageService } from './language.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,7 +19,8 @@ export class YoutubeService {
 	constructor(
 		private http: HttpClient,
 		private utilsService: UtilsService,
-		private errorService: ErrorService
+		private errorService: ErrorService,
+		private languageService: LanguageService
 	) { }
 
 	saveLastSearch(lastSearch: Search) {
@@ -40,7 +42,8 @@ export class YoutubeService {
 	getLivesFromTerm(term: string, maxResults: number): Promise<Video[]> {
 		return new Promise((res, rej) => {
 			const url = environment.backEndUrl + '/search-lives';
-			this.http.post<Video[]>(url, { term, maxResults })
+			const locale = this.languageService.getBrowserLanguage();
+			this.http.post<Video[]>(url, { term, maxResults, locale })
 				.subscribe((videos: Video[]) => {
 					// refresh the last search even the compononent that calls this method is dead
 					this.saveLastSearch({ search: term, videos })
