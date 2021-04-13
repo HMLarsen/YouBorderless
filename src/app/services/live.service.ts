@@ -25,8 +25,8 @@ export class LiveService {
 		private languageService: LanguageService
 	) { }
 
-	initLive(liveOptions: LiveOptions) {
-		this.socket.emit('init-live', liveOptions);
+	initLive(liveOptions: LiveOptions, liveStartTime: number) {
+		this.socket.emit('init-live', { liveOptions, liveStartTime });
 	}
 
 	stopLive(liveId: string) {

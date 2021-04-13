@@ -1,6 +1,6 @@
 #captions-container {
+	height: 5.3125rem;
 	width: 40vw;
-	height: 10vh;
 	overflow: hidden;
 	cursor: grab;
 	position: absolute;
@@ -30,21 +30,18 @@
 }
 
 #captions-container.sm {
-	height: 11vw;
 	width: 68vw;
 	left: 14vh;
 	top: 63vw;
 }
 
 #captions-container.md {
-	height: 47vh;
 	width: 40vw;
 	left: 25vh;
 	top: 47vw;
 }
 
 #captions-container.lg {
-	height: 5.3125rem;
 	width: 40vw;
 	left: 25vw;
 	top: 70vh;

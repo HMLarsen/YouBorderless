@@ -92,7 +92,9 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		}
 		this.error = null;
 		this.initLiveSubject.next();
-		this.liveService.initLive(this.getLiveOptions());
+		const currentTime = this.videoIframe.getCurrentTime();
+		console.log(currentTime);
+		this.liveService.initLive(this.getLiveOptions(), currentTime);
 	}
 
 	stopLive() {
