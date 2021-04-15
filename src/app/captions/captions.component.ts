@@ -99,6 +99,7 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 				if (this.dataCaptions.length <= 0) return;
 				let liveCaption: LiveCaptions | undefined = this.dataCaptions[0];
 				const captionTime = liveCaption.data.time;
+				console.log(currentTime, captionTime);
 				if (currentTime < captionTime) return;
 				liveCaption = this.dataCaptions.shift();
 				this.doCaption(liveCaption!);
@@ -117,7 +118,8 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 			if (this.captions.length === this.MAX_CAPTIONS_SIZE) {
 				this.captions.splice(0, this.MAX_CAPTIONS_SIZE - this.MAX_CAPTIONS_LINE_SHOWING);
 			}
-			this.captions.push({ text: '' });
+			this.captions.push({ text: liveCaption.data.text });
+			console.log('final');
 		} else {
 			// if not final, get the last item and replace its caption
 			if (this.captions.length <= 0) {
@@ -128,7 +130,9 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 		// fix div scroll
 		const captionsContainer = document.getElementById('captions-container');
 		if (captionsContainer) {
-			captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
+			setTimeout(() => {
+				captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
+			}, 100);
 		}
 	}
 

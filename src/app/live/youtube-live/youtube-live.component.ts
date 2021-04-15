@@ -77,8 +77,15 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		this.stopLive();
 	}
 
-	openLiveOptionsModal() {
-		this.modalService.openLiveOptionsModel(this.videoId);
+	openLiveOptionsModal(restart?: boolean) {
+		const oldOptions = this.getLiveOptions();
+		this.modalService.openLiveOptionsModel(this.videoId)
+			.afterClosed().subscribe(() => {
+				if (!restart) return;
+				const newOptions = this.getLiveOptions();
+				if (oldOptions.id === newOptions.id) return;
+				this.restartLive();
+			});
 	}
 
 	getLiveOptions(): LiveOptions {
