@@ -1,6 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 import { first } from "rxjs/operators";
+import { wordAnimation } from '../animations';
 import { LiveCaptions } from '../model/live-captions.model';
 import { LiveOptions } from '../model/live-options.model';
 import { LiveService } from '../services/live.service';
@@ -12,29 +13,31 @@ interface Caption {
 @Component({
 	selector: 'app-captions',
 	templateUrl: './captions.component.html',
-	styleUrls: ['./captions.component.css']
+	styleUrls: ['./captions.component.css'],
+	animations: [wordAnimation]
 })
 export class CaptionsComponent implements OnInit, OnDestroy {
 
-	@Input()
-	boundaryElement!: string;
+	@Input() boundaryElement!: string;
 
-	@Input()
-	liveOptions!: LiveOptions;
+	@Input() liveOptions!: LiveOptions;
 
-	@Input()
-	initLiveEvent!: Observable<void>;
+	@Input() startLiveEvent!: Observable<void>;
 
-	@Input()
-	stopLiveEvent!: Observable<void>;
+	@Input() stopLiveEvent!: Observable<void>;
 
-	_captionsSub!: Subscription | undefined;
-	dataCaptions: LiveCaptions[] = [];
+	@Input() videoIframe: any;
+
+	// captions from server
+	_liveCaptions: Subscription | undefined;
+	liveCaptions: LiveCaptions[] = [];
+
+	_videoTimer: Subscription | undefined;
+	videoTimer!: number;
+
+	// captions showing
+	_captionsTimer: Subscription | undefined;
 	captions: Caption[] = [];
-
-	_videoTimer!: Subscription | undefined;
-	_captionsTimer!: Subscription | undefined;
-	videoTimer = 0;
 
 	MAX_CAPTIONS_SIZE = 10;
 	MAX_CAPTIONS_LINE_SHOWING = 6;
@@ -42,48 +45,63 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 	constructor(private liveService: LiveService) { }
 
 	ngOnInit(): void {
-		this.initLiveEvent.subscribe(() => this.subscribe());
-		this.stopLiveEvent.subscribe(() => this.unSubscribe());
+		this.startLiveEvent.subscribe(() => this.startLive());
+		this.stopLiveEvent.subscribe(() => this.stopLive());
 	}
 
 	ngOnDestroy(): void {
-		this.unSubscribe();
+		this.stopLive();
 	}
 
-	subscribe() {
-		this.dataCaptions = [];
+	startLive() {
+		this.liveCaptions = [];
 		this.captions = [];
-
-		this.videoTimer = 0;
 		this.startVideoTimer();
 
-		this._captionsSub = this.liveService._liveCaptions
+		this._liveCaptions = this.liveService._liveCaptions
 			.pipe(first())
-			.subscribe(() => {
-				this.stopVideoTimer();
-				this.startTimer(0);
-			});
-		this._captionsSub = this.liveService._liveCaptions
+			.subscribe(() => this.startCaptionsTimer());
+		this._liveCaptions = this.liveService._liveCaptions
 			.subscribe(data => {
 				const liveCaption = this.liveService.getLiveCaptions(this.liveOptions.id, data);
-				if (!liveCaption) {
-					return;
-				}
-				this.dataCaptions.push(liveCaption);
+				if (!liveCaption) return;
+				this.liveCaptions.push(liveCaption);
 			});
 	}
 
-	unSubscribe() {
+	stopLive() {
+		this.stopCaptionsTimer();
 		this.stopVideoTimer();
-		this.stopTimer();
-		this._captionsSub?.unsubscribe();
-		this._captionsSub = undefined;
+		this._liveCaptions?.unsubscribe();
+		this._liveCaptions = undefined;
+	}
+
+	startCaptionsTimer() {
+		this.stopCaptionsTimer();
+		const timerInterval = 100;
+		let currentTime = this.videoTimer + 10000;
+		this._captionsTimer = interval(timerInterval)
+			.subscribe(() => {
+				currentTime += timerInterval;
+				if (this.liveCaptions.length <= 0) return;
+				let liveCaption: LiveCaptions | undefined = this.liveCaptions[0];
+				const captionTime = liveCaption.data.time;
+				console.log(currentTime, captionTime, this.liveCaptions.length);
+				if (currentTime < captionTime) return;
+				liveCaption = this.liveCaptions.shift();
+				this.doCaption(liveCaption!);
+			});
+	}
+
+	stopCaptionsTimer() {
+		this._captionsTimer?.unsubscribe();
+		this._captionsTimer = undefined;
 	}
 
 	startVideoTimer() {
 		const timerInterval = 100;
-		this._videoTimer = interval(timerInterval)
-			.subscribe(() => this.videoTimer += timerInterval);
+		this.videoTimer = 0;
+		this._videoTimer = interval(timerInterval).subscribe(() => this.videoTimer -= timerInterval);
 	}
 
 	stopVideoTimer() {
@@ -91,41 +109,18 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 		this._videoTimer = undefined;
 	}
 
-	startTimer(currentTime: number) {
-		const timerInterval = 100;
-		this._captionsTimer = interval(timerInterval)
-			.subscribe(() => {
-				currentTime += timerInterval;
-				if (this.dataCaptions.length <= 0) return;
-				let liveCaption: LiveCaptions | undefined = this.dataCaptions[0];
-				const captionTime = liveCaption.data.time;
-				console.log(currentTime, captionTime);
-				if (currentTime < captionTime) return;
-				liveCaption = this.dataCaptions.shift();
-				this.doCaption(liveCaption!);
-			});
-	}
-
-	stopTimer() {
-		this._captionsTimer?.unsubscribe();
-		this._captionsTimer = undefined;
-	}
-
 	doCaption(liveCaption: LiveCaptions) {
+		if (this.captions.length <= 0) {
+			this.captions.push({ text: liveCaption.data.text });
+		}
+		this.captions[this.captions.length - 1].text = liveCaption.data.text;
 		if (liveCaption.data.isFinal) {
 			// if final create a new item in array... this controls old text showing in captions
 			// control the size for long lengths
 			if (this.captions.length === this.MAX_CAPTIONS_SIZE) {
 				this.captions.splice(0, this.MAX_CAPTIONS_SIZE - this.MAX_CAPTIONS_LINE_SHOWING);
 			}
-			this.captions.push({ text: liveCaption.data.text });
-			console.log('final');
-		} else {
-			// if not final, get the last item and replace its caption
-			if (this.captions.length <= 0) {
-				this.captions.push({ text: liveCaption.data.text });
-			}
-			this.captions[this.captions.length - 1].text = liveCaption.data.text;
+			this.captions.push({ text: '' });
 		}
 		// fix div scroll
 		const captionsContainer = document.getElementById('captions-container');

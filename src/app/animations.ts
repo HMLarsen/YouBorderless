@@ -5,7 +5,8 @@ import {
 	style,
 	query,
 	stagger,
-	animateChild
+	animateChild,
+	group
 } from '@angular/animations';
 
 export const fadeAnimation = trigger('fadeAnimation', [
@@ -42,3 +43,16 @@ export const itemsListAnimation = trigger('itemsListAnimation', [
 		style({ opacity: 0 }), animate('0.1s', style({ opacity: 1 }))
 	])
 ]);
+
+export const wordAnimation = trigger('wordAnimation', [
+	transition("* => *", group([
+		query(':enter', [
+			style({ opacity: 0, transform: 'translateY(40%)' }),
+			animate('.5s ease-out', style({ opacity: 1, transform: 'translateY(0%)' }))
+		], { optional: true }),
+		query(':leave', [
+			style({ opacity: 1, transform: 'translateY(0%)' }),
+			animate('.5s ease-out', style({ opacity: 0, transform: 'translateY(-40%)' }))
+		], { optional: true })
+	]))
+])

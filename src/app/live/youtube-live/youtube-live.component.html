@@ -33,7 +33,8 @@
 			</youtube-player>
 
 			<app-captions boundaryElement="#main-video-section" [liveOptions]="getLiveOptions()"
-				[initLiveEvent]="initLiveSubject.asObservable()" [stopLiveEvent]="stopLiveSubject.asObservable()"></app-captions>
+				[startLiveEvent]="startLiveSubject.asObservable()" [stopLiveEvent]="stopLiveSubject.asObservable()"
+				[videoIframe]="videoIframe"></app-captions>
 		</div>
 
 		<div id="video-navbottom">

@@ -2,6 +2,6 @@
 	[cdkDragBoundary]="boundaryElement" #tooltip="matTooltip" matTooltip="{{ 'captions' | translate }}"
 	[matTooltipPosition]="'above'" [matTooltipShowDelay]="500" (mousedown)="tooltip.hide()">
 	<div class="caption-visual-line" *ngFor="let caption of captions">
-		<span class="captions" *ngIf="!!caption.text">{{ caption.text }}</span>
+		<span class="captions" *ngIf="!!caption.text" [@wordAnimation]>{{ caption.text }}</span>
 	</div>
 </div>

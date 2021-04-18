@@ -13,8 +13,8 @@ import es from '@angular/common/locales/es';
 export class LanguageService {
 
 	languages: Language[] = [
-		{ code: 'pt', desc: 'Português (Brasil)' },
 		{ code: 'en', desc: 'English' },
+		{ code: 'pt', desc: 'Português (Brasil)' },
 		{ code: 'es', desc: 'Español' }
 	];
 	language!: Language;
@@ -42,8 +42,8 @@ export class LanguageService {
 	}
 
 	registerLocaleLanguages() {
-		registerLocaleData(pt);
 		registerLocaleData(en);
+		registerLocaleData(pt);
 		registerLocaleData(es);
 	}
 

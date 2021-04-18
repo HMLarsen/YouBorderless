@@ -23,7 +23,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	videoState!: number;
 	isLiving = false;
 
-	initLiveSubject: Subject<void> = new Subject<void>();
+	startLiveSubject: Subject<void> = new Subject<void>();
 	stopLiveSubject: Subject<void> = new Subject<void>();
 
 	error: any;
@@ -98,10 +98,10 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
-		this.initLiveSubject.next();
 		const currentTime = this.videoIframe.getCurrentTime();
 		console.log(currentTime);
 		this.liveService.initLive(this.getLiveOptions(), currentTime);
+		this.startLiveSubject.next();
 	}
 
 	stopLive() {
@@ -109,7 +109,6 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			return;
 		}
 		this.isLiving = false;
-		// verificar se stopar é melhor que dar o seek
 		if (this.videoState === YoutubeVideoStateChange.PLAYING) {
 			this.videoIframe.stopVideo();
 		}
@@ -125,7 +124,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	onReady(event: any) {
 		this.videoIframe = event.target;
 		const embedCode = event.target.getVideoEmbedCode();
-		// videoIframe.playVideo();
+		this.videoIframe.playVideo();
 		if (document.getElementById('embed-code')) {
 			document.getElementById('embed-code')!.innerHTML = embedCode;
 		}

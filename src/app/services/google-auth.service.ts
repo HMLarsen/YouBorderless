@@ -28,7 +28,7 @@ export class GoogleAuthService {
 					clientId: environment.googleAppClientId,
 					scope: 'https://www.googleapis.com/auth/youtube.readonly'
 				}).then(() => {
-					gapi.client.load('youtube', 'v3').then(resolve);
+					gapi.client.load('youtube', 'v3').then(resolve, err => reject(err));
 				}, err => reject(err));
 			});
 		});
