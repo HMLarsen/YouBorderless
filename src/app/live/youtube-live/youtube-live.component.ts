@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { YoutubeService } from 'src/app/services/youtube.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
+import { MatTooltip } from '@angular/material/tooltip';
 
 let apiLoaded = false;
 
@@ -25,6 +26,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 
 	startLiveSubject: Subject<void> = new Subject<void>();
 	stopLiveSubject: Subject<void> = new Subject<void>();
+	backwardCaptionsEvent: Subject<void> = new Subject<void>();
+	forwardCaptionsEvent: Subject<void> = new Subject<void>();
 
 	error: any;
 	_liveError!: Subscription;
@@ -93,6 +96,9 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	}
 
 	initLive() {
+		if (this.isLiving) {
+			return;
+		}
 		this.isLiving = true;
 		if (this.videoIframe.videoState !== YoutubeVideoStateChange.PLAYING) {
 			this.videoIframe.playVideo();
@@ -109,11 +115,14 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			return;
 		}
 		this.isLiving = false;
-		if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-			this.videoIframe.stopVideo();
-		}
 		this.stopLiveSubject.next();
 		this.liveService.stopLive(this.getLiveOptions().id);
+
+		if (this.videoState === YoutubeVideoStateChange.PLAYING) {
+			try {
+				this.videoIframe.stopVideo();
+			} catch (e) {} // error if the player is destroyed
+		}
 	}
 
 	restartLive() {
@@ -181,6 +190,22 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 
 	isPlaying() {
 		return this.videoState === YoutubeVideoStateChange.PLAYING;
+	}
+
+	backwardCaptions(tooltip: MatTooltip) {
+		this.backwardCaptionsEvent.next();
+		tooltip.disabled = false;
+		tooltip.hide();
+		tooltip.show();
+		setTimeout(() => tooltip.disabled = true, 2000);
+	}
+
+	forwardCaptions(tooltip: MatTooltip) {
+		this.forwardCaptionsEvent.next();
+		tooltip.disabled = false;
+		tooltip.hide();
+		tooltip.show();
+		setTimeout(() => tooltip.disabled = true, 2000);
 	}
 
 }

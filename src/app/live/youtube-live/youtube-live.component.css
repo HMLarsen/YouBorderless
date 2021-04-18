@@ -81,3 +81,11 @@ mat-spinner {
 	padding-bottom: 3.75rem;
 	text-align: right;
 }
+
+#video-navbottom #left {
+	float: left;
+}
+
+#video-navbottom #left button:first-child {
+	margin-right: 0.3125rem;
+}

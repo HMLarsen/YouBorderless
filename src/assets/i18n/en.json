@@ -36,7 +36,13 @@
 		"notAvailable": "Broadcast not available",
 		"notAvailableDetails": "The broadcast was not found or is no longer live",
 		"setConfig": "Enter the broadcast settings",
-		"config": "Settings"
+		"config": "Settings",
+		"captions": {
+			"backwardButton": "Captions -",
+			"forwardButton": "Captions +",
+			"backwardConfirmation": "✔ captions delayed by 1 second",
+			"forwardConfirmation": "✔ captions advanced by 1 second"
+		}
 	},
 	"google": {
 		"loginDescription": "Sign in to search for your favorite channels' broadcasts",

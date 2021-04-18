@@ -26,18 +26,20 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 
 	@Input() stopLiveEvent!: Observable<void>;
 
+	@Input() backwardCaptionsEvent!: Observable<void>;
+
+	@Input() forwardCaptionsEvent!: Observable<void>;
+
 	@Input() videoIframe: any;
 
 	// captions from server
 	_liveCaptions: Subscription | undefined;
 	liveCaptions: LiveCaptions[] = [];
 
-	_videoTimer: Subscription | undefined;
-	videoTimer!: number;
-
 	// captions showing
 	_captionsTimer: Subscription | undefined;
 	captions: Caption[] = [];
+	currentCaptionsTime!: number;
 
 	MAX_CAPTIONS_SIZE = 10;
 	MAX_CAPTIONS_LINE_SHOWING = 6;
@@ -47,6 +49,8 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.startLiveEvent.subscribe(() => this.startLive());
 		this.stopLiveEvent.subscribe(() => this.stopLive());
+		this.backwardCaptionsEvent.subscribe(() => this.changeCaptionsTime(false));
+		this.forwardCaptionsEvent.subscribe(() => this.changeCaptionsTime(true));
 	}
 
 	ngOnDestroy(): void {
@@ -56,7 +60,6 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 	startLive() {
 		this.liveCaptions = [];
 		this.captions = [];
-		this.startVideoTimer();
 
 		this._liveCaptions = this.liveService._liveCaptions
 			.pipe(first())
@@ -71,7 +74,6 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 
 	stopLive() {
 		this.stopCaptionsTimer();
-		this.stopVideoTimer();
 		this._liveCaptions?.unsubscribe();
 		this._liveCaptions = undefined;
 	}
@@ -79,15 +81,15 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 	startCaptionsTimer() {
 		this.stopCaptionsTimer();
 		const timerInterval = 100;
-		let currentTime = this.videoTimer + 10000;
+		this.currentCaptionsTime = 0;
 		this._captionsTimer = interval(timerInterval)
 			.subscribe(() => {
-				currentTime += timerInterval;
+				this.currentCaptionsTime += timerInterval;
 				if (this.liveCaptions.length <= 0) return;
 				let liveCaption: LiveCaptions | undefined = this.liveCaptions[0];
 				const captionTime = liveCaption.data.time;
-				console.log(currentTime, captionTime, this.liveCaptions.length);
-				if (currentTime < captionTime) return;
+				console.log(this.currentCaptionsTime, captionTime, this.liveCaptions.length);
+				if (this.currentCaptionsTime < captionTime) return;
 				liveCaption = this.liveCaptions.shift();
 				this.doCaption(liveCaption!);
 			});
@@ -96,17 +98,6 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 	stopCaptionsTimer() {
 		this._captionsTimer?.unsubscribe();
 		this._captionsTimer = undefined;
-	}
-
-	startVideoTimer() {
-		const timerInterval = 100;
-		this.videoTimer = 0;
-		this._videoTimer = interval(timerInterval).subscribe(() => this.videoTimer -= timerInterval);
-	}
-
-	stopVideoTimer() {
-		this._videoTimer?.unsubscribe();
-		this._videoTimer = undefined;
 	}
 
 	doCaption(liveCaption: LiveCaptions) {
@@ -128,6 +119,14 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 			setTimeout(() => {
 				captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
 			}, 100);
+		}
+	}
+
+	changeCaptionsTime(forward: boolean) {
+		if (this.currentCaptionsTime) {
+			const time = 1000;
+			if (forward) this.currentCaptionsTime += time;
+			if (!forward) this.currentCaptionsTime -= time;
 		}
 	}
 

@@ -34,11 +34,22 @@
 
 			<app-captions boundaryElement="#main-video-section" [liveOptions]="getLiveOptions()"
 				[startLiveEvent]="startLiveSubject.asObservable()" [stopLiveEvent]="stopLiveSubject.asObservable()"
-				[videoIframe]="videoIframe"></app-captions>
+				[videoIframe]="videoIframe" [backwardCaptionsEvent]="backwardCaptionsEvent.asObservable()"
+				[forwardCaptionsEvent]="forwardCaptionsEvent.asObservable()"></app-captions>
 		</div>
 
 		<div id="video-navbottom">
-			<button mat-stroked-button (click)="enterFullScreen()" [disabled]="!isPlaying()" id="fullscreen">
+			<div id="left">
+				<button mat-stroked-button #backwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.backwardConfirmation' | translate }}"
+					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="backwardCaptions(backwardTooltip)" [disabled]="!isPlaying()">
+					{{ 'broadcast.captions.backwardButton' | translate }}
+				</button>
+				<button mat-stroked-button #forwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.forwardConfirmation' | translate }}"
+					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="forwardCaptions(forwardTooltip)" [disabled]="!isPlaying()">
+					{{ 'broadcast.captions.forwardButton' | translate }}
+				</button>
+			</div>
+			<button mat-stroked-button (click)="enterFullScreen()">
 				Fullscreen
 			</button>
 		</div>

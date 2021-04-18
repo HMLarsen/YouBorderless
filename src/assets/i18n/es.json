@@ -36,7 +36,13 @@
 		"notAvailable": "Transmisión no disponible",
 		"notAvailableDetails": "La transmisión no se encontró o ya no está en vivo",
 		"setConfig": "Ingrese la configuración de transmisión",
-		"config": "Ajustes"
+		"config": "Ajustes",
+		"captions": {
+			"backwardButton": "Subtítulos -",
+			"forwardButton": "Subtítulos +",
+			"backwardConfirmation": "✔ subtítulos retrasados ​​1 segundo",
+			"forwardConfirmation": "✔ subtítulos avanzados en 1 segundo"
+		}
 	},
 	"google": {
 		"loginDescription": "Inicie sesión para buscar las transmisiones de sus canales favoritos",

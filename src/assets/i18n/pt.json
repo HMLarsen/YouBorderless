@@ -36,7 +36,13 @@
 		"notAvailable": "Transmissão não disponível",
 		"notAvailableDetails": "A transmissão não foi encontrada ou não está mais ao vivo",
 		"setConfig": "Informe as configurações da transmissão",
-		"config": "Configurar"
+		"config": "Configurar",
+		"captions": {
+			"backwardButton": "Legendas -",
+			"forwardButton": "Legendas +",
+			"backwardConfirmation": "✔ legendas atrasadas em 1 segundo",
+			"forwardConfirmation": "✔ legendas adiantadas em 1 segundo"
+		}
 	},
 	"google": {
 		"loginDescription": "Faça login para buscar as transmissões de seus canais favoritos",
