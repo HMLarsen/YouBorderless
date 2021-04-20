@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ShareTranslateModule } from 'src/app/share-translate.module';
 import { CaptionsComponent } from 'src/app/captions/captions.component';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import { CaptionsComponent } from 'src/app/captions/captions.component';
 		FormsModule,
 		FlexLayoutModule,
 		YouTubePlayerModule,
-		MaterialModule
+		MaterialModule,
+		TourMatMenuModule.forRoot()
 	],
 	exports: [YoutubeLiveComponent]
 })

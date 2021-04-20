@@ -42,6 +42,19 @@
 			"forwardButton": "Subtítulos +",
 			"backwardConfirmation": "✔ subtítulos retrasados ​​1 segundo",
 			"forwardConfirmation": "✔ subtítulos avanzados en 1 segundo"
+		},
+		"tour": {
+			"captionsTitle": "Subtítulos",
+			"captionsContent": "En esta área se mostrarán los subtítulos de la transmisión, haga clic y arrastre para moverla.",
+			"backwardCaptionsTitle": "Retraso de subtítulos",
+			"backwardCaptionsContent": "Si los subtítulos parecen estar demasiado adelantados a la transmisión, ¡demorelos!",
+			"forwardCaptionsTitle": "Avance de subtítulos",
+			"forwardCaptionsContent": "Si la transmisión parece demasiado temprana, ¡haga que los subtítulos la acompañen!",
+			"fullscreenTitle": "Pantalla completa",
+			"fullscreenContent": "¡Inmersión aquí!",
+			"changeSettingsTitle": "Ajustar la configuración",
+			"changeSettingsContent": "¿Los idiomas no son correctos? Haga clic aquí para cambiar la configuración de subtítulos.",
+			"end": "Final"
 		}
 	},
 	"google": {

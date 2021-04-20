@@ -42,6 +42,19 @@
 			"forwardButton": "Captions +",
 			"backwardConfirmation": "✔ captions delayed by 1 second",
 			"forwardConfirmation": "✔ captions advanced by 1 second"
+		},
+		"tour": {
+			"captionsTitle": "Captions",
+			"captionsContent": "In this area the captions of the transmission will be displayed, click and drag to move it.",
+			"backwardCaptionsTitle": "Captions delay",
+			"backwardCaptionsContent": "If the captions seem too far ahead of the broadcast, delay them!",
+			"forwardCaptionsTitle": "Captions advance",
+			"forwardCaptionsContent": "If the broadcast seems too early, make the captions go with it!",
+			"fullscreenTitle": "Full screen",
+			"fullscreenContent": "Immersion here!",
+			"changeSettingsTitle": "Change settings",
+			"changeSettingsContent": "Are the languages not right? Click here to change captions settings.",
+			"end": "End"
 		}
 	},
 	"google": {

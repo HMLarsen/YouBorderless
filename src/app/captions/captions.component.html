@@ -1,6 +1,7 @@
 <div id="captions-container" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg" cdkDrag
 	[cdkDragBoundary]="boundaryElement" #tooltip="matTooltip" matTooltip="{{ 'captions' | translate }}"
-	[matTooltipPosition]="'above'" [matTooltipShowDelay]="500" (mousedown)="tooltip.hide()">
+	[matTooltipPosition]="'above'" [matTooltipShowDelay]="500" (mousedown)="tooltip.hide()"
+	tourAnchor="captionsContainer">
 	<div class="caption-visual-line" *ngFor="let caption of captions">
 		<span class="captions" *ngIf="!!caption.text" [@wordAnimation]>{{ caption.text }}</span>
 	</div>

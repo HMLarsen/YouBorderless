@@ -8,6 +8,7 @@ import { YoutubeService } from 'src/app/services/youtube.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
 import { MatTooltip } from '@angular/material/tooltip';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 let apiLoaded = false;
 
@@ -35,14 +36,21 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	loading = true;
 	loadingError = false;
 
+	showTour = true;
+	endedTour = false;
+
 	constructor(
 		private route: ActivatedRoute,
 		private liveService: LiveService,
 		private modalService: ModalService,
-		private youtubeService: YoutubeService
+		private youtubeService: YoutubeService,
+		private tutorialService: TutorialService
 	) { }
 
 	async ngOnInit() {
+		this.showTour = this.tutorialService.isShowLiveTutorial();
+		if (!this.showTour) this.endedTour = true;
+
 		// fullscreen event
 		document.onfullscreenchange = () => {
 			document.getElementById('main-video-section')?.classList.toggle('fullscreen');
@@ -133,7 +141,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	onReady(event: any) {
 		this.videoIframe = event.target;
 		const embedCode = event.target.getVideoEmbedCode();
-		this.videoIframe.playVideo();
+		if (this.endedTour) this.videoIframe.playVideo();
 		if (document.getElementById('embed-code')) {
 			document.getElementById('embed-code')!.innerHTML = embedCode;
 		}
@@ -206,6 +214,18 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		tooltip.hide();
 		tooltip.show();
 		setTimeout(() => tooltip.disabled = true, 2000);
+	}
+
+	tour() {
+		if (!this.showTour) return;
+		this.showTour = false;
+		setTimeout(() => {
+			this.tutorialService.initLiveTour();
+			this.tutorialService.tourService.end$.subscribe(() => {
+				this.endedTour = true;
+				this.initLive();
+			});
+		}, 1000);
 	}
 
 }

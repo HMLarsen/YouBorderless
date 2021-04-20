@@ -42,6 +42,19 @@
 			"forwardButton": "Legendas +",
 			"backwardConfirmation": "✔ legendas atrasadas em 1 segundo",
 			"forwardConfirmation": "✔ legendas adiantadas em 1 segundo"
+		},
+		"tour": {
+			"captionsTitle": "Legendas",
+			"captionsContent": "Nessa área serão exibidas as legendas da transmissão, clique e arraste para movimentá-la.",
+			"backwardCaptionsTitle": "Atraso de legendas",
+			"backwardCaptionsContent": "Se as legendas parecerem muito adiantadas em relação a transmissão, atrase-as!",
+			"forwardCaptionsTitle": "Adiantamento de legendas",
+			"forwardCaptionsContent": "Se a transmissão parecer muito adiantada, faça as legendas irem junto!",
+			"fullscreenTitle": "Tela cheia",
+			"fullscreenContent": "Imersão aqui!",
+			"changeSettingsTitle": "Alterar configurações",
+			"changeSettingsContent": "Os idiomas não estão certos? Clique aqui para alterar as configurações das legendas.",
+			"end": "Fim"
 		}
 	},
 	"google": {

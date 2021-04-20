@@ -1,3 +1,5 @@
+<tour-step-template></tour-step-template>
+
 <section id="main-video-section" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
 	<div id="mid-screen" *ngIf="loading || loadingError">
 		<h1 *ngIf="loading" class="mat-title">{{ 'broadcast.loading' | translate }}</h1>
@@ -23,7 +25,7 @@
 				{{ 'to' | translate }}
 				<span class="mat-body-strong">{{ getLiveOptions().liveToLanguage.name }}</span>
 			</label>
-			<button mat-stroked-button (click)="openLiveOptionsModal(true)">{{ 'broadcast.config' | translate }}</button>
+			<button mat-stroked-button (click)="openLiveOptionsModal(true)" tourAnchor="settingsButton">{{ 'broadcast.config' | translate }}</button>
 		</div>
 
 		<div id="player-content">
@@ -41,15 +43,18 @@
 		<div id="video-navbottom">
 			<div id="left">
 				<button mat-stroked-button #backwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.backwardConfirmation' | translate }}"
-					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="backwardCaptions(backwardTooltip)" [disabled]="!isPlaying()">
+					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="backwardCaptions(backwardTooltip)" [disabled]="!isPlaying()"
+					tourAnchor="captionsMinusButton">
 					{{ 'broadcast.captions.backwardButton' | translate }}
+					{{ tour() }}
 				</button>
 				<button mat-stroked-button #forwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.forwardConfirmation' | translate }}"
-					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="forwardCaptions(forwardTooltip)" [disabled]="!isPlaying()">
+					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="forwardCaptions(forwardTooltip)" [disabled]="!isPlaying()"
+					tourAnchor="captionsPlusButton">
 					{{ 'broadcast.captions.forwardButton' | translate }}
 				</button>
 			</div>
-			<button mat-stroked-button (click)="enterFullScreen()">
+			<button mat-stroked-button (click)="enterFullScreen()" tourAnchor="fullscreenButton">
 				Fullscreen
 			</button>
 		</div>

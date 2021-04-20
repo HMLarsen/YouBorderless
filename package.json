@@ -36,6 +36,8 @@
 		"material-bottom-nav": "^1.2.0",
 		"ngx-mat-select-search": "^3.2.0",
 		"ngx-socket-io": "^3.2.0",
+		"ngx-tour-core": "^4.2.0",
+		"ngx-tour-md-menu": "^4.2.0",
 		"rxjs": "~6.6.0",
 		"tslib": "^2.0.0",
 		"zone.js": "~0.11.3"
