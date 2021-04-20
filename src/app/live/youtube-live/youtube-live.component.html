@@ -19,6 +19,7 @@
 	</div>
 
 	<div id="video-content" *ngIf="!loading && !loadingError && getLiveOptions()">
+		{{ tour() }}
 		<div id="video-navbar" fxLayout="row" fxLayoutAlign="space-between center">
 			<label>
 				<span class="mat-body-strong">{{ getLiveOptions().liveLanguage.name }}</span>
@@ -46,7 +47,6 @@
 					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="backwardCaptions(backwardTooltip)" [disabled]="!isPlaying()"
 					tourAnchor="captionsMinusButton">
 					{{ 'broadcast.captions.backwardButton' | translate }}
-					{{ tour() }}
 				</button>
 				<button mat-stroked-button #forwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.forwardConfirmation' | translate }}"
 					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="forwardCaptions(forwardTooltip)" [disabled]="!isPlaying()"

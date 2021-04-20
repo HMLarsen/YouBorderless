@@ -95,7 +95,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 				if (!restart) return;
 				const newOptions = this.getLiveOptions();
 				if (oldOptions.id === newOptions.id) return;
-				this.restartLive();
+				this.stopLive(oldOptions.id);
+				this.initLive();
 			});
 	}
 
@@ -108,7 +109,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			return;
 		}
 		this.isLiving = true;
-		if (this.videoIframe.videoState !== YoutubeVideoStateChange.PLAYING) {
+		if (this.videoState !== YoutubeVideoStateChange.PLAYING) {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
@@ -118,19 +119,13 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		this.startLiveSubject.next();
 	}
 
-	stopLive() {
+	stopLive(id?: string) {
 		if (!this.isLiving) {
 			return;
 		}
 		this.isLiving = false;
 		this.stopLiveSubject.next();
-		this.liveService.stopLive(this.getLiveOptions().id);
-
-		if (this.videoState === YoutubeVideoStateChange.PLAYING) {
-			try {
-				this.videoIframe.stopVideo();
-			} catch (e) {} // error if the player is destroyed
-		}
+		this.liveService.stopLive(id || this.getLiveOptions().id);
 	}
 
 	restartLive() {
