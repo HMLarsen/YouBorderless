@@ -9,6 +9,7 @@ import { ModalService } from 'src/app/services/modal.service';
 import { LiveOptions } from 'src/app/model/live-options.model';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 let apiLoaded = false;
 
@@ -44,7 +45,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		private liveService: LiveService,
 		private modalService: ModalService,
 		private youtubeService: YoutubeService,
-		private tutorialService: TutorialService
+		private tutorialService: TutorialService,
+		private utilsService: UtilsService
 	) { }
 
 	async ngOnInit() {
@@ -182,6 +184,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	enterFullScreen() {
 		if (!document.fullscreenElement) {
 			document.getElementById('player-content')?.requestFullscreen();
+			this.utilsService.makeLandscape();
 		}
 	}
 

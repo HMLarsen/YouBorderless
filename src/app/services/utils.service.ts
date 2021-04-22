@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
-import { Language } from '../config/config.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -29,6 +27,13 @@ export class UtilsService {
 
 	isTouchDevice() {
 		return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+	}
+
+	makeLandscape() {
+		// this works on android, not iOS
+		if (screen.orientation && screen.orientation.lock) {
+			screen.orientation.lock('landscape');
+		}
 	}
 
 }
