@@ -49,6 +49,12 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 		this.stopLiveEvent.subscribe(() => this.stopLive());
 		this.backwardCaptionsEvent.subscribe(() => this.changeCaptionsTime(false));
 		this.forwardCaptionsEvent.subscribe(() => this.changeCaptionsTime(true));
+
+		screen.orientation.onchange = () => {
+			// when change the orientation fix top of captions
+			document.getElementById('captions-container')?.style.setProperty('top', '20vh');
+			this.fixCaptionsScroll();
+		};
 	}
 
 	ngOnDestroy(): void {
@@ -86,7 +92,7 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 				if (this.liveCaptions.length <= 0) return;
 				let liveCaption: LiveCaptions | undefined = this.liveCaptions[0];
 				const captionTime = liveCaption.data.time;
-				console.log(this.currentCaptionsTime, captionTime, this.liveCaptions.length);
+				console.log('tempo real: ' + this.currentCaptionsTime, 'tempo da legenda: ' + captionTime, 'legendas disponíveis: ' + this.liveCaptions.length);
 				if (this.currentCaptionsTime < captionTime) return;
 				liveCaption = this.liveCaptions.shift();
 				this.doCaption(liveCaption!);
@@ -111,13 +117,7 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 			}
 			this.captions.push({ text: '' });
 		}
-		// fix div scroll
-		const captionsContainer = document.getElementById('captions-container');
-		if (captionsContainer) {
-			setTimeout(() => {
-				captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
-			}, 100);
-		}
+		this.fixCaptionsScroll();
 	}
 
 	changeCaptionsTime(forward: boolean) {
@@ -125,6 +125,16 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 			const time = 1000;
 			if (forward) this.currentCaptionsTime += time;
 			if (!forward) this.currentCaptionsTime -= time;
+		}
+	}
+
+	fixCaptionsScroll() {
+		// fix div scroll
+		const captionsContainer = document.getElementById('captions-container');
+		if (captionsContainer) {
+			setTimeout(() => {
+				captionsContainer.scrollTop = captionsContainer.scrollHeight - captionsContainer.clientHeight;
+			}, 100);
 		}
 	}
 

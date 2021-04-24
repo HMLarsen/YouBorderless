@@ -30,9 +30,7 @@
 		</div>
 
 		<div id="player-content">
-			<youtube-player videoId="{{ videoId }}" (ready)="onReady($event)" (stateChange)="onStateChange($event)"
-				(error)="onError" (apiChange)="onApiChange()" (playbackQualityChange)="onPlaybackQualityChange()"
-				(playbackRateChange)="onPlaybackRateChange()" [playerVars]="{ fs: 0 }">
+			<youtube-player videoId="{{ videoId }}" (ready)="onReady($event)" (stateChange)="onVideoStateChange($event)" (error)="onVideoError" [playerVars]="{ fs: 0 }">
 			</youtube-player>
 
 			<app-captions boundaryElement="#main-video-section" [liveOptions]="getLiveOptions()"

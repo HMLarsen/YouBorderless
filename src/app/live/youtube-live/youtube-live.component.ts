@@ -53,6 +53,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 
 	async ngOnInit() {
 		this.showTour = this.tutorialService.isShowLiveTutorial();
+		this.showTour = true;
 		if (!this.showTour) this.endedTour = true;
 
 		// fullscreen event
@@ -118,9 +119,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
-		const currentTime = this.videoIframe.getCurrentTime();
-		console.log(currentTime);
-		this.liveService.initLive(this.getLiveOptions(), currentTime);
+		this.liveService.initLive(this.getLiveOptions());
 		this.startLiveSubject.next();
 	}
 
@@ -145,10 +144,9 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		if (document.getElementById('embed-code')) {
 			document.getElementById('embed-code')!.innerHTML = embedCode;
 		}
-		console.log('onReady', event);
 	}
 
-	onStateChange(event: any) {
+	onVideoStateChange(event: any) {
 		this.videoState = event.data;
 		switch (this.videoState) {
 			case YoutubeVideoStateChange.PLAYING:
@@ -168,20 +166,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		console.log('onStateChange', event.data);
 	}
 
-	onError() {
-		console.log('onError');
-	}
-
-	onApiChange() {
-		console.log('onApiChange');
-	}
-
-	onPlaybackQualityChange() {
-		console.log('onPlaybackQualityChange');
-	}
-
-	onPlaybackRateChange() {
-		console.log('onPlaybackRateChange');
+	onVideoError() {
+		this.stopLive();
 	}
 
 	enterFullScreen() {
@@ -224,7 +210,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.tutorialService.initLiveTour();
 			this.tutorialService.tourService.end$.subscribe(() => {
 				this.endedTour = true;
-				this.initLive();
+				if (this.videoIframe) this.videoIframe.playVideo();
 			});
 		}, 1000);
 	}

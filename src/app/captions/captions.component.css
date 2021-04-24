@@ -4,8 +4,8 @@
 	overflow: hidden;
 	cursor: grab;
 	position: absolute;
-	top: 70vh;
-	left: 75vh;
+	top: 65vh;
+	left: 25vw;
 	z-index: 99;
 	border-radius: 0.3125rem;
 	transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1), background-color 200ms ease-out;
@@ -23,28 +23,22 @@
 }
 
 #captions-container.xs {
-	height: 13vw;
-    width: 80vw;
-	left: 10vw;
-    top: 50vh;
+	height: 17vw;
+    width: 90vw;
+	left: 5vw;
+    top: 60vh;
 }
 
 #captions-container.sm {
 	width: 68vw;
-	left: 14vh;
-	top: 63vw;
+	left: 15vw;
+	top: 65vh;
 }
 
 #captions-container.md {
 	width: 40vw;
 	left: 25vh;
-	top: 47vw;
-}
-
-#captions-container.lg {
-	width: 40vw;
-	left: 25vw;
-	top: 70vh;
+	top: 43vw;
 }
 
 .caption-visual-line {

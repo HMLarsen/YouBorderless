@@ -138,7 +138,7 @@ export class YoutubeService {
 	}
 
 	getLiveVideoByChannels(channelsId: string[]) {
-		const url = environment.backEndUrl + '/live-video-by-channels/';
+		const url = environment.backEndUrl + '/channels-broadcasts';
 		return this.http.post<Video[]>(url, { channelsId });
 	}
 
