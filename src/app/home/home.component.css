@@ -3,15 +3,24 @@
 	margin: 0 auto;
 }
 
-#logo-title {
+#home-content {
+	transition: padding 500ms;
+	padding-top: 25vh;
 	text-align: center;
 }
 
-#home-content {
-	transition: padding 500ms;
-	padding-top: 35vh;
+#home-content.fixed-search {
+	padding-top: 2vh !important;
 }
 
-#home-content.fixed-search {
-	padding-top: 2vh;
+.xs #home-content {
+	padding-top: 15vh;
+}
+
+#logo-title {
+	margin: 0 0 1.875rem;
+}
+
+#app-desc2 {
+	margin-bottom: 1.875rem;
 }

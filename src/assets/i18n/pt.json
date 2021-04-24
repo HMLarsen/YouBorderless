@@ -1,5 +1,7 @@
 {
 	"home": "Home",
+	"appDesc": "YouBorderless gera traduções em tempo real de transmissões ao vivo do Youtube.",
+	"appDesc2": "Escolha uma transmissão e se divirta!",
 	"settings": "Configurações",
 	"subscriptions": "Inscrições",
 	"cancel": "CANCELAR",
@@ -19,7 +21,7 @@
 		"subscriptionsPlaceholder": "Pesquisar (canal ou URL da transmissão)",
 		"notFoundTitle": "Nenhum resultado encontrado",
 		"notFoundDesc": "Use palavras-chave diferentes",
-		"notFoundChannels": "Nenhum canal encontrado"
+		"notFoundChannels": "Nenhum canal ao vivo"
 	},
 	"broadcastOptions": {
 		"title": "Configurações da transmissão",
@@ -38,8 +40,7 @@
 		"setConfig": "Informe as configurações da transmissão",
 		"config": "Configurar",
 		"captions": {
-			"backwardButton": "Legendas -",
-			"forwardButton": "Legendas +",
+			"captionsLabel": "Legendas",
 			"backwardConfirmation": "✔ legendas atrasadas em 1 segundo",
 			"forwardConfirmation": "✔ legendas adiantadas em 1 segundo"
 		},

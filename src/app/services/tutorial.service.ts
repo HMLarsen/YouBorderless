@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TourService } from 'ngx-tour-md-menu';
+import { PwaService } from './pwa.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,7 +12,8 @@ export class TutorialService {
 
 	constructor(
 		public tourService: TourService,
-		private translateService: TranslateService
+		private translateService: TranslateService,
+		private pwaService: PwaService
 	) { }
 
 	async initLiveTour() {
@@ -37,8 +39,17 @@ export class TutorialService {
 			enableBackdrop: true,
 			endBtnTitle: endBtnTitle
 		});
+		this.showTutorial();
+	}
+
+	showTutorial() {
+		const isPwaShowing = !!this.pwaService.installComponentSnackElement;
+		this.tourService.start$.subscribe(() => this.pwaService.closeInstallComponent());
+		this.tourService.end$.subscribe(() => {
+			this.saveTutorialEnded();
+			if (isPwaShowing) this.pwaService.openInstallComponent();
+		});
 		this.tourService.start();
-		this.tourService.end$.subscribe(() => this.saveTutorialEnded());
 	}
 
 	isShowLiveTutorial(): boolean {

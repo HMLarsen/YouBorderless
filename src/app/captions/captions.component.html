@@ -3,6 +3,6 @@
 	[matTooltipPosition]="'above'" [matTooltipShowDelay]="500" (mousedown)="tooltip.hide()"
 	tourAnchor="captionsContainer">
 	<div class="caption-visual-line" *ngFor="let caption of captions">
-		<span class="captions" *ngIf="!!caption.text" [@wordAnimation]>{{ caption.text }}</span>
+		<span class="captions" *ngIf="!!caption.text">{{ caption.text }}</span>
 	</div>
 </div>

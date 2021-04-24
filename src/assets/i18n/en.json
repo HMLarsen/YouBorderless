@@ -1,5 +1,7 @@
 {
 	"home": "Home",
+	"appDesc": "YouBorderless generates real-time translations of live YouTube broadcasts.",
+	"appDesc2": "Choose a broadcast and have fun!",
 	"settings": "Settings",
 	"subscriptions": "Subscriptions",
 	"cancel": "CANCEL",
@@ -19,7 +21,7 @@
 		"subscriptionsPlaceholder": "Search (channel or broadcast URL)",
 		"notFoundTitle": "No results found",
 		"notFoundDesc": "Use different keywords",
-		"notFoundChannels": "No channels found"
+		"notFoundChannels": "No live channels"
 	},
 	"broadcastOptions": {
 		"title": "Broadcast settings",
@@ -38,8 +40,7 @@
 		"setConfig": "Enter the broadcast settings",
 		"config": "Settings",
 		"captions": {
-			"backwardButton": "Captions -",
-			"forwardButton": "Captions +",
+			"captionsLabel": "Captions",
 			"backwardConfirmation": "✔ captions delayed by 1 second",
 			"forwardConfirmation": "✔ captions advanced by 1 second"
 		},

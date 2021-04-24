@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 import { first } from "rxjs/operators";
-import { wordAnimation } from '../animations';
 import { LiveCaptions } from '../model/live-captions.model';
 import { LiveOptions } from '../model/live-options.model';
 import { LiveService } from '../services/live.service';
@@ -13,8 +12,7 @@ interface Caption {
 @Component({
 	selector: 'app-captions',
 	templateUrl: './captions.component.html',
-	styleUrls: ['./captions.component.css'],
-	animations: [wordAnimation]
+	styleUrls: ['./captions.component.css']
 })
 export class CaptionsComponent implements OnInit, OnDestroy {
 

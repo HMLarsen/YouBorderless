@@ -46,16 +46,19 @@
 				<button mat-stroked-button #backwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.backwardConfirmation' | translate }}"
 					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="backwardCaptions(backwardTooltip)" [disabled]="!isPlaying()"
 					tourAnchor="captionsMinusButton">
-					{{ 'broadcast.captions.backwardButton' | translate }}
+					<mat-icon>remove</mat-icon>
+					{{ 'broadcast.captions.captionsLabel' | translate }}
 				</button>
 				<button mat-stroked-button #forwardTooltip="matTooltip" matTooltip="{{ 'broadcast.captions.forwardConfirmation' | translate }}"
 					matTooltipPosition="above" matTooltipDisabled="true" matTooltipHideDelay="99999" (click)="forwardCaptions(forwardTooltip)" [disabled]="!isPlaying()"
 					tourAnchor="captionsPlusButton">
-					{{ 'broadcast.captions.forwardButton' | translate }}
+					<mat-icon>add</mat-icon>
+					{{ 'broadcast.captions.captionsLabel' | translate }}
 				</button>
 			</div>
-			<button mat-stroked-button (click)="enterFullScreen()" tourAnchor="fullscreenButton">
-				Fullscreen
+			<button mat-stroked-button (click)="enterFullScreen()" tourAnchor="fullscreenButton" id="fullscreen-button">
+				<mat-icon>fullscreen</mat-icon>
+				<span fxHide.xs>Fullscreen</span>
 			</button>
 		</div>
 	</div>

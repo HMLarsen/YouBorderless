@@ -76,6 +76,14 @@ mat-spinner {
 	float: right;
 }
 
+#video-navbottom button {
+	padding-left: 0.625rem;
+}
+
+.xs #fullscreen-button {
+	padding-right: 0.625rem;
+}
+
 #video-navbottom {
 	margin-top: 0.3125rem;
 	padding-bottom: 3.75rem;

@@ -40,6 +40,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	showTour = true;
 	endedTour = false;
 
+	destroyed = false;
+
 	constructor(
 		private route: ActivatedRoute,
 		private liveService: LiveService,
@@ -64,7 +66,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		await this.youtubeService.getVideoToLive(this.videoId).toPromise()
 			.then(() => {
 				const lastLiveOptions = this.liveService.getLastLiveOptions();
-				if (!lastLiveOptions) {
+				if (!lastLiveOptions && !this.destroyed) {
 					this.openLiveOptionsModal();
 				}
 			}, err => {
@@ -87,6 +89,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
+		this.destroyed = true;
 		this.stopLive();
 	}
 
@@ -203,7 +206,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		tooltip.disabled = false;
 		tooltip.hide();
 		tooltip.show();
-		setTimeout(() => tooltip.disabled = true, 2000);
+		setTimeout(() => tooltip.disabled = true, 3000);
 	}
 
 	forwardCaptions(tooltip: MatTooltip) {
@@ -211,7 +214,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		tooltip.disabled = false;
 		tooltip.hide();
 		tooltip.show();
-		setTimeout(() => tooltip.disabled = true, 2000);
+		setTimeout(() => tooltip.disabled = true, 3000);
 	}
 
 	tour() {

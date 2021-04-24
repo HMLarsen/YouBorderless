@@ -1,5 +1,7 @@
 {
 	"home": "Hogar",
+	"appDesc": "YouBorderless genera traducciones en tiempo real de transmisiones en vivo de YouTube.",
+	"appDesc2": "¡Elige una transmisión y diviértete!",
 	"settings": "Ajustes",
 	"subscriptions": "Inscripciones",
 	"cancel": "CANCELAR",
@@ -19,7 +21,7 @@
 		"subscriptionsPlaceholder": "Buscar (canal o URL de transmisión)",
 		"notFoundTitle": "No se han encontrado resultados",
 		"notFoundDesc": "Prueba con otras palabras clave o quita los filtros de búsqueda",
-		"notFoundChannels": "No se encontraron canales"
+		"notFoundChannels": "No hay canales en vivo"
 	},
 	"broadcastOptions": {
 		"title": "Configuración de transmisión",
@@ -38,8 +40,7 @@
 		"setConfig": "Ingrese la configuración de transmisión",
 		"config": "Ajustes",
 		"captions": {
-			"backwardButton": "Subtítulos -",
-			"forwardButton": "Subtítulos +",
+			"captionsLabel": "Subtítulos",
 			"backwardConfirmation": "✔ subtítulos retrasados ​​1 segundo",
 			"forwardConfirmation": "✔ subtítulos avanzados en 1 segundo"
 		},
