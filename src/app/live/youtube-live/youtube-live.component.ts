@@ -53,7 +53,6 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 
 	async ngOnInit() {
 		this.showTour = this.tutorialService.isShowLiveTutorial();
-		this.showTour = true;
 		if (!this.showTour) this.endedTour = true;
 
 		// fullscreen event
@@ -163,7 +162,6 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			default:
 				break;
 		}
-		console.log('onStateChange', event.data);
 	}
 
 	onVideoError() {

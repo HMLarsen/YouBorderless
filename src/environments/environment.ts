@@ -5,9 +5,8 @@
 export const environment = {
 	production: false,
 	backEndUrl: 'http://192.168.100.66:3000',
-	googleAppClientId: '103633777851-77hf3l3cf9thf6vea90ljop2hj8hvtba.apps.googleusercontent.com',
-	youtubeApiKey: 'AIzaSyDb4uG9fN6fPe6M0kI5A87EL5XNhHWSqTM' // youborderless
-	// youtubeApiKey: 'AIzaSyCs7vpVckVbSu9mUcJ_mbunh7WP7v4VyBs' // huguera
+	googleAppClientId: '851686044538-jbvl374h7coifknmtv3drc4job73ie3a.apps.googleusercontent.com',
+	youtubeApiKey: 'AIzaSyCHaBV-UFr9_RBUSiY6qX5P7xE2SPxXzkE'
 };
 
 /*

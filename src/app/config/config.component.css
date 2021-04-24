@@ -27,3 +27,8 @@ section {
 	width: fit-content;
 	float: right;
 }
+
+#container.lg {
+	padding-left: inherit;
+	padding-right: inherit;
+}
