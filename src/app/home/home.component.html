@@ -1,6 +1,6 @@
 <section id="container" *ngIf="!videoId" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
 	<div id="home-content" [ngClass]="{ 'fixed-search': getLastSearch() }">
-		<div *ngIf="!getLastSearch()">
+		<div id="app-info" *ngIf="!getLastSearch()">
 			<img src="../../assets/icons/icon-512x512.png" height="128" width="128" alt="logo">
 			<h1 class="mat-display-1" id="logo-title">YouBorderless</h1>
 			<p>{{ 'appDesc' | translate }}</p>

@@ -6,6 +6,9 @@
 #home-content {
 	transition: padding 500ms;
 	padding-top: 25vh;
+}
+
+#app-info {
 	text-align: center;
 }
 
