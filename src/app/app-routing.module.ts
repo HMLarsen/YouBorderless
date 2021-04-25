@@ -6,9 +6,8 @@ import { YoutubeLiveComponent } from './live/youtube-live/youtube-live.component
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 const routes: Routes = [
-	{ path: '', pathMatch: 'full', redirectTo: 'app' },
 	{
-		path: 'app', component: HomeComponent, children: [
+		path: '', component: HomeComponent, children: [
 			{ path: 'video/:videoId', component: YoutubeLiveComponent }
 		]
 	},

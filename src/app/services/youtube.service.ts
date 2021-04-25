@@ -144,7 +144,7 @@ export class YoutubeService {
 
 	getVideoToLive(videoId: string) {
 		const url = environment.backEndUrl + '/live-available/' + videoId;
-		return this.http.get(url);
+		return this.http.get<any>(url);
 	}
 
 	getVideoIdFromUrl(url: string) {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../services/language.service';
 import { ThemeService } from '../services/theme.service';
 
@@ -21,14 +23,22 @@ export class ConfigComponent implements OnInit {
 	isDarkTheme = false;
 
 	constructor(
+		private title: Title,
+		private translateService: TranslateService,
 		private languageService: LanguageService,
 		private themeService: ThemeService
 	) { }
 
 	ngOnInit(): void {
+		this.setTitle();
 		this.languages = this.languageService.languages;
 		this.language = this.languages.find(language => language.code === this.languageService.language.code);
 		this.isDarkTheme = this.themeService.isDarkTheme;
+	}
+
+	async setTitle() {
+		const title = await this.translateService.get('settings').toPromise();
+		this.title.setTitle(`${title} - YouBorderless`);
 	}
 
 	onChangeLanguage(event: MatSelectChange) {

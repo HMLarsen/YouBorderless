@@ -10,6 +10,8 @@ import { LiveOptions } from 'src/app/model/live-options.model';
 import { MatTooltip } from '@angular/material/tooltip';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 let apiLoaded = false;
 
@@ -43,6 +45,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	destroyed = false;
 
 	constructor(
+		private title: Title,
+		private translateService: TranslateService,
 		private route: ActivatedRoute,
 		private liveService: LiveService,
 		private modalService: ModalService,
@@ -52,6 +56,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	) { }
 
 	async ngOnInit() {
+		this.setTitle();
+
 		this.showTour = this.tutorialService.isShowLiveTutorial();
 		if (!this.showTour) this.endedTour = true;
 
@@ -64,7 +70,8 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		let error;
 
 		await this.youtubeService.getVideoToLive(this.videoId).toPromise()
-			.then(() => {
+			.then(video => {
+				this.setTitle(video.title);
 				const lastLiveOptions = this.liveService.getLastLiveOptions();
 				if (!lastLiveOptions && !this.destroyed) {
 					this.openLiveOptionsModal();
@@ -91,6 +98,12 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.destroyed = true;
 		this.stopLive();
+	}
+
+	async setTitle(title?: string) {
+		if (title) title += ' - YouBorderless';
+		if (!title) title = await this.translateService.get('broadcastDesc').toPromise() + ' - YouBorderless';
+		this.title.setTitle(title);
 	}
 
 	openLiveOptionsModal(restart?: boolean) {

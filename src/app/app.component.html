@@ -9,7 +9,7 @@
 		<span class="bottom-nav__label">{{ 'settings' | translate }}</span>
 	</a>
 
-	<a class="bottom-nav__destination" routerLink="/app" routerLinkActive="bottom-nav__destination--active" matRipple
+	<a class="bottom-nav__destination" routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="bottom-nav__destination--active" matRipple
 		[matRippleUnbounded]="true" [matRippleCentered]="true" [matRippleRadius]="50">
 		<mat-icon>home</mat-icon>
 		<span class="bottom-nav__label">{{ 'home' | translate }}</span>

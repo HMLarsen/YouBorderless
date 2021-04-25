@@ -134,7 +134,7 @@ export class LiveOptionsModalComponent implements OnInit {
 		const liveOptions = LiveOptions.newInstance(this.data.videoId, language, translation, punctuation, profanityFilter, fastMode);
 		this.liveService.setLastLiveOptions(liveOptions);
 
-		this.router.navigate(['app/video/' + this.data.videoId]);
+		this.router.navigate(['video/' + this.data.videoId]);
 		this.dialogRef.close();
 	}
 
