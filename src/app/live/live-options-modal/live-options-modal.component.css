@@ -17,3 +17,13 @@ mat-spinner {
 .loading-error > label {
 	display: block;
 }
+
+.field-help {
+	display: flex;
+}
+
+.field-help > mat-icon {
+	cursor: default;
+	margin-left: 0.3125rem;
+	font-size: 1.3125rem;
+}

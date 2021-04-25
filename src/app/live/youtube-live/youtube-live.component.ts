@@ -100,8 +100,12 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 				if (!restart) return;
 				const newOptions = this.getLiveOptions();
 				if (oldOptions.id === newOptions.id) return;
-				this.stopLive(oldOptions.id);
-				this.initLive();
+				if (this.isLiving) {
+					this.stopLive(oldOptions.id);
+					this.initLive();
+				} else {
+					if (this.videoIframe) this.videoIframe.playVideo();
+				}
 			});
 	}
 

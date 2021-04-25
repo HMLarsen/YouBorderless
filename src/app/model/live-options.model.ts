@@ -10,9 +10,11 @@ export class LiveOptions {
 	liveToLanguage!: TranslationSupportedLanguage;
 	punctuation!: boolean;
 	profanityFilter!: boolean;
+	fastMode!: boolean;
 
 	static newInstance(liveId: string, liveLanguage: TranscribeSupportedLanguage,
-		liveToLanguage: TranslationSupportedLanguage, punctuation: boolean, profanityFilter: boolean) {
+		liveToLanguage: TranslationSupportedLanguage, punctuation: boolean,
+		profanityFilter: boolean, fastMode: boolean) {
 		const options = new LiveOptions();
 		options.id = uuid.v4();
 		options.liveId = liveId;
@@ -20,6 +22,7 @@ export class LiveOptions {
 		options.liveToLanguage = liveToLanguage;
 		options.punctuation = punctuation;
 		options.profanityFilter = profanityFilter;
+		options.fastMode = fastMode;
 		return options;
 	}
 }

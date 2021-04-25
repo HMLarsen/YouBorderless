@@ -71,3 +71,7 @@ youtube-player iframe {
 .mat-card, .mat-form-field, label {
 	-webkit-tap-highlight-color: transparent;
 }
+
+.mat-tooltip {
+	font-size: 1em;
+}

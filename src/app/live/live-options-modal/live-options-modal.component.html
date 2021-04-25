@@ -37,6 +37,11 @@
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
+		<div class="field-help" ngClass.xs="xs" ngClass.sm="sm" ngClass.md="md" ngClass.lg="lg">
+			<mat-checkbox color="primary" formControlName="fastMode">{{ 'broadcastOptions.fastMode' | translate }}</mat-checkbox>
+			<mat-icon #tooltip="matTooltip" matTooltip="{{ 'broadcastOptions.fastModeHelp' | translate }}" [matTooltipPosition]="'above'"
+				(click)="tooltip.show()">help</mat-icon>
+		</div>
 		<mat-checkbox color="primary" formControlName="profanityFilter">{{ 'broadcastOptions.profanityFilter' | translate }}</mat-checkbox>
 		<mat-checkbox color="primary" formControlName="punctuation">{{ 'broadcastOptions.punctuation' | translate }}</mat-checkbox>
 		<div mat-dialog-actions align="end" *ngIf="!loading && !loadingError">

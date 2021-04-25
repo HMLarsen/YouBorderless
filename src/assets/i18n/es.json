@@ -30,6 +30,8 @@
 		"languageToTrans": "Idioma de traducción",
 		"profanityFilter": "Censurar palabras ofensivas",
 		"punctuation": "Puntuación",
+		"fastMode": "Modo rápido",
+		"fastModeHelp": "Los subtítulos se actualizarán más rápidamente pero sin mucha precisión, la oración puede cambiar varias veces.",
 		"languagePlaceholder": "Idioma...",
 		"languageNotFound": "No se encontraron idiomas"
 	},

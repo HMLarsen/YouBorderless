@@ -24,9 +24,9 @@
 
 #captions-container.xs {
 	height: 17vw;
-    width: 90vw;
+	width: 90vw;
 	left: 5vw;
-    top: 60vh;
+	top: 60vh;
 }
 
 #captions-container.sm {
@@ -50,4 +50,10 @@
 	color: white;
 	font-size: 1.25rem;
 	padding-right: .25em;
+}
+
+.xs .captions {
+	font-size: 0.9375rem;
+	padding-top: 0.0938rem;
+	padding-bottom: 0.0938rem;
 }

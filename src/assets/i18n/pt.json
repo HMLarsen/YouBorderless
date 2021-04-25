@@ -30,6 +30,8 @@
 		"languageToTrans": "Idioma para tradução",
 		"profanityFilter": "Censurar palavras ofensivas",
 		"punctuation": "Pontuação",
+		"fastMode": "Modo rápido",
+		"fastModeHelp": "As legendas serão atualizadas mais rapidamente porém, sem muita precisão, podendo alterar a frase diversas vezes.",
 		"languagePlaceholder": "Idioma...",
 		"languageNotFound": "Nenhum idioma encontrado"
 	},

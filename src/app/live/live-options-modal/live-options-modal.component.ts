@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
@@ -50,7 +50,8 @@ export class LiveOptionsModalComponent implements OnInit {
 			liveTranslation: [null, [Validators.required]],
 			liveTranslationFilter: [null],
 			profanityFilter: [{ value: null, disabled: true }],
-			punctuation: [{ value: null, disabled: true }]
+			punctuation: [{ value: null, disabled: true }],
+			fastMode: new FormControl(false)
 		});
 
 		// changes
@@ -61,6 +62,12 @@ export class LiveOptionsModalComponent implements OnInit {
 		this.configForm.get('liveTranslationFilter')?.valueChanges
 			.subscribe(() => this.filterLanguages('liveTranslationFilter', this.translationLanguages, this.filteredTranslationLanguages));
 
+		// set last live options if has
+		const lastLiveOptions = this.liveService.getLastLiveOptions();
+		if (lastLiveOptions) {
+			this.configForm.get('fastMode')?.setValue(lastLiveOptions.fastMode);
+		}
+
 		// transcribe languages
 		const transcribePromise = this.liveService.getTranscribeSupportedLanguages()
 			.toPromise()
@@ -69,7 +76,6 @@ export class LiveOptionsModalComponent implements OnInit {
 				this.filteredTranscribeLanguages.next(this.transcribeLanguages.slice());
 
 				// set last live options if has
-				const lastLiveOptions = this.liveService.getLastLiveOptions();
 				if (lastLiveOptions && lastLiveOptions.liveLanguage) {
 					const language = this.transcribeLanguages.find(language => language.bcp === lastLiveOptions.liveLanguage.bcp);
 					this.configForm.get('liveLanguage')?.setValue(language);
@@ -86,7 +92,6 @@ export class LiveOptionsModalComponent implements OnInit {
 				this.filteredTranslationLanguages.next(this.translationLanguages.slice());
 
 				// set last live options if has
-				const lastLiveOptions = this.liveService.getLastLiveOptions();
 				if (lastLiveOptions && lastLiveOptions.liveToLanguage) {
 					const language = this.translationLanguages.find(language => language.code === lastLiveOptions.liveToLanguage.code);
 					this.configForm.get('liveTranslation')?.setValue(language);
@@ -124,8 +129,9 @@ export class LiveOptionsModalComponent implements OnInit {
 		const translation = this.configForm.get('liveTranslation')?.value;
 		const profanityFilter = this.configForm.get('profanityFilter')?.value;
 		const punctuation = this.configForm.get('punctuation')?.value;
+		const fastMode = this.configForm.get('fastMode')?.value;
 
-		const liveOptions = LiveOptions.newInstance(this.data.videoId, language, translation, punctuation, profanityFilter);
+		const liveOptions = LiveOptions.newInstance(this.data.videoId, language, translation, punctuation, profanityFilter, fastMode);
 		this.liveService.setLastLiveOptions(liveOptions);
 
 		this.router.navigate(['app/video/' + this.data.videoId]);

@@ -30,6 +30,8 @@
 		"languageToTrans": "Language for translation",
 		"profanityFilter": "Censoring offensive words",
 		"punctuation": "Punctuation",
+		"fastMode": "Fast mode",
+		"fastModeHelp": "Captions will be updated more quickly but without much precision, the sentence may change several times.",
 		"languagePlaceholder": "Language...",
 		"languageNotFound": "No languages found"
 	},
