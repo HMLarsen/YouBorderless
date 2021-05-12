@@ -9,6 +9,9 @@ import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LiveModule } from './live/live.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 import { AppComponent } from './app.component';
 import { ConfigComponent } from './config/config.component';
 import { HomeComponent } from './home/home.component';
@@ -46,7 +49,9 @@ import { ThemeService } from './services/theme.service';
 		ReactiveFormsModule,
 		MaterialModule,
 		LiveModule,
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+		AngularFireModule.initializeApp(environment.firebaseConfig),
+		AngularFireDatabaseModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

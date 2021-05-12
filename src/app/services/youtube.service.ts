@@ -6,6 +6,7 @@ import { ErrorService } from './error.service';
 import { Video } from '../model/video.model';
 import { UtilsService } from './utils.service';
 import { LanguageService } from './language.service';
+import { BackendService } from './backend.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -20,7 +21,8 @@ export class YoutubeService {
 		private http: HttpClient,
 		private utilsService: UtilsService,
 		private errorService: ErrorService,
-		private languageService: LanguageService
+		private languageService: LanguageService,
+		private backendService: BackendService
 	) { }
 
 	saveLastSearch(lastSearch: Search) {
@@ -40,8 +42,8 @@ export class YoutubeService {
 	}
 
 	getLivesFromTerm(term: string, maxResults: number): Promise<Video[]> {
-		return new Promise((res, rej) => {
-			const url = environment.backEndUrl + '/search-lives';
+		return new Promise(async (res, rej) => {
+			const url = await this.backendService.getBackendUrl() + '/search-lives';
 			const locale = this.languageService.getBrowserLanguage();
 			this.http.post<Video[]>(url, { term, maxResults, locale })
 				.subscribe((videos: Video[]) => {
@@ -114,7 +116,7 @@ export class YoutubeService {
 								}
 							});
 							if (channelIds.length > 0) {
-								await thiz.getLiveVideoByChannels(channelIds).toPromise()
+								await thiz.getLiveVideoByChannels(channelIds)
 									.then(async (serverResponse: Video[]) => {
 										currentVideos.push.apply(currentVideos, serverResponse);
 									}, err => reject(err));
@@ -137,14 +139,14 @@ export class YoutubeService {
 		});
 	}
 
-	getLiveVideoByChannels(channelsId: string[]) {
-		const url = environment.backEndUrl + '/channels-broadcasts';
-		return this.http.post<Video[]>(url, { channelsId });
+	async getLiveVideoByChannels(channelsId: string[]) {
+		const url = await this.backendService.getBackendUrl() + '/channels-broadcasts';
+		return this.http.post<Video[]>(url, { channelsId }).toPromise();
 	}
 
-	getVideoToLive(videoId: string) {
-		const url = environment.backEndUrl + '/live-available/' + videoId;
-		return this.http.get<any>(url);
+	async getVideoToLive(videoId: string) {
+		const url = await this.backendService.getBackendUrl() + '/live-available/' + videoId;
+		return this.http.get<any>(url).toPromise();
 	}
 
 	getVideoIdFromUrl(url: string) {

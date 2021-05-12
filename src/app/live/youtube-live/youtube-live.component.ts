@@ -69,7 +69,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		this.videoId = this.route.snapshot.params['videoId'];
 		let error;
 
-		await this.youtubeService.getVideoToLive(this.videoId).toPromise()
+		await this.youtubeService.getVideoToLive(this.videoId)
 			.then(video => {
 				this.setTitle(video.title);
 				const lastLiveOptions = this.liveService.getLastLiveOptions();
@@ -126,7 +126,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 		return this.liveService.getLastLiveOptions();
 	}
 
-	initLive() {
+	async initLive() {
 		if (this.isLiving) {
 			return;
 		}
@@ -135,7 +135,7 @@ export class YoutubeLiveComponent implements OnInit, OnDestroy {
 			this.videoIframe.playVideo();
 		}
 		this.error = null;
-		this.liveService.initLive(this.getLiveOptions());
+		await this.liveService.initLive(this.getLiveOptions());
 		this.startLiveSubject.next();
 	}
 

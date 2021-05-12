@@ -70,7 +70,6 @@ export class LiveOptionsModalComponent implements OnInit {
 
 		// transcribe languages
 		const transcribePromise = this.liveService.getTranscribeSupportedLanguages()
-			.toPromise()
 			.then(languages => {
 				this.transcribeLanguages = languages;
 				this.filteredTranscribeLanguages.next(this.transcribeLanguages.slice());
@@ -86,7 +85,6 @@ export class LiveOptionsModalComponent implements OnInit {
 
 		// translation languages
 		const translatePromise = this.liveService.getTranslationSupportedLanguages()
-			.toPromise()
 			.then(languages => {
 				this.translationLanguages = languages;
 				this.filteredTranslationLanguages.next(this.translationLanguages.slice());
