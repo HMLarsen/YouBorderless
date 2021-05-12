@@ -72,8 +72,6 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 			.subscribe(data => {
 				const liveCaption = this.liveService.getLiveCaptions(this.liveOptions.id, data);
 				if (!liveCaption) return;
-				const lastCaption = this.liveCaptions[this.liveCaptions.length - 1];
-				if (!!lastCaption && liveCaption.data.text === lastCaption.data.text) return;
 				this.liveCaptions.push(liveCaption);
 			});
 	}
