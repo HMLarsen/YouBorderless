@@ -51,7 +51,7 @@ export class LiveOptionsModalComponent implements OnInit {
 			liveTranslationFilter: [null],
 			profanityFilter: [{ value: null, disabled: true }],
 			punctuation: [{ value: null, disabled: true }],
-			fastMode: new FormControl(false)
+			fastMode: new FormControl(true)
 		});
 
 		// changes
