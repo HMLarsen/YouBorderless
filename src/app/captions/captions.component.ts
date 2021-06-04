@@ -92,7 +92,9 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 				if (this.liveCaptions.length <= 0) return;
 				let liveCaption: LiveCaptions | undefined = this.liveCaptions[0];
 				const captionTime = liveCaption.data.time;
-				console.log('tempo real: ' + this.currentCaptionsTime, '| tempo da legenda: ' + captionTime, '| legendas disponíveis: ' + this.liveCaptions.length);
+				console.log('tempo real: ' + this.currentCaptionsTime,
+					'| tempo da legenda: ' + captionTime,
+					'| legendas disponíveis: ' + this.liveCaptions.length);
 				if (this.currentCaptionsTime < captionTime) return;
 				liveCaption = this.liveCaptions.shift();
 				this.doCaption(liveCaption!);

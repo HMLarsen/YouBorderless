@@ -13,7 +13,6 @@ import { BackendService } from './backend.service';
 })
 export class YoutubeService {
 
-	YOUTUBE_API_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 	lastSearch: Search | undefined;
 	lastSubscriptionsSearch: Search | undefined;
 
@@ -40,6 +39,8 @@ export class YoutubeService {
 	getLastSubscriptionsSearch() {
 		return this.lastSubscriptionsSearch;
 	}
+
+	YOUTUBE_API_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 	getLivesFromTerm(term: string, maxResults: number): Promise<Video[]> {
 		return new Promise(async (res, rej) => {
@@ -100,32 +101,34 @@ export class YoutubeService {
 						if (pageToken) {
 							request.pageToken = pageToken;
 						}
-						gapi.client.youtube.subscriptions.list(request).execute(async (apiResponse: any) => {
-							if (apiResponse.error) {
-								reject(apiResponse.error);
-								return;
-							}
-							const channelIds: string[] = [];
-							const items = apiResponse.result.items;
-							const nextPageToken = apiResponse.result.nextPageToken;
-							items?.forEach((item: any) => {
-								const channelId = item.snippet?.resourceId?.channelId;
-								const channelTitle = item.snippet?.title;
-								if (channelId && (!channelName || thiz.utilsService.searchInNormalizedStrings(channelTitle!, channelName))) {
-									channelIds.push(channelId);
+						gapi.client.youtube.subscriptions.list(request)
+							.execute(async (apiResponse: any) => {
+								if (apiResponse.error) {
+									reject(apiResponse.error);
+									return;
 								}
+								const channelIds: string[] = [];
+								const items = apiResponse.result.items;
+								const nextPageToken = apiResponse.result.nextPageToken;
+								items?.forEach((item: any) => {
+									const channelId = item.snippet?.resourceId?.channelId;
+									const channelTitle = item.snippet?.title;
+									if (channelId && (!channelName ||
+										thiz.utilsService.searchInNormalizedStrings(channelTitle!, channelName))) {
+										channelIds.push(channelId);
+									}
+								});
+								if (channelIds.length > 0) {
+									await thiz.getLiveVideoByChannels(channelIds)
+										.then(async (serverResponse: Video[]) => {
+											currentVideos.push.apply(currentVideos, serverResponse);
+										}, err => reject(err));
+								}
+								if (nextPageToken) {
+									await getVideos(currentVideos, nextPageToken);
+								}
+								resolve(currentVideos);
 							});
-							if (channelIds.length > 0) {
-								await thiz.getLiveVideoByChannels(channelIds)
-									.then(async (serverResponse: Video[]) => {
-										currentVideos.push.apply(currentVideos, serverResponse);
-									}, err => reject(err));
-							}
-							if (nextPageToken) {
-								await getVideos(currentVideos, nextPageToken);
-							}
-							resolve(currentVideos);
-						});
 					} catch (err) {
 						reject(err);
 					}
