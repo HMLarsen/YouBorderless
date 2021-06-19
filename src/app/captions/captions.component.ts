@@ -84,8 +84,8 @@ export class CaptionsComponent implements OnInit, OnDestroy {
 
 	startCaptionsTimer() {
 		this.stopCaptionsTimer();
-		const timerInterval = 100;
 		this.currentCaptionsTime = 0;
+		const timerInterval = 100;
 		this._captionsTimer = interval(timerInterval)
 			.subscribe(() => {
 				this.currentCaptionsTime += timerInterval;
